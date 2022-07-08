@@ -9,9 +9,8 @@
 /*   Updated: 2022/07/06 19:16:45 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include	"libft.h"
 
-int	isalpha(int c)
+int	ft_isalpha(int c)
 {
 	if (c >= 'a' && c <= 'z')
 		return (1);
