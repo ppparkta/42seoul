@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/09 00:53:07 by sooyang           #+#    #+#             */
-/*   Updated: 2022/07/09 20:01:46 by sooyang          ###   ########.fr       */
+/*   Created: 2022/07/09 21:51:40 by sooyang           #+#    #+#             */
+/*   Updated: 2022/07/09 21:52:25 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+char	*strdup(const char *s1)
 {
-	unsigned char	*pointer;
-	size_t			i;
-
-	if (dest == 0 && src == 0)
-		return (dest);
-	pointer = (unsigned char *)dest;
-	i = 0;
-	while (i < n)
-	{
-		*pointer++ = *((unsigned char *)src++);
-		i++;
-	}
-	return (dest);
+		
 }

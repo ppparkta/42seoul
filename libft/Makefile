@@ -18,6 +18,12 @@ SRC = \
 	./ft_tolower.c \
 	./ft_strchr.c \
 	./ft_strrchr.c \
+	./ft_memchr.c \
+	./ft_memcmp.c \
+	./ft_strnstr.c \
+	./ft_atoi.c \
+	./ft_alloc.c \
+	./ft_strdup.c \
 
 OBJS = $(SRC:.c=.o)
 

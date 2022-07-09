@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/09 00:53:07 by sooyang           #+#    #+#             */
-/*   Updated: 2022/07/09 20:01:46 by sooyang          ###   ########.fr       */
+/*   Created: 2022/07/09 21:49:50 by sooyang           #+#    #+#             */
+/*   Updated: 2022/07/09 21:51:28 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int	ft_atoi(const char *str)
 {
-	unsigned char	*pointer;
-	size_t			i;
 
-	if (dest == 0 && src == 0)
-		return (dest);
-	pointer = (unsigned char *)dest;
-	i = 0;
-	while (i < n)
-	{
-		*pointer++ = *((unsigned char *)src++);
-		i++;
-	}
-	return (dest);
 }

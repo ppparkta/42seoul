@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 01:09:19 by sooyang           #+#    #+#             */
-/*   Updated: 2022/07/09 17:27:57 by sooyang          ###   ########.fr       */
+/*   Updated: 2022/07/09 18:55:25 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,13 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	{
 		cdest += n - 1;
 		csrc += n - 1;
-		while (i < n)
-		{
+		while (i++ < n)
 			*cdest-- = *((unsigned char *)csrc--);
-			i++;
-		}
 	}
 	else
 	{
-		while (i < n)
-		{
+		while (i++ < n)
 			*cdest++ = *((unsigned char *)csrc++);
-			i++;
-		}
 	}
 	return (dest);
 }
