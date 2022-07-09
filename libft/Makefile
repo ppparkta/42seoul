@@ -1,16 +1,15 @@
 NAME = libft.a
 
-SRC = ./ft_bzero.c	\
-      ./ft_isalnum.c	\
+SRC = \
+	./ft_bzero.c \
+	./ft_isalnum.c \
 
-OBJS = $(SRC:.C=.O)
-
-HDRS = libft.h
+OBJS = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME):
-	gcc -c -Wall -Wextra -Werror -I $(HDRS) $(SRC)
+	gcc -c -Wall -Wextra -Werror -I. $(SRC)
 	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
 
