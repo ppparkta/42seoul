@@ -6,13 +6,13 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 00:28:13 by sooyang           #+#    #+#             */
-/*   Updated: 2022/07/09 00:28:13 by sooyang          ###   ########.fr       */
+/*   Updated: 2022/07/09 14:24:51 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"libft.h"
 
-void	*memset(void *s, int c, size_t n)
+void	*ft_memset(void *s, int c, size_t n)
 {
 	char	*sc;
 	size_t	i;
@@ -24,5 +24,5 @@ void	*memset(void *s, int c, size_t n)
 		*sc++ = (unsigned char)c;
 		i--;
 	}
-	return (sc);
+	return (s);
 }

@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 00:53:07 by sooyang           #+#    #+#             */
-/*   Updated: 2022/07/09 00:53:07 by sooyang          ###   ########.fr       */
+/*   Updated: 2022/07/09 13:35:08 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	char	*pointer;
 	size_t	i;
 
-	if (dest == '\0' && src == '\0')
+	if (dest == 0 && src == 0)
 		return (dest);
 	pointer = (char *)dest;
 	i = 0;

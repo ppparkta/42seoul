@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 01:09:19 by sooyang           #+#    #+#             */
-/*   Updated: 2022/07/09 01:09:19 by sooyang          ###   ########.fr       */
+/*   Updated: 2022/07/09 13:37:45 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	cdest = dest;
 	csrc = src;
 	i = 0;
-	if (cdest == '\0' && csrc == '\0')
+	if (cdest == 0 && csrc == 0)
 		return (dest);
 	if (cdest > csrc)
 	{

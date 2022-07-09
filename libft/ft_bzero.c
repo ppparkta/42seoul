@@ -6,13 +6,13 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 00:46:09 by sooyang           #+#    #+#             */
-/*   Updated: 2022/07/09 00:46:09 by sooyang          ###   ########.fr       */
+/*   Updated: 2022/07/09 13:24:59 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"libft.h"
 
-void	bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
 	char	*sc;
 	size_t	i;

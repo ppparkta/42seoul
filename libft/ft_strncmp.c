@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 01:31:59 by sooyang           #+#    #+#             */
-/*   Updated: 2022/07/09 01:31:59 by sooyang          ###   ########.fr       */
+/*   Updated: 2022/07/09 14:40:05 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned int	len1;
-	unsigned int	len2;
-	unsigned int	i;
+	size_t	len1;
+	size_t	len2;
+	size_t	i;
 
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
+	if (len1 == 0 && len2 == 0)
+		return (0);
 	if (len1 < n && len2 < n)
 	{
 		if (len1 < len2)
