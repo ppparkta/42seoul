@@ -6,16 +6,16 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 00:04:23 by sooyang           #+#    #+#             */
-/*   Updated: 2022/07/09 02:35:32 by sooyang          ###   ########.fr       */
+/*   Updated: 2022/07/09 14:48:24 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"libft.h"
 
-size_t ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
-	
+
 	i = 0;
 	while (s[i])
 		i++;
