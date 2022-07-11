@@ -2,6 +2,7 @@ NAME = libft.a
 
 SRC = \
 	./ft_bzero.c \
+	./ft_atoi.c \
 	./ft_isalnum.c \
 	./ft_isalpha.c \
 	./ft_isdigit.c \
@@ -21,8 +22,7 @@ SRC = \
 	./ft_memchr.c \
 	./ft_memcmp.c \
 	./ft_strnstr.c \
-	./ft_atoi.c \
-	./ft_alloc.c \
+	./ft_calloc.c \
 	./ft_strdup.c \
 
 OBJS = $(SRC:.c=.o)

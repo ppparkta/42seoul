@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_alloc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/09 00:04:23 by sooyang           #+#    #+#             */
-/*   Updated: 2022/07/11 17:36:54 by sooyang          ###   ########.fr       */
+/*   Created: 2022/07/09 21:50:25 by sooyang           #+#    #+#             */
+/*   Updated: 2022/07/11 19:46:15 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"libft.h"
 
-size_t	ft_strlen(const char *s)
+void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	i;
+	void	*ans;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	ans = malloc(size * count);
+	if (ans == 0)
+		return (0);
+	ft_bzero(ans, (size * count));
+	return (ans);
 }
