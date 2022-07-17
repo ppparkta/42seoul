@@ -35,12 +35,21 @@ SRC = \
 	./ft_putstr_fd.c \
 	./ft_putendl_fd.c \
 	./ft_putnbr_fd.c \
+
+BONUS = \
 	./ft_lstnew.c \
 	./ft_lstadd_front.c \
 	./ft_lstsize.c \
-	./ft_lstlast.c \ 
+	./ft_lstlast.c \
+	./ft_lstadd_back.c \
+	./ft_lstdelone.c \
+	./ft_lstclear.c \
+	./ft_lstiter.c \
+	./ft_lstmap.c \
 
 OBJS = $(SRC:.c=.o)
+
+BONUS_OBJS = $(BONUS:.c=.o)
 
 all: $(NAME)
 
@@ -56,3 +65,8 @@ fclean: clean
 	/bin/rm -f $(NAME)
 
 re: fclean all
+
+bonus: $(OBJS) $(BONUS_OBJS)
+	ar rc $(NAME) $(OBJS) $(BONUS_OBJS)
+
+.PHONY: all clean fclean re bonus $(NAME)
