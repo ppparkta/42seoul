@@ -10,19 +10,19 @@
 수정중이므로 벨로그 비공개 상태입니다.
 
 ### ft_printf
-2022.07.24~2022.07.28<br>
+2022.07.24~2022.07.28
 - Ft_printf는 C의 printf 함수를 직접 구현하는 프로젝트입니다.
 - 아래의 링크에서 정리된 내용을 확인할 수 있습니다.<br>
 - <a href="https://velog.io/@ppparkta/42seoul-ftprintf">ft_printf 정리자료</a>
 
 ### get_next_line
-2022.08.19~2022.09.14<br>
+2022.08.19~2022.09.14
 - Get Next Line은 파일을 읽어서 개행을 기준으로 한줄마다 파일의 내용을 반환하는 함수를 만드는 프로젝트입니다.
 - 아래의 링크에서 정리된 내용을 확인할 수 있습니다.
 - <a href="https://velog.io/@ppparkta/42seoul-GetNextLine">get_next_line 정리자료</a>
 
 ### Born2BeRoot
-2022.08.28~2022.09.16</br>
+2022.08.28~2022.09.16
 - Bron 2 Be Root는 가상머신을 사용하여 운영체제를 다루는 프로젝트입니다.
 - 아래의 링크에서 정리된 내용을 확인할 수 있습니다.
 - <a href="https://velog.io/@ppparkta/42seoul-Born2beroot">Bron2BeRoot 정리자료</a>
