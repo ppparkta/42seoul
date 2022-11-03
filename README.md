@@ -25,7 +25,7 @@
 - 아래의 링크에서 정리된 내용을 확인할 수 있습니다.
 - <a href="https://velog.io/@ppparkta/42seoul-Born2beroot">Bron2BeRoot 정리자료</a>
 
-### Push_swap
+### push_swap
 2022.10.22~진행중
 - Push Swap은 받아온 인자를 두개의 Deque만으로 정렬하는 함수를 만드는 프로젝트입니다.
 - 아래의 링크에서 정리된 내용을 확인할 수 있습니다.
