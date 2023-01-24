@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/25 00:16:17 by sooyang           #+#    #+#             */
+/*   Updated: 2023/01/25 00:16:38 by sooyang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	init(t_game *game)
@@ -83,7 +95,7 @@ void check_objects(t_game *game, char **map)
 	game->collect = game->c_cnt;
 }
 
-int check_dfs(t_game *game, char **map)
+int check_dfs(t_game *game, char **map, int x, int y)
 {
 	return (1);
 }
@@ -121,7 +133,7 @@ void check_game(t_game *game)
 	check_objects(game, map);
 	if (game->p_cnt != 1 || game->e_cnt != 1 || game->c_cnt < 1)
 		destroy_game(game);
-	i = check_dfs(game, map);
+	i = check_dfs(game, map, game->x, game->y);
 	free_map(game, map);
 	if (!i)
 		destroy_game(game);
