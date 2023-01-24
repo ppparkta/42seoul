@@ -8,6 +8,7 @@
 # define KEY_A      0
 
 # include <fcntl.h>
+# include <stdio.h>
 # include "../mlx/mlx.h"
 # include "../ft_printf/ft_printf.h"
 # include "../get_next_line/get_next_line.h"
@@ -21,14 +22,16 @@ typedef struct s_game
     void    *c;
     void    *e;
     void    *p;
-    char    *map;
+    char    **map;
     int     x;
     int     y;
     int     width;
     int     height;
-    int     img_w;
-    int     img_h;
     int		cnt; 
+    int     c_cnt;
+    int     p_cnt;
+    int     e_cnt;
+    int     collect;
 }   t_game;
 
 #endif
