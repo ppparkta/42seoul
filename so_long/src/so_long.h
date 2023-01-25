@@ -6,10 +6,9 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 00:16:29 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/25 13:51:20 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/25 14:38:51 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
@@ -28,23 +27,23 @@
 
 typedef struct s_game
 {
-    void    *mlx;
-    void    *win;
-    void    *w;
-    void    *g;
-    void    *c;
-    void    *e;
-    void    *p;
-    char    **map;
-    int     x;
-    int     y;
-    int     width;
-    int     height;
-    int		cnt; 
-    int     c_cnt;
-    int     p_cnt;
-    int     e_cnt;
-    int     collect;
-}   t_game;
+	void	*mlx;
+	void	*win;
+	void	*w;
+	void	*g;
+	void	*c;
+	void	*e;
+	void	*p;
+	char	**map;
+	int		x;
+	int		y;
+	int		width;
+	int		height;
+	int		cnt;
+	int		c_cnt;
+	int		p_cnt;
+	int		e_cnt;
+	int		collect;
+}	t_game;
 
 #endif

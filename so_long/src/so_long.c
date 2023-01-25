@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 00:16:17 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/25 13:58:00 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/25 15:03:31 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,57 +26,63 @@ void	init(t_game *game)
 	game->e_cnt = 0;
 	game->p_cnt = 0;
 	game->collect = 0;
-	game->w = mlx_xpm_file_to_image(game->mlx, "../images/w.xpm", &img_w, &img_h);
-	game->g = mlx_xpm_file_to_image(game->mlx, "../images/g.xpm", &img_w, &img_h);
-	game->e = mlx_xpm_file_to_image(game->mlx, "../images/e.xpm", &img_w, &img_h);
-	game->c = mlx_xpm_file_to_image(game->mlx, "../images/c.xpm", &img_w, &img_h);
-	game->p = mlx_xpm_file_to_image(game->mlx, "../images/p.xpm", &img_w, &img_h);
+	game->w = mlx_xpm_file_to_image(game->mlx, \
+	"../images/w.xpm", &img_w, &img_h);
+	game->g = mlx_xpm_file_to_image(game->mlx, \
+	"../images/g.xpm", &img_w, &img_h);
+	game->e = mlx_xpm_file_to_image(game->mlx, \
+	"../images/e.xpm", &img_w, &img_h);
+	game->c = mlx_xpm_file_to_image(game->mlx, \
+	"../images/c.xpm", &img_w, &img_h);
+	game->p = mlx_xpm_file_to_image(game->mlx, \
+	"../images/p.xpm", &img_w, &img_h);
 }
 
-void destroy_game(t_game *game)
+void	destroy_game(t_game *game)
 {
-	ft_printf("error : map loaded fail");
+	ft_printf("map error");
 	mlx_destroy_window(game->mlx, game->win);
 	exit(0);
 }
 
-int read_line(t_game *game, char *gnl, int i)
+int	read_line(t_game *game, char *gnl, int i)
 {
-	int j;
+	int	j;
 
 	j = 0;
-	while (gnl[j])
+	while (j < game->width)
 	{
 		if (!(gnl[j] == '1' || gnl[j] == '0' || gnl[j] == 'P' || \
-		 gnl[j] == 'C' || gnl[j] == 'E' || gnl[j] == '\n'))
+		gnl[j] == 'C' || gnl[j] == 'E' || gnl[j] == '\n'))
 			return (0);
 		if (i == 0 || i == game->height - 1)
 		{
-			if (gnl[j] != '1' && j >= game->width)
+			if (gnl[j] != '1')
 				return (0);
 		}
 		else
 		{
-			if (gnl[j] != '1' && (j == 0 || j == game->width -1))
+			if (j == 0 || j == game->width - 1)
+				if (gnl[j] != '1')
 					return (0);
 		}
 		j++;
 	}
-	if (j != game->width + 1)
+	if (j != game->width)
 		return (0);
 	return (1);
 }
 
-void check_objects(t_game *game, char **map)
+void	check_objects(t_game *game, char **map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (++i < game->height)
 	{
 		j = -1;
-		while(++j < game->width)
+		while (++j < game->width)
 		{
 			if (game->map[i][j] == 'C')
 				game->c_cnt++;
@@ -95,18 +101,18 @@ void check_objects(t_game *game, char **map)
 	game->collect = game->c_cnt;
 }
 
-int check_dfs(t_game *game, char **map, int x, int y)
+int	check_dfs(t_game *game, char **map, int x, int y)
 {
-	int nx=x;
-	int ny=y;
-	char **map2=map;
-	nx=game->x;
-	ny=game->y;
-	map2=game->map;
+	int		nx = x;
+	int		ny = y;
+	char	**map2 = map;
+	nx = game->x;
+	ny = game->y;
+	map2 = game->map;
 	return (1);
 }
 
-void free_map(t_game *game, char **map)
+void free_map (t_game *game, char **map)
 {
 	int	i;
 
@@ -120,10 +126,10 @@ void free_map(t_game *game, char **map)
 	free(map);
 }
 
-void check_game(t_game *game)
+void check_game (t_game *game)
 {
-	char **map;
-	int i;
+	char	**map;
+	int		i;
 
 	map = malloc(sizeof(char *) * game->height);
 	if (!map)
@@ -132,7 +138,7 @@ void check_game(t_game *game)
 	while (i < game->height)
 	{
 		map[i] = malloc(sizeof(char) * game->width);
-		if(!map[i])
+		if (!map[i])
 			destroy_game(game);
 		i++;
 	}
@@ -145,7 +151,7 @@ void check_game(t_game *game)
 		destroy_game(game);
 }
 
-void read_map(char *file, t_game *game)
+void	read_map (char *file, t_game *game)
 {
 	int		fd;
 	int		i;
@@ -160,6 +166,8 @@ void read_map(char *file, t_game *game)
 	{
 		gnl = get_next_line(fd);
 		game->map[i] = gnl;
+		// ft_printf("현재 높이 : %d\n",game->height);
+		// ft_printf("%d\n", i);
 		if (!read_line(game, gnl, i))
 		{
 			game->height = i;
@@ -168,9 +176,10 @@ void read_map(char *file, t_game *game)
 		i++;
 	}
 	close(fd);
+	check_game(game);
 }
 
-void open_map(char *file, t_game *game)
+void	open_map (char *file, t_game *game)
 {
 	int		fd;
 	char	*gnl;
@@ -195,19 +204,16 @@ void open_map(char *file, t_game *game)
 	read_map(file, game);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_game	game;
-	
-	if (argc != 2)
-	{
-		ft_printf("map error\n");
-		destroy_game(&game);
-	}
-	open_map(argv[1], &game);
 
+	if (argc != 2)
+		destroy_game(&game);
+	open_map(argv[1], &game);
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, game.width * 64, game.height * 64, "so_long");
+	game.win = mlx_new_window(game.mlx, game.width * 64, \
+	game.height * 64, "so_long");
 	mlx_loop(game.mlx);
 	return (0);
 }
