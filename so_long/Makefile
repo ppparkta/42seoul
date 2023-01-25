@@ -1,24 +1,23 @@
 NAME = so_long
-CC = cc
-RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 
-SRCS = ./src/so_long.c
+SRCS = src/so_long.c \
+	   get_next_line/get_next_line.c \
+	   get_next_line/get_next_line_utils.c \
+
+FT_PRINTF = make -C ft_printf
 
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	make -C ft_printf
-	$(CC) $(CFLAGS) -o $@ $^ -L./mlx $(MLX_FLAGS) ft_printf/libftprintf.a
-
-$.o: $.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(FT_PRINTF)
+	$(CC) $(CFLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJS) ft_printf/libftprintf.a
 
 clean:
-	make -C ft_printf clean
+	$(FT_PRINTF) clean
 	$(RM) $(OBJS)
 
 fclean: clean

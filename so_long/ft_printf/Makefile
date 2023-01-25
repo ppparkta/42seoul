@@ -6,11 +6,9 @@
 #    By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/27 15:34:21 by sooyang           #+#    #+#              #
-#    Updated: 2022/07/27 15:34:21 by sooyang          ###   ########.fr        #
+#    Updated: 2023/01/25 13:39:39 by sooyang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-LIBFT = ./Libft/libft.a
 
 NAME = ./libftprintf.a
 
@@ -22,24 +20,18 @@ OBJS = $(SRC:.c=.o)
 
 all: $(NAME)
 
+%.o: %.c
+	cc -Wall -Wextra -Werror -c $< -o $@
+
 $(NAME): $(OBJS)
-	$(MAKE) -C Libft
-	cp $(LIBFT) $@
 	ar rcs $@ $^
 
 clean:
-	$(MAKE) -C Libft clean
-	/bin/rm -f $(OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
-	$(MAKE) -C Libft fclean
-	/bin/rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
 .PHONY: all clean fclean re
-
-test: $(NAME)
-	@$(CC) $(CFLAGS) -lftprintf -L. main.c
-	@./a.out
-	@rm a.out

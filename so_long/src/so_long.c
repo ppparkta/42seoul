@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 00:16:17 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/25 00:16:38 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/25 13:58:00 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init(t_game *game)
 {
-	int img_w;
+	int	img_w;
 	int	img_h;
 
 	game->width = 0;
@@ -97,6 +97,12 @@ void check_objects(t_game *game, char **map)
 
 int check_dfs(t_game *game, char **map, int x, int y)
 {
+	int nx=x;
+	int ny=y;
+	char **map2=map;
+	nx=game->x;
+	ny=game->y;
+	map2=game->map;
 	return (1);
 }
 
@@ -153,7 +159,7 @@ void read_map(char *file, t_game *game)
 	while (i < game->height)
 	{
 		gnl = get_next_line(fd);
-		game->map[i] = *gnl;
+		game->map[i] = gnl;
 		if (!read_line(game, gnl, i))
 		{
 			game->height = i;
@@ -189,7 +195,7 @@ void open_map(char *file, t_game *game)
 	read_map(file, game);
 }
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
 	t_game	game;
 	
