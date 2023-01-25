@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 00:16:17 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/25 16:25:42 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/25 16:34:29 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,30 @@ void	open_map (char *file, t_game *game)
 	read_map(file, game);
 }
 
+void set_map_image(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < game->height)
+	{
+		j = -1;
+		while (++j < game->width)
+		{
+			mlx_put_image_to_window(game->mlx, game->win, game->g, i * 64, j * 64);
+			if (game->map[i][j] == 'P')
+				mlx_put_image_to_window(game->mlx, game->win, game->p, i * 64, j * 64);
+			if (game->map[i][j] == 'E')
+				mlx_put_image_to_window(game->mlx, game->win, game->e, i * 64, j * 64);
+			if (game->map[i][j] == 'C')
+				mlx_put_image_to_window(game->mlx, game->win, game->c, i * 64, j * 64);
+			if (game->map[i][j] == '1')
+				mlx_put_image_to_window(game->mlx, game->win, game->w, i * 64, j * 64);
+		}
+	}
+}
+
 int	main(int argc, char *argv[])
 {
 	t_game	game;
@@ -226,8 +250,8 @@ int	main(int argc, char *argv[])
 		destroy_game(&game);
 	open_map(argv[1], &game);
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, game.width * 64, \
-	game.height * 64, "so_long");
+	game.win = mlx_new_window(game.mlx, game.width * 64, game.height * 64, "so_long");
+	set_map_image(&game);
 	mlx_loop(game.mlx);
 	return (0);
 }
