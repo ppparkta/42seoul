@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 00:16:17 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/25 19:36:13 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/25 21:26:10 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	check_dfs(t_game *game, char **map, int x, int y)
 	return (0);
 }
 
-void free_map (t_game *game, char **map)
+void	free_map(t_game *game, char **map)
 {
 	int	i;
 
@@ -126,7 +126,7 @@ void free_map (t_game *game, char **map)
 	free(map);
 }
 
-void check_game (t_game *game)
+void	check_game(t_game *game)
 {
 	char	**map;
 	int		i;
@@ -151,7 +151,7 @@ void check_game (t_game *game)
 		destroy_game(game);
 }
 
-void	read_map (char *file, t_game *game)
+void	read_map(char *file, t_game *game)
 {
 	int		fd;
 	int		i;
@@ -177,7 +177,7 @@ void	read_map (char *file, t_game *game)
 	check_game(game);
 }
 
-void	open_map (char *file, t_game *game)
+void	open_map(char *file, t_game *game)
 {
 	int		fd;
 	char	*gnl;
@@ -216,7 +216,6 @@ void	set_map_image(t_game *game)
 		j = -1;
 		while (++j < game->width)
 		{
-			ft_printf("%d %d\n", i, j);
 			mlx_put_image_to_window(game->mlx, game->win, game->g, \
 			j * 64, i * 64);
 			if (game->map[i][j] == 'P')
@@ -240,8 +239,6 @@ void	init_img(t_game *game)
 	int	img_w;
 	int	img_h;
 
-	// img_w = 64;
-	// img_h = 64;
 	game->w = mlx_xpm_file_to_image(game->mlx, "./images/w.xpm", \
 	&img_w, &img_h);
 	game->g = mlx_xpm_file_to_image(game->mlx, "./images/g.xpm", \
