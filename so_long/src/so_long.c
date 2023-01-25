@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 00:16:17 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/25 16:15:53 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/25 16:25:42 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,26 +101,25 @@ void	check_objects(t_game *game, char **map)
 	game->collect = game->c_cnt;
 }
 
-int	check_dfs(t_game *game, char **map, int x, int y, int collect)
+int	check_dfs(t_game *game, char **map, int x, int y)
 {
 	if (map[y][x] != '1')
 	{
-		if (collect == 0 && map[y][x] == 'E')
-		{
-			ft_printf("탈출조건 만족");
-			return (1);
-		}
 		if (map[y][x] == 'C')
-			collect -= 1;
+			game->c_cnt--;
+		if (map[y][x] == 'E')
+			game->e_cnt--;
 		map[y][x] == '1';
 		if (map[y][x + 1] != '1')
-			check_dfs(game, map, x + 1, y, collect);
+			check_dfs(game, map, x + 1, y);
 		if (map[y][x - 1] != '1')
-			check_dfs(game, map, x - 1, y, collect);
+			check_dfs(game, map, x - 1, y);
 		if (map[y + 1][x] != '1')
-			check_dfs(game, map, x, y + 1, collect);
+			check_dfs(game, map, x, y + 1);
 		if (map[y - 1][x] != '1')
-			check_dfs(game, map, x, y - 1, collect);
+			check_dfs(game, map, x, y - 1);
+		if (game->c_cnt == 0 && game->e_cnt == 0)
+			return (1);
 	}
 	ft_printf("탈출조건 불만족");
 	return (0);
@@ -159,7 +158,7 @@ void check_game (t_game *game)
 	check_objects(game, map);
 	if (game->p_cnt != 1 || game->e_cnt != 1 || game->c_cnt < 1)
 		destroy_game(game);
-	i = check_dfs(game, map, game->x, game->y, game->collect);
+	i = check_dfs(game, map, game->x, game->y);
 	free_map(game, map);
 	if (!i)
 		destroy_game(game);
