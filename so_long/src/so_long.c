@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 00:16:17 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/25 16:34:29 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/25 19:36:13 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	init(t_game *game)
 {
-	int	img_w;
-	int	img_h;
-
 	game->width = 0;
 	game->height = 0;
 	game->x = 0;
@@ -26,16 +23,6 @@ void	init(t_game *game)
 	game->e_cnt = 0;
 	game->p_cnt = 0;
 	game->collect = 0;
-	game->w = mlx_xpm_file_to_image(game->mlx, \
-	"../images/w.xpm", &img_w, &img_h);
-	game->g = mlx_xpm_file_to_image(game->mlx, \
-	"../images/g.xpm", &img_w, &img_h);
-	game->e = mlx_xpm_file_to_image(game->mlx, \
-	"../images/e.xpm", &img_w, &img_h);
-	game->c = mlx_xpm_file_to_image(game->mlx, \
-	"../images/c.xpm", &img_w, &img_h);
-	game->p = mlx_xpm_file_to_image(game->mlx, \
-	"../images/p.xpm", &img_w, &img_h);
 }
 
 void	destroy_game(t_game *game)
@@ -109,7 +96,7 @@ int	check_dfs(t_game *game, char **map, int x, int y)
 			game->c_cnt--;
 		if (map[y][x] == 'E')
 			game->e_cnt--;
-		map[y][x] == '1';
+		map[y][x] = '1';
 		if (map[y][x + 1] != '1')
 			check_dfs(game, map, x + 1, y);
 		if (map[y][x - 1] != '1')
@@ -150,7 +137,7 @@ void check_game (t_game *game)
 	i = 0;
 	while (i < game->height)
 	{
-		map[i] = malloc(sizeof(char) * game->width);
+		map[i] = malloc(sizeof(char) * game->width + 1);
 		if (!map[i])
 			destroy_game(game);
 		i++;
@@ -179,8 +166,6 @@ void	read_map (char *file, t_game *game)
 	{
 		gnl = get_next_line(fd);
 		game->map[i] = gnl;
-		// ft_printf("현재 높이 : %d\n",game->height);
-		// ft_printf("%d\n", i);
 		if (!read_line(game, gnl, i))
 		{
 			game->height = i;
@@ -214,11 +199,13 @@ void	open_map (char *file, t_game *game)
 		free(gnl);
 		game->height++;
 	}
+	// ft_printf("폭 : %d\n", game->width);
+	// ft_printf("높이 : %d\n", game->height);
 	close(fd);
 	read_map(file, game);
 }
 
-void set_map_image(t_game *game)
+void	set_map_image(t_game *game)
 {
 	int	i;
 	int	j;
@@ -229,17 +216,44 @@ void set_map_image(t_game *game)
 		j = -1;
 		while (++j < game->width)
 		{
-			mlx_put_image_to_window(game->mlx, game->win, game->g, i * 64, j * 64);
+			ft_printf("%d %d\n", i, j);
+			mlx_put_image_to_window(game->mlx, game->win, game->g, \
+			j * 64, i * 64);
 			if (game->map[i][j] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win, game->p, i * 64, j * 64);
-			if (game->map[i][j] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win, game->e, i * 64, j * 64);
-			if (game->map[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, game->c, i * 64, j * 64);
-			if (game->map[i][j] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->w, i * 64, j * 64);
+				mlx_put_image_to_window(game->mlx, game->win, game->p, \
+				j * 64, i * 64);
+			else if (game->map[i][j] == 'E')
+				mlx_put_image_to_window(game->mlx, game->win, game->e, \
+				j * 64, i * 64);
+			else if (game->map[i][j] == 'C')
+				mlx_put_image_to_window(game->mlx, game->win, game->c, \
+				j * 64, i * 64);
+			else if (game->map[i][j] == '1')
+				mlx_put_image_to_window(game->mlx, game->win, game->w, \
+				j * 64, i * 64);
 		}
 	}
+}
+
+void	init_img(t_game *game)
+{
+	int	img_w;
+	int	img_h;
+
+	// img_w = 64;
+	// img_h = 64;
+	game->w = mlx_xpm_file_to_image(game->mlx, "./images/w.xpm", \
+	&img_w, &img_h);
+	game->g = mlx_xpm_file_to_image(game->mlx, "./images/g.xpm", \
+	&img_w, &img_h);
+	game->e = mlx_xpm_file_to_image(game->mlx, "./images/e.xpm", \
+	&img_w, &img_h);
+	game->c = mlx_xpm_file_to_image(game->mlx, "./images/c.xpm", \
+	&img_w, &img_h);
+	game->p = mlx_xpm_file_to_image(game->mlx, "./images/p.xpm", \
+	&img_w, &img_h);
+	ft_printf("완료\n");
+	set_map_image(game);
 }
 
 int	main(int argc, char *argv[])
@@ -250,8 +264,9 @@ int	main(int argc, char *argv[])
 		destroy_game(&game);
 	open_map(argv[1], &game);
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, game.width * 64, game.height * 64, "so_long");
-	set_map_image(&game);
-	mlx_loop(game.mlx);
+	game.win = mlx_new_window(game.mlx, game.width * 64, game.height * 64, \
+	"so_long");
+	init_img(&game);
+	mlx_loop(&game);
 	return (0);
 }

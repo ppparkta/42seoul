@@ -1,5 +1,5 @@
 NAME = so_long
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 
 SRCS = src/so_long.c \
