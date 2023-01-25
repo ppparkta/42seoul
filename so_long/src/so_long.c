@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 00:16:17 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/25 15:03:31 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/25 16:15:53 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,15 +101,29 @@ void	check_objects(t_game *game, char **map)
 	game->collect = game->c_cnt;
 }
 
-int	check_dfs(t_game *game, char **map, int x, int y)
+int	check_dfs(t_game *game, char **map, int x, int y, int collect)
 {
-	int		nx = x;
-	int		ny = y;
-	char	**map2 = map;
-	nx = game->x;
-	ny = game->y;
-	map2 = game->map;
-	return (1);
+	if (map[y][x] != '1')
+	{
+		if (collect == 0 && map[y][x] == 'E')
+		{
+			ft_printf("탈출조건 만족");
+			return (1);
+		}
+		if (map[y][x] == 'C')
+			collect -= 1;
+		map[y][x] == '1';
+		if (map[y][x + 1] != '1')
+			check_dfs(game, map, x + 1, y, collect);
+		if (map[y][x - 1] != '1')
+			check_dfs(game, map, x - 1, y, collect);
+		if (map[y + 1][x] != '1')
+			check_dfs(game, map, x, y + 1, collect);
+		if (map[y - 1][x] != '1')
+			check_dfs(game, map, x, y - 1, collect);
+	}
+	ft_printf("탈출조건 불만족");
+	return (0);
 }
 
 void free_map (t_game *game, char **map)
@@ -145,7 +159,7 @@ void check_game (t_game *game)
 	check_objects(game, map);
 	if (game->p_cnt != 1 || game->e_cnt != 1 || game->c_cnt < 1)
 		destroy_game(game);
-	i = check_dfs(game, map, game->x, game->y);
+	i = check_dfs(game, map, game->x, game->y, game->collect);
 	free_map(game, map);
 	if (!i)
 		destroy_game(game);
@@ -194,6 +208,7 @@ void	open_map (char *file, t_game *game)
 	while (gnl[game->width + 1])
 		game->width++;
 	free(gnl);
+	gnl = " ";
 	while (gnl)
 	{
 		gnl = get_next_line(fd);
