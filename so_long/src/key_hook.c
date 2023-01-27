@@ -6,40 +6,32 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:04:37 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/27 19:45:57 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/27 20:10:00 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void move_event(t_game *game, int nx, int ny)
+void move_event(t_game *game, int x, int y)
 {
-	int	i;
-	int	j;
-	if (!(game||nx||ny))
-		return ;
-	i = 0;
-	j = 0;
-	ft_printf("%d %d %c", i ,j, game->map[i][j]);
-	i = -1;
-	while (++i < game->height)
-	{
-		j = -1;
-		while (++j < game->width)
-		{
-			ft_printf("%s %d %d\n", game->map[i], nx, ny);
-		}
-	}
+	 if (game->map[game->y + y][game->x + x] == '1')
+        return ;
+    if (game->map[game->y + y][game->x + x] == 'E' && game->c_cnt < game->collect)
+        return ;
+    if (game->map[game->y + y][game->x + x] == 'C')
+        game->c_cnt++;
+    game->cnt++;
+    game->map[game->y][game->x] = '0';
+    game->map[game->y + y][game->x + x] = 'P';
+    game->x = game->x + x;
+    game->y = game->y + y;
+    set_map_image(game);
+    if (game->map[game->y][game->x] == 'E' && game->c_cnt == game->collect)
+        destroy_game(game, "clear");
 }
 
 int key_hook(int keycode, t_game *game)
 {
-	// for (int i=0;i<game->height;i++)
-	// {
-	// 	for(int j=0;j<game->width;j++)
-	// 		ft_printf("%c ", game->map[i][j]);
-	// 	ft_printf("\n");
-	// }
 	if (keycode == KEY_ESC)
 		destroy_game(game, "exit game");
 	else if (keycode == KEY_W)
