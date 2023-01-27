@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 00:16:17 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/27 18:35:43 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/27 19:47:00 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	main(int argc, char *argv[])
 	game.win = mlx_new_window(game.mlx, game.width * 64, game.height * 64, \
 	"so_long");
 	init_img(&game);
-	mlx_key_hook(game.win, key_hook, &game);
+	mlx_hook(game.win, X_EVENT_KEY, 0, key_hook, &game);
 	mlx_hook(game.win, X_EVENT_DESTROY, 0, destroy_game, &game);
-	mlx_loop(&game);
+	mlx_loop(game.mlx);
 	return (0);
 }
