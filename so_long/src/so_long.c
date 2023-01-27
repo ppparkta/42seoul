@@ -6,13 +6,13 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 00:16:17 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/27 20:30:39 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/27 20:54:16 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void init(t_game *game)
+void	init(t_game *game)
 {
 	game->width = 0;
 	game->height = 0;
@@ -27,10 +27,10 @@ void init(t_game *game)
 	game->map = 0;
 }
 
-int destroy_game(t_game *game, char *msg)
+int	destroy_game(t_game *game, char *msg)
 {
 	if (ft_strlen(msg) == 5)
-		ft_printf("clear! movement count : %d\n", game->cnt);
+		ft_printf("movement count: %d\nclear!\n", game->cnt);
 	else
 		ft_printf("%s\n", msg);
 	if (game->m_cnt)
@@ -39,23 +39,26 @@ int destroy_game(t_game *game, char *msg)
 	return (0);
 }
 
-void check_arg(int argc, char *argv[], t_game *game)
+void	check_arg(int argc, char *argv[], t_game *game)
 {
 	if (argc != 2)
 		destroy_game(game, "error: too many args");
 	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 1) != 0)
+	{
+		game->m_cnt = 0;
 		destroy_game(game, "error: map extension must be '.ber'");
+	}
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	t_game game;
+	t_game	game;
 
 	check_arg(argc, argv, &game);
 	open_map(argv[1], &game);
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, game.width * 64, game.height * 64,
-							  "so_long");
+	game.win = mlx_new_window(game.mlx, game.width * 64, game.height * 64, \
+	"so_long");
 	init_img(&game);
 	mlx_hook(game.win, X_EVENT_KEY, 0, key_hook, &game);
 	mlx_hook(game.win, X_EVENT_DESTROY, 0, destroy_game, &game);

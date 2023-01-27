@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:58:55 by sooyang           #+#    #+#             */
-/*   Updated: 2022/09/12 16:41:25 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/27 20:35:06 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,24 @@ char	*ft_strchr(const char *str, int c)
 	{
 		if (str[i] == (char) c)
 			return ((char *)&str[i]);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	unsigned char	*new1;
+	unsigned char	*new2;
+	size_t			i;
+
+	i = 0;
+	new1 = (unsigned char *)s1;
+	new2 = (unsigned char *)s2;
+	while (n--)
+	{
+		if (new1[i] != new2[i] || new1[i] == 0 || new2[i] == 0)
+			return (new1[i] - new2[i]);
 		i++;
 	}
 	return (0);

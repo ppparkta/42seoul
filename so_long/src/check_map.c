@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:07:20 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/27 19:51:12 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/27 20:47:25 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	check_game(t_game *game)
 	char	**map;
 	int		i;
 
-	ft_printf("%d\n", game->height + 1);
 	map = malloc(sizeof(char *) * (game->height + 1));
 	map[game->height] = 0;
 	if (!map)
@@ -102,12 +101,6 @@ void	read_map(char *file, t_game *game)
 			destroy_game(game, "error: wrong map format");
 	}
 	game->map[i] = 0;
-	for (int i=0;i<game->height;i++)
-	{
-		for(int j=0;j<game->width;j++)
-			ft_printf("%c ", game->map[i][j]);
-		ft_printf("\n");
-	}
 	close(fd);
 	check_game(game);
 }
