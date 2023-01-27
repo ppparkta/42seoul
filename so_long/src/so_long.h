@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 00:16:29 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/26 16:17:05 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/27 14:06:52 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@
 # define KEY_W      		13
 # define KEY_ESC    		53
 # define KEY_A      		0
+# define KEY_UP				126
+# define KEY_DOWN			125
+# define KEY_LEFT			123
+# define KEY_RIGHT			124
 # define X_EVENT_KEY		2
 # define X_EVENT_DESTROY	17
+
 
 # include <fcntl.h>
 # include "../mlx/mlx.h"
@@ -56,8 +61,7 @@ int		check_dfs(t_game *game, char **map, int x, int y);
 void	free_map(t_game *game, char **map);
 void	init_img(t_game *game);
 void	set_map_image(t_game *game);
-void	key_hook_move_event(t_game *game, int x, int y);
 int 	key_hook(int keycode, t_game *game);
-
+void	key_hook_move_event(t_game *game, int x, int y);
 
 #endif
