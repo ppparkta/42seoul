@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 00:16:29 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/27 14:43:13 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/27 17:43:37 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,8 @@
 # define KEY_W      		13
 # define KEY_ESC    		53
 # define KEY_A      		0
-# define KEY_UP				126
-# define KEY_DOWN			125
-# define KEY_LEFT			123
-# define KEY_RIGHT			124
 # define X_EVENT_KEY		2
 # define X_EVENT_DESTROY	17
-
 
 # include <fcntl.h>
 # include "../mlx/mlx.h"
@@ -49,6 +44,7 @@ typedef struct s_game
 	int		c_cnt;
 	int		p_cnt;
 	int		e_cnt;
+	int		m_cnt;
 	int		collect;
 }	t_game;
 
@@ -56,6 +52,7 @@ void	open_map(char *file, t_game *game);
 void	read_map(char *file, t_game *game);
 int		read_line(t_game *game, char *gnl, int i);
 void	check_game(t_game *game);
+int		check_line(t_game *game);
 void	check_objects(t_game *game, char **map);
 int		check_dfs(t_game *game, char **map, int x, int y);
 void	free_map(t_game *game, char **map);

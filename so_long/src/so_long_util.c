@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:09:07 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/27 14:44:33 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/27 17:13:03 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	check_objects(t_game *game, char **map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (++i < game->height)
@@ -65,7 +65,7 @@ int	check_dfs(t_game *game, char **map, int x, int y)
 
 void	free_map(t_game *game, char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < game->height)

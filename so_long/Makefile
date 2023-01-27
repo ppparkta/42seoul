@@ -3,6 +3,10 @@ CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 
 SRCS = src/so_long.c \
+	   src/check_map.c \
+	   src/key_hook.c \
+	   src/set_map.c \
+	   src/so_long_util.c \
 	   get_next_line/get_next_line.c \
 	   get_next_line/get_next_line_utils.c \
 
