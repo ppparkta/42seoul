@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:07:20 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/27 17:17:23 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/27 18:36:55 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ void	check_game(t_game *game)
 	char	**map;
 	int		i;
 
-	map = malloc(sizeof(char *) * game->height);
+	ft_printf("%d\n", game->height + 1);
+	map = malloc(sizeof(char *) * (game->height + 1));
+	map[game->height] = 0;
 	if (!map)
 		destroy_game(game, "error: null");
 	i = -1;
@@ -119,7 +121,7 @@ void	open_map(char *file, t_game *game)
 	while (gnl[game->width + 1])
 		game->width++;
 	free(gnl);
-	gnl = " ";
+	gnl = "";
 	while (gnl)
 	{
 		gnl = get_next_line(fd);
