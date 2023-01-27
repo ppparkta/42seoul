@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:09:07 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/27 17:13:03 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/27 20:19:55 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,19 @@ void	free_map(t_game *game, char **map)
 		i++;
 	}
 	free(map);
+}
+
+void	check_ber(char *file)
+{
+	char	*tmp_file;
+	int		len;
+
+	tmp_file = malloc(sizeof(char) * 5);
+	tmp_file[4] = 0;
+	len = ft_strlen(file);
+	len -= 4;
+	while(file[len])
+	{
+
+	}
 }
