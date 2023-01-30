@@ -47,15 +47,15 @@ void	init_img(t_game *game)
 	int	img_h;
 
 	game->m_cnt = 1;
-	game->w = mlx_xpm_file_to_image(game->mlx, "./images/w.xpm", \
+	game->w = mlx_xpm_file_to_image(game->mlx, "./textures/w.xpm", \
 	&img_w, &img_h);
-	game->g = mlx_xpm_file_to_image(game->mlx, "./images/g.xpm", \
+	game->g = mlx_xpm_file_to_image(game->mlx, "./textures/g.xpm", \
 	&img_w, &img_h);
-	game->e = mlx_xpm_file_to_image(game->mlx, "./images/e.xpm", \
+	game->e = mlx_xpm_file_to_image(game->mlx, "./textures/e.xpm", \
 	&img_w, &img_h);
-	game->c = mlx_xpm_file_to_image(game->mlx, "./images/c.xpm", \
+	game->c = mlx_xpm_file_to_image(game->mlx, "./textures/c.xpm", \
 	&img_w, &img_h);
-	game->p = mlx_xpm_file_to_image(game->mlx, "./images/p.xpm", \
+	game->p = mlx_xpm_file_to_image(game->mlx, "./textures/p.xpm", \
 	&img_w, &img_h);
 	set_map_image(game);
 }

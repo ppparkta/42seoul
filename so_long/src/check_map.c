@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:07:20 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/27 20:47:25 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/30 15:00:39 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	open_map(char *file, t_game *game)
 	init(game);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		destroy_game(game, "error: do not read file");
+		destroy_game(game, "error: can not read file");
 	gnl = get_next_line(fd);
 	if (!gnl)
 		destroy_game(game, "error: null");
