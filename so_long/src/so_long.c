@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 00:16:17 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/30 17:40:40 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/01/30 17:51:34 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	check_arg(int argc, char *argv[], t_game *game)
 	}
 	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 1) != 0)
 	{
-		game->m_cnt = 0;
-		destroy_game(game, "error: map extension must be '.ber'");
+		ft_printf("error: map extension must be '.ber'");
+		exit(0);
 	}
 }
 
