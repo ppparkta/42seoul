@@ -6,15 +6,31 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:44 by sooyang           #+#    #+#             */
-/*   Updated: 2023/01/31 18:13:59 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/02 20:56:49 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+#include <stdio.h>
+
+void	check_sorted(t_stack *stack)
+{
+	t_node	*cursor;
+
+	cursor = stack->head;
+	while (cursor != stack->tail)
+	{
+		if (cursor->next->index < cursor->index)
+			break;
+		cursor = cursor->next;
+	}
+	if (cursor == stack->tail)
+		exit(0);
+}
 
 void	wrong_format(void)
 {
-	ft_printf("Error\n");
+	ft_putstr_fd("Error", 2);
 	exit(0);
 }
 
@@ -27,8 +43,8 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		exit(0);
-	a_stack = init();
-	b_stack = init();
+	a_stack = stack_init();
+	b_stack = stack_init();
 	i = 0;
 	while (++i < argc)
 	{
@@ -36,5 +52,8 @@ int	main(int argc, char **argv)
 		parsing(a_stack, i, arg);
 		free(arg);
 	}
+	check_sorted(a_stack);
+	swap_a_to_b(a_stack, b_stack);
+	swap_b_to_a(a_stack, b_stack);
 	return (0);
 }

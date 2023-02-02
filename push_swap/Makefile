@@ -6,7 +6,7 @@
 #    By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 20:13:15 by sooyang           #+#    #+#              #
-#    Updated: 2023/01/31 18:06:19 by sooyang          ###   ########.fr        #
+#    Updated: 2023/02/01 21:00:23 by sooyang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ NAME = push_swap
 BONUS = checker
 
 CFLAG = -Wall -Wextra -Werror -fsanitize=address
-FT_PRINTF = make -C ft_printf
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -36,11 +35,9 @@ SRC_BN = $(addprefix ./src/checker/, bonus_checker.c\)
 OBJ_BN = $(SRC_BN:.c=.o)
 
 $(NAME) : $(OBJ)
-	$(FT_PRINTF)
 	$(CC) $(CFLAG) -o $@ $^
 
 $(BONUS) : $(OBJ_BN)
-	$(FT_PRINTF)
 	$(CC) $(CFLAG) -o $@ $^
 	
 all : $(NAME)
@@ -48,11 +45,10 @@ all : $(NAME)
 bonus : $(BONUS)
 
 clean :
-	$(FT_PRINTF) clean
 	$(RM) $(OBJ) $(OBJ_BN)
 
 fclean : clean
-	$(RM) $(NAME) $(BONUS) ft_printf/libftprintf.a
+	$(RM) $(NAME) $(BONUS)
 
 re : fclean all
 
