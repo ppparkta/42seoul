@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:16:22 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/03 16:12:41 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/03 18:13:00 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void			wrong_format(void);
 //sort
 void			swap_a_to_b(t_stack *a, t_stack *b);
 void			swap_a_to_b_chunk(t_stack *a, t_stack *b, int chunk, int n);
-int				check_dir(t_stack *a, int n,int chunk);
 void			swap_b_to_a(t_stack *a, t_stack *b);
 void			swap_b_to_a_chunk(t_stack *a, t_stack *b, int n);
 
@@ -72,9 +71,5 @@ void			init_node(t_stack *stack);
 void			push(t_stack *s, int data, int index);
 void			first_push(t_stack *s, int data, int index);
 t_node			*pop(t_stack *s);
-
-
-
-void	print_index(t_stack *stack);
 
 #endif

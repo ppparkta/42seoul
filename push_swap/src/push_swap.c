@@ -6,12 +6,11 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:44 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/03 16:22:42 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/03 18:10:40 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include <stdio.h>
 
 void	check_sorted(t_stack *stack)
 {
@@ -26,19 +25,6 @@ void	check_sorted(t_stack *stack)
 	}
 	if (cursor == stack->tail)
 		exit(0);
-}
-
-void print_index(t_stack *stack)
-{
-	t_node *node;
-	int i = 0;
-	node=stack->head;
-	while(i<stack->size)
-	{
-		printf("%d\n",node->data);
-		node=node->next;
-		i++;
-	}
 }
 
 void	wrong_format(void)

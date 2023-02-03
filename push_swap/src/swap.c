@@ -6,35 +6,15 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 19:54:54 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/03 17:44:03 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/03 18:11:48 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int check_dir(t_stack *a, int n, int chunk)
-{
-	int count;
-	int dir;
-	t_node *cursor;
-
-	count = 0;
-	dir = 0;
-	cursor = a->head;
-	while (cursor->index > n + chunk)
-	{
-		cursor = cursor->next;
-		count++;
-	}
-	if (count > (a->size - n) / 2)
-		dir = 1;
-	return (dir);
-}
-
 void swap_a_to_b_chunk(t_stack *a, t_stack *b, int chunk, int n)
 {
-	int dir;
-	int size;
+	int	size;
 
 	size = a->size;
 	while (n < size)
@@ -51,13 +31,7 @@ void swap_a_to_b_chunk(t_stack *a, t_stack *b, int chunk, int n)
 			n++;
 		}
 		else if (a->head->index > n + chunk)
-		{
-			dir = check_dir(a, n, chunk);
-			// if (dir == 0)
-				rx(a, "ra");
-			// else if (dir == 1)
-			// 	rrx(a, "rra");
-		}
+			rx(a, "ra");
 	}
 }
 
@@ -86,16 +60,12 @@ void swap_b_to_a_chunk(t_stack *a, t_stack *b, int n)
 		if (cnt <= (b->size / 2))
 		{
 			while (b->head->index != n)
-			{
 				rx(b, "rb");
-			}
 		}
 		else if (cnt > (b->size / 2))
 		{
 			while (b->head->index != n)
-			{
 				rrx(b, "rrb");
-			}
 		}
 		px(b, a, "pa");
 		n--;
