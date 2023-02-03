@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:44 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/02 20:56:49 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/02 21:50:46 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,19 @@ void	check_sorted(t_stack *stack)
 	}
 	if (cursor == stack->tail)
 		exit(0);
+}
+
+void print_index(t_stack *stack)
+{
+	t_node *node;
+	int i = 0;
+	node=stack->head;
+	while(i<stack->size)
+	{
+		printf("%d\n", node->index);
+		node=node->next;
+		i++;
+	}
 }
 
 void	wrong_format(void)
@@ -53,6 +66,9 @@ int	main(int argc, char **argv)
 		free(arg);
 	}
 	check_sorted(a_stack);
+	print_index(a_stack);
+	//if (a_stack->size < 6)
+	//	return (0);
 	swap_a_to_b(a_stack, b_stack);
 	swap_b_to_a(a_stack, b_stack);
 	return (0);

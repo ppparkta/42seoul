@@ -6,7 +6,7 @@
 #    By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 20:13:15 by sooyang           #+#    #+#              #
-#    Updated: 2023/02/01 21:00:23 by sooyang          ###   ########.fr        #
+#    Updated: 2023/02/02 21:17:09 by sooyang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ operator_sx_px.c\
 parsing.c\
 ft_split.c\
 stack.c\
+swap.c\
 )
 
 OBJ = $(SRC:.c=.o)

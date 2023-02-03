@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:16:22 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/02 19:27:23 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/02 21:34:47 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ void			ft_putstr_fd(char *s, int fd);
 void			wrong_format(void);
 
 //sort
+void			swap_a_to_b(t_stack *a, t_stack *b);
+void			swap_a_to_b_chunk(t_stack *a, t_stack *b, int chunk, int n);
+int				check_dir(t_stack *a, int n,int chunk);
+void			swap_b_to_a(t_stack *a, t_stack *b);
+void			swap_b_to_a_chunk(t_stack *a, t_stack *b, int n);
 
 //operator
 void			rrx(t_stack *s, char *msg);
