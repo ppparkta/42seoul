@@ -6,12 +6,11 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 17:20:58 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/02 21:40:39 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/03 16:22:17 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include <stdio.h>
 
 void	is_digit(char *arg)
 {
@@ -63,9 +62,8 @@ void	parsing(t_stack *stack, int i, char **arg)
 		tmp = ft_atoi(arg[j]);
 		if (tmp < -2147483648 || tmp > 2147483647)
 			wrong_format();
-		push(stack, tmp);
+		first_push(stack, tmp, 0);
 		check_idx(stack, tmp);
-		stack->size++;
 		free(arg[j]);
 	}
 }

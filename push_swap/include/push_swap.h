@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:16:22 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/02 21:34:47 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/03 16:12:41 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,12 @@ void			px(t_stack *from, t_stack *to, char *msg);
 //stack
 t_stack			*stack_init(void);
 void			init_node(t_stack *stack);
-void			push(t_stack *s, int data);
+void			push(t_stack *s, int data, int index);
+void			first_push(t_stack *s, int data, int index);
 t_node			*pop(t_stack *s);
+
+
+
+void	print_index(t_stack *stack);
 
 #endif

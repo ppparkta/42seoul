@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:48 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/02 21:50:34 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/03 15:37:48 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,15 @@ void	ss(t_stack *a, t_stack *b, char *msg)
 void	px(t_stack *from, t_stack *to, char *msg)
 {
 	t_node	*node;
+	int		data;
+	int		index;
 
-	if (from->head != NULL)
+	data = from->head->data;
+	index = from->head->index;
+	if (from->size != 0)
 	{
 		node = pop(from);
-		if (to->head == NULL)
-		{
-			node->prev = node;
-			node->next = node;
-			to->head = node;
-			to->tail = node;
-		}
-		else
-		{
-			node->next = to->head;
-			node->prev = to->tail;
-			to->tail->next = node;
-			to->head->prev = node;
-			to->head = node;
-		}
+		push(to, data, index);
 	}
 	if (to->head == from->head)
 		init_node(from);

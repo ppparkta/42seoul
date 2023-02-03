@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:51 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/02 19:58:32 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/03 16:13:32 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_stack	*stack_init(void)
 	return (stack);
 }
 
-void	push(t_stack *s, int data)
+void	push(t_stack *s, int data, int index)
 {
 	t_node	*node;
 
@@ -38,6 +38,7 @@ void	push(t_stack *s, int data)
 	if (node == NULL)
 		wrong_format();
 	node->data = data;
+	node->index = index;
 	if (s->size == 0)
 	{
 		node->prev = node;
@@ -51,9 +52,36 @@ void	push(t_stack *s, int data)
 		node->prev = s->tail;
 		s->head->prev = node;
 		s->tail->next = node;
+		s->head = node;
+	}
+	s->size++;
+}
+
+void	first_push(t_stack *s, int data, int index)
+{
+	t_node	*node;
+
+	node = (t_node *)malloc(sizeof(t_node));
+	if (!node)
+		wrong_format();
+	node->data = data;
+	node->index = index;
+	if (s->size == 0)
+	{
+		node->prev = node;
+		node->next = node;
+		s->head = node;
 		s->tail = node;
 	}
-	node->index = 0;
+	else
+	{
+		node->prev = s->tail;
+		node->next = s->head;
+		s->tail->next = node;
+		s->head->prev = node;
+		s->tail = node;
+	}
+	s->size++;
 }
 
 t_node	*pop(t_stack *s)
@@ -64,5 +92,6 @@ t_node	*pop(t_stack *s)
 	s->head = s->head->next;
 	s->head->prev = s->tail;
 	s->tail->next = s->head;
+	s->size--;
 	return (tmp);
 }
