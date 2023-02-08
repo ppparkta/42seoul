@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 20:16:22 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/08 16:00:51 by sooyang          ###   ########.fr       */
+/*   Created: 2023/02/08 13:40:11 by sooyang           #+#    #+#             */
+/*   Updated: 2023/02/08 14:41:51 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,6 @@ void			swap_a_to_b_chunk(t_stack *a, t_stack *b, int chunk, int n);
 void			swap_b_to_a(t_stack *a, t_stack *b);
 void			swap_b_to_a_chunk(t_stack *a, t_stack *b, int n);
 
-//operator
-void			rrx(t_stack *s, char *msg);
-void			rrr(t_stack *a, t_stack *b, char *msg);
-void			rx(t_stack *s, char *msg);
-void			rr(t_stack *a, t_stack *b, char *msg);
-void			sx(t_stack *s, char *msg);
-void			ss(t_stack *a, t_stack *b, char *msg);
-void			px(t_stack *from, t_stack *to, char *msg);
-
 //stack
 t_stack			*stack_init(void);
 void			init_node(t_stack *stack);
@@ -72,9 +63,21 @@ void			push(t_stack *s, int data, int index);
 void			first_push(t_stack *s, int data, int index);
 t_node			*pop(t_stack *s);
 
-//swap
-void			find_num(t_stack *a, t_stack *b, int n);
-void			sort_three(t_stack *s);
-void			less_swap(t_stack *a, t_stack *b);
+int				ft_strcmp(char *s1, char *s2);
+void			checker(char *str, t_stack *a, t_stack *b);
+void			check_sorted(t_stack *a, t_stack *b);
+
+//operator
+void			rrx(t_stack *s, char *msg);
+void			rrr(t_stack *a, t_stack *b, char *msg);
+void			rx(t_stack *s, char *msg);
+void			rr(t_stack *a, t_stack *b, char *msg);
+void			sx(t_stack *s, char *msg);
+void			ss(t_stack *a, t_stack *b, char *msg);
+//void			px(t_stack *from, t_stack *to, char *msg);
+
+//checker
+void			pa(t_stack *b, t_stack *a);
+void			pb(t_stack *a, t_stack *b);
 
 #endif

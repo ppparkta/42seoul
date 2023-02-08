@@ -6,26 +6,12 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:44 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/08 15:07:08 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/08 14:36:43 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap_bonus.h"
 #include <stdio.h>
-void	check_sorted(t_stack *stack)
-{
-	t_node	*cursor;
-
-	cursor = stack->head;
-	while (cursor != stack->tail)
-	{
-		if (cursor->next->index < cursor->index)
-			break;
-		cursor = cursor->next;
-	}
-	if (cursor == stack->tail)
-		exit(0);
-}
 
 void	wrong_format(void)
 {
@@ -33,9 +19,23 @@ void	wrong_format(void)
 	exit(0);
 }
 
+void stack_print(t_stack *stack)
+{
+	t_node	*node;
+	
+	node = stack->head;
+	while (node != stack->tail)
+	{
+		printf("%d\n",node->data);
+		node=node->next;
+	}
+	printf("%d\n",node->data);
+}
+
 int	main(int argc, char **argv)
 {
 	char	**arg;
+	char	*operator;
 	int		i;
 	t_stack	*a_stack;
 	t_stack	*b_stack;
@@ -51,11 +51,19 @@ int	main(int argc, char **argv)
 		parsing(a_stack, i, arg);
 		free(arg);
 	}
-	check_sorted(a_stack);
-	 if (a_stack->size < 6)
-	 	less_swap(a_stack, b_stack);
-	swap_a_to_b(a_stack, b_stack);
-	swap_b_to_a(a_stack, b_stack);
+	stack_print(a_stack);
+	while (1)
+	{
+		operator = get_next_line(0);
+		if (!operator)
+			break;
+		checker(operator, a_stack, b_stack);
+		printf("a satck size: %d\n", a_stack->size);
+		printf("b satck size: %d\n", b_stack->size);
+		stack_print(a_stack);
+	}
+	stack_print(a_stack);
+	check_sorted(a_stack, b_stack);
 	exit(0);
 	return (0);
 }

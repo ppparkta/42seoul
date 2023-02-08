@@ -6,13 +6,13 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 19:54:54 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/03 18:11:48 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:01:11 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void swap_a_to_b_chunk(t_stack *a, t_stack *b, int chunk, int n)
+void	swap_a_to_b_chunk(t_stack *a, t_stack *b, int chunk, int n)
 {
 	int	size;
 
@@ -35,7 +35,7 @@ void swap_a_to_b_chunk(t_stack *a, t_stack *b, int chunk, int n)
 	}
 }
 
-void swap_a_to_b(t_stack *a, t_stack *b)
+void	swap_a_to_b(t_stack *a, t_stack *b)
 {
 	int chunk;
 
@@ -43,7 +43,7 @@ void swap_a_to_b(t_stack *a, t_stack *b)
 	swap_a_to_b_chunk(a, b, chunk, 0);
 }
 
-void swap_b_to_a_chunk(t_stack *a, t_stack *b, int n)
+void	swap_b_to_a_chunk(t_stack *a, t_stack *b, int n)
 {
 	t_node *cursor;
 	int cnt;
@@ -72,7 +72,7 @@ void swap_b_to_a_chunk(t_stack *a, t_stack *b, int n)
 	}
 }
 
-void swap_b_to_a(t_stack *a, t_stack *b)
+void	swap_b_to_a(t_stack *a, t_stack *b)
 {
 	t_node *cursor;
 	int n;

@@ -6,11 +6,11 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:10:42 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/08 14:52:08 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/03 20:27:52 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 static size_t	word_cnt(char const *s, char c)
 {
