@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:10:42 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/08 14:52:08 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/09 18:30:08 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static size_t	word_cnt(char const *s, char c)
 {
-	size_t i;
-	size_t cnt;
+	size_t	i;
+	size_t	cnt;
 
 	cnt = 0;
 	i = 0;
@@ -35,8 +35,8 @@ static size_t	word_cnt(char const *s, char c)
 
 static char	*ft_strndup(const char *s, size_t n)
 {
-	size_t i;
-	char *s1;
+	size_t	i;
+	char	*s1;
 
 	i = 0;
 	s1 = 0;
@@ -56,7 +56,7 @@ static char	*ft_strndup(const char *s, size_t n)
 
 static char	**free_thing(char **ans)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (ans[i])
@@ -70,10 +70,10 @@ static char	**free_thing(char **ans)
 
 char	**ft_split(char const *s, char c)
 {
-	size_t i;
-	size_t j;
-	size_t temp;
-	char **ans;
+	size_t	i;
+	size_t	j;
+	size_t	temp;
+	char	**ans;
 
 	if (s == 0)
 		return (0);

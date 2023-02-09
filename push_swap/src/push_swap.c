@@ -6,12 +6,12 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:44 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/08 15:07:08 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/09 18:30:47 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include <stdio.h>
+
 void	check_sorted(t_stack *stack)
 {
 	t_node	*cursor;
