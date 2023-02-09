@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:44 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/09 18:30:47 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/09 19:06:56 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	check_sorted(t_stack *stack)
 	while (cursor != stack->tail)
 	{
 		if (cursor->next->index < cursor->index)
-			break;
+			break ;
 		cursor = cursor->next;
 	}
 	if (cursor == stack->tail)
@@ -52,8 +52,8 @@ int	main(int argc, char **argv)
 		free(arg);
 	}
 	check_sorted(a_stack);
-	 if (a_stack->size < 6)
-	 	less_swap(a_stack, b_stack);
+	if (a_stack->size < 6)
+		less_swap(a_stack, b_stack);
 	swap_a_to_b(a_stack, b_stack);
 	swap_b_to_a(a_stack, b_stack);
 	exit(0);

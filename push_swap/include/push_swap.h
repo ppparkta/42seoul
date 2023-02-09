@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:16:22 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/08 16:00:51 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/09 20:06:56 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "../get_next_line/get_next_line.h"
 
 typedef struct s_node
 {
@@ -44,7 +43,7 @@ void			check_idx(t_stack *stack, int tmp);
 void			is_digit(char *arg);
 
 //push_swap_util
-int				ft_atoi(const char *str);
+long long		ft_atoi(const char *str);
 void			ft_putstr_fd(char *s, int fd);
 
 //push_swap
@@ -74,7 +73,7 @@ t_node			*pop(t_stack *s);
 
 //swap
 void			find_num(t_stack *a, t_stack *b, int n);
-void			sort_three(t_stack *s);
+void			sort_three(t_stack *s, int size);
 void			less_swap(t_stack *a, t_stack *b);
 
 #endif

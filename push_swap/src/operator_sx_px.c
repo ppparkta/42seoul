@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:48 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/09 18:12:19 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/09 18:42:15 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,53 +38,21 @@ void	ss(t_stack *a, t_stack *b, char *msg)
 		ft_putstr_fd(msg, 1);
 }
 
-void	pa(t_stack *b, t_stack *a)
+void	px(t_stack *from, t_stack *to, char *msg)
 {
 	t_node	*node;
+	int		data;
+	int		index;
 
-	if (b->head != NULL)
+	data = from->head->data;
+	index = from->head->index;
+	if (from->size != 0)
 	{
-		node = pop(b);
-		if (a->head = NULL)
-		{
-			node->prev = node;
-			node->next = node;
-			a->head = node;
-			a->tail = node;
-		}
-		else
-		{
-			node->next = a->head;
-			node->prev = a->tail;
-			a->tail->next = node;
-			a->head = node;
-		}
+		node = pop(from);
+		push(to, data, index);
 	}
-	if (a->head == b->head)
-		init_node(a);
-	ft_putstr_fd("pa", 1);
+	if (to->head == from->head)
+		init_node(from);
+	if (msg)
+		ft_putstr_fd(msg, 1);
 }
-
-void	pb(t_stack *a, t_stack *b)
-{
-	
-}
-
-//void	px(t_stack *from, t_stack *to, char *msg)
-//{
-//	t_node	*node;
-//	int		data;
-//	int		index;
-
-//	data = from->head->data;
-//	index = from->head->index;
-//	if (from->size != 0)
-//	{
-//		node = pop(from);
-//		push(to, data, index);
-//	}
-//	if (to->head == from->head)
-//		init_node(from);
-//	if (msg)
-//		ft_putstr_fd(msg, 1);
-//}

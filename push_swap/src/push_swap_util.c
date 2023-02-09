@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 17:28:55 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/03 16:15:38 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/09 19:10:34 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_putstr_fd(char *s, int fd)
 	write(fd, "\n", 1);
 }
 
-int	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
 	size_t			i;
 	long long		sym;
@@ -51,7 +51,7 @@ int	ft_atoi(const char *str)
 			ans = (ans * 10) + (str[i] - '0');
 			i++;
 		}
-		return ((int)(sym * ans));
+		return (sym * ans);
 	}
 	return (0);
 }
