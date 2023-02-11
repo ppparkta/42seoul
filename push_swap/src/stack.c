@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:51 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/03 16:13:32 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/11 13:47:43 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	first_push(t_stack *s, int data, int index)
 	s->size++;
 }
 
-t_node	*pop(t_stack *s)
+void	pop(t_stack *s)
 {
 	t_node	*tmp;
 
@@ -93,5 +93,5 @@ t_node	*pop(t_stack *s)
 	s->head->prev = s->tail;
 	s->tail->next = s->head;
 	s->size--;
-	return (tmp);
+	free (tmp);
 }

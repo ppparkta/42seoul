@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:44 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/10 12:49:49 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/11 13:44:42 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,4 @@ int	main(int argc, char **argv)
 	swap_a_to_b(a_stack, b_stack);
 	swap_b_to_a(a_stack, b_stack);
 	exit(0);
-	return (0);
 }

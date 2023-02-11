@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:16:22 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/10 12:50:25 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/11 13:47:49 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_stack			*stack_init(void);
 void			init_node(t_stack *stack);
 void			push(t_stack *s, int data, int index);
 void			first_push(t_stack *s, int data, int index);
-t_node			*pop(t_stack *s);
+void			pop(t_stack *s);
 void			find_num(t_stack *a, t_stack *b, int n);
 void			sort_three(t_stack *s, int size);
 void			less_swap(t_stack *a, t_stack *b);
