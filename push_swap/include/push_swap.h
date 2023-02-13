@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:16:22 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/11 13:47:49 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/13 13:40:07 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			init_node(t_stack *stack);
 void			push(t_stack *s, int data, int index);
 void			first_push(t_stack *s, int data, int index);
 void			pop(t_stack *s);
-void			find_num(t_stack *a, t_stack *b, int n);
+void			find_num(t_stack *a, t_stack *b, int n, int size);
 void			sort_three(t_stack *s, int size);
 void			less_swap(t_stack *a, t_stack *b);
 

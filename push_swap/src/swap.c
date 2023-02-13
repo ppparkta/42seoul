@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 19:54:54 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/08 16:01:11 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/13 13:33:14 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	swap_a_to_b_chunk(t_stack *a, t_stack *b, int chunk, int n)
 
 void	swap_a_to_b(t_stack *a, t_stack *b)
 {
-	int chunk;
+	int	chunk;
 
 	chunk = (0.000000053 * a->size * a->size) + (0.03 * a->size) + 14.5;
 	swap_a_to_b_chunk(a, b, chunk, 0);
@@ -45,8 +45,8 @@ void	swap_a_to_b(t_stack *a, t_stack *b)
 
 void	swap_b_to_a_chunk(t_stack *a, t_stack *b, int n)
 {
-	t_node *cursor;
-	int cnt;
+	t_node	*cursor;
+	int		cnt;
 
 	while (n >= 0)
 	{
@@ -74,8 +74,8 @@ void	swap_b_to_a_chunk(t_stack *a, t_stack *b, int n)
 
 void	swap_b_to_a(t_stack *a, t_stack *b)
 {
-	t_node *cursor;
-	int n;
+	t_node	*cursor;
+	int		n;
 
 	n = b->size - 1;
 	swap_b_to_a_chunk(a, b, n);

@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   less_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:58:11 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/09 20:07:04 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/13 13:39:57 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	find_num(t_stack *a, t_stack *b, int n)
+void	find_num(t_stack *a, t_stack *b, int n, int size)
 {
 	t_node	*cursor;
 	int		count;
-	int		size;
 
-	size = a->size;
 	while (size - n > 3)
 	{
 		cursor = a->head;
@@ -83,13 +81,13 @@ void	less_swap(t_stack *a, t_stack *b)
 		sort_three(a, size);
 	if (size == 4)
 	{
-		find_num(a, b, 0);
+		find_num(a, b, 0, size);
 		sort_three(a, size);
 		px(a, b, "pa");
 	}
 	if (size == 5)
 	{
-		find_num(a, b, 0);
+		find_num(a, b, 0, size);
 		sort_three(a, size);
 		px(a, b, "pa");
 		px(a, b, "pa");

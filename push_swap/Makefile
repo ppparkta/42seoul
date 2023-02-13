@@ -6,13 +6,13 @@
 #    By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 20:13:15 by sooyang           #+#    #+#              #
-#    Updated: 2023/02/09 18:32:02 by sooyang          ###   ########.fr        #
+#    Updated: 2023/02/13 13:30:10 by sooyang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-CFLAG = -Wall -Wextra -Werror -fsanitize=address
+CFLAG = -Wall -Wextra -Werror #-fsanitize=address
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@

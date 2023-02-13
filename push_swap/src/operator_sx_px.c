@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operator_sx_px.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:48 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/11 13:45:10 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/13 13:32:53 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	sx(t_stack *s, char *msg)
 {
-	int tmp_i;
-	int tmp_j;
+	int	tmp_i;
+	int	tmp_j;
 
 	if (s->size >= 2)
 	{
@@ -40,8 +40,8 @@ void	ss(t_stack *a, t_stack *b, char *msg)
 
 void	px(t_stack *from, t_stack *to, char *msg)
 {
-	int		data;
-	int		index;
+	int	data;
+	int	index;
 
 	data = from->head->data;
 	index = from->head->index;

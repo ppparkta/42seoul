@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operator_rrx.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:56 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/03 17:12:13 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/13 13:33:26 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	rrr(t_stack *a, t_stack *b, char *msg)
 	rrx(a, NULL);
 	rrx(b, NULL);
 	if (msg)
-		ft_putstr_fd(msg,1);
+		ft_putstr_fd(msg, 1);
 }
