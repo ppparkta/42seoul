@@ -6,15 +6,16 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:24 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/17 22:02:17 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/18 13:26:40 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void	parsing_path(t_pipe *info, char **envp)
+char	**parsing_path(char **envp)
 {
-	int	i;
+	int		i;
+	char	**path;
 
 	i = -1;
 	while (envp[++i])
@@ -24,6 +25,6 @@ void	parsing_path(t_pipe *info, char **envp)
 	}
 	if (envp[i] == NULL)
 		print_error("env error");
-	info->path = ft_split(envp[i] + 5, ':');
-	return ;
+	path = ft_split(envp[i] + 5, ':');
+	return (path);
 }

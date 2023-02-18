@@ -6,10 +6,12 @@ CFLAG = -Wall -Wextra -Werror -fsanitize=address
 	$(CC) $(CFLAGS) -c $< -o $@
 
 SRC = $(addprefix ./src/,\
+main.c \
 pipex.c \
 ft_split.c \
 parsing.c \
-util.c) \
+util.c \
+execute.c) \
 ./get_next_line/get_next_line.c \
 ./get_next_line/get_next_line_utils.c \
 
