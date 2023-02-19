@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 21:38:24 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/19 22:11:24 by sooyang          ###   ########.fr       */
+/*   Created: 2023/02/17 23:56:14 by sooyang           #+#    #+#             */
+/*   Updated: 2023/02/19 22:32:25 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-char	**parsing_path(char **envp)
+void	wait_list(int cnt)
 {
-	int		i;
-	char	**path;
+	int	i;
 
 	i = -1;
-	while (envp[++i])
+	while (++i < cnt)
 	{
-		if (ft_strncmp("PATH", envp[i], 4) == 0)
-			break ;
+		if (wait(0) == -1)
+			print_error("wait error");
 	}
-	if (envp[i] == NULL)
-		print_error("env error");
-	path = ft_split(envp[i] + 5, ':');
-	return (path);
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	if (argc < 5)
+		print_error("format error");
+	if (ft_strncmp(argv[1], ""))
+	created_first_process(argc, argv, envp);
+	created_second_process(argc, argv, envp);
+	close_pipe(0, 1);
+	wait_list(argc - 3);
+	return (0);
 }
