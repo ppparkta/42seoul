@@ -6,11 +6,11 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:10:52 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/19 22:49:33 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/20 19:03:30 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "../include/pipex_bonus.h"
 
 void	close_pipe(int fd1, int fd2)
 {
@@ -33,7 +33,14 @@ void	open_infile(char **argv, int fd[2])
 	close_pipe(fd[0], fd[1]);
 }
 
-void	created_second_process(int argc, char **argv, char **envp)
+void	pipe_connected(int fd[2])
+{
+	if (dup2(fd[1], STDOUT_FILENO) == -1)
+		print_error("dup2 error");
+	close_pipe(fd[1], fd[0]);
+}
+
+void	created_last_process(int argc, char **argv, char **envp)
 {
 	int		outfile_fd;
 	pid_t	pid;
@@ -43,19 +50,37 @@ void	created_second_process(int argc, char **argv, char **envp)
 		print_error("fork error");
 	else if (pid == 0)
 	{
-		outfile_fd = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0644);
+		outfile_fd = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
 		if (outfile_fd == -1)
 			print_error("open error");
 		if (dup2(outfile_fd, 1) == -1)
 			print_error("dup2 error");
-		execute(argv[3], envp);
+		execute(argv[argc - 2], envp);
 	}
+	close_pipe(0, 1);
 }
 
-//created_first_process에서 끝낼 수 없나? 직관적이게 하나 새로 짤까?heredoc은?
-void	created_middle_process(int argc, char **argv, char **envp)
+void	created_middle_process(int argc, char **argv, char **envp, int i)
 {
+	int		fd[2];
+	pid_t	pid;
 
+	if (pipe(fd) == -1)
+		print_error("pipe error");
+	pid = fork();
+	if (pid == -1)
+		print_error("fork error");
+	if (pid == 0)
+	{
+		pipe_connected(fd);
+		execute(argv[i], envp);
+	}
+	else if (pid > 0)
+	{
+		if (dup2(fd[0], 0) == -1)
+			print_error("dup2 error (fd[0])");
+		close_pipe(fd[0], fd[1]);
+	}
 }
 
 void	created_first_process(int argc, char **argv, char **envp)

@@ -6,11 +6,11 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:43:17 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/19 22:32:21 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/20 18:46:34 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "../include/pipex_bonus.h"
 
 static size_t	word_cnt(char const *s, char c)
 {

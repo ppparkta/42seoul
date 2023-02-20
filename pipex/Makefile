@@ -5,13 +5,13 @@ CFLAG = -Wall -Wextra -Werror -fsanitize=address
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-SRC = $(addprefix ./src/,\
-main.c \
-pipex.c \
-ft_split.c \
-parsing.c \
-util.c \
-execute.c) \
+SRC = $(addprefix ./bonus/,\
+main_bonus.c \
+pipex_bonus.c \
+ft_split_bonus.c \
+parsing_bonus.c \
+util_bonus.c \
+execute_bonus.c) \
 
 OBJ = $(SRC:.c=.o)
 

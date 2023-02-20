@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:22:22 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/19 22:28:29 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/20 19:00:49 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ void	ft_putstr_fd(char *s, int fd);
 
 //pipex
 void	open_infile(char **argv, int fd[2]);
+void	pipe_connected(int fd[2]);
 void	close_pipe(int fd1, int fd2);
-void	created_second_process(int argc, char **argv, char **envp);
+void	created_last_process(int argc, char **argv, char **envp);
+void	created_middle_process(int argc, char **argv, char **envp, int i);
 void	created_first_process(int argc, char **argv, char **envp);
 
 #endif

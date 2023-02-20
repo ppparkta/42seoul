@@ -6,11 +6,11 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 13:52:36 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/19 22:32:20 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/20 18:49:38 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "../include/pipex_bonus.h"
 
 void	free_all(char **str)
 {

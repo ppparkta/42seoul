@@ -30,7 +30,7 @@ int	main(int argc, char **argv, char **envp)
 		print_error("format error");
 	created_first_process(argc, argv, envp);
 	created_second_process(argc, argv, envp);
-	close_pipe(0, 1);
+	//close_pipe(0, 1);
 	wait_buff(argc - 3);
 	return (0);
 }
