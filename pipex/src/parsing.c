@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:24 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/19 22:11:24 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/20 14:58:40 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**parsing_path(char **envp)
 			break ;
 	}
 	if (envp[i] == NULL)
-		print_error("env error");
+		return NULL;
 	path = ft_split(envp[i] + 5, ':');
 	return (path);
 }

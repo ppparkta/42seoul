@@ -6,13 +6,13 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 23:56:14 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/19 22:20:32 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/20 13:28:20 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void	wait_list(int cnt)
+void	wait_buff(int cnt)
 {
 	int	i;
 
@@ -31,6 +31,6 @@ int	main(int argc, char **argv, char **envp)
 	created_first_process(argc, argv, envp);
 	created_second_process(argc, argv, envp);
 	close_pipe(0, 1);
-	wait_list(argc - 3);
+	wait_buff(argc - 3);
 	return (0);
 }

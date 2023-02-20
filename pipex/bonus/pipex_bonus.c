@@ -6,15 +6,21 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:10:52 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/19 22:32:29 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/19 22:49:33 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
+void	close_pipe(int fd1, int fd2)
+{
+	close(fd1);
+	close(fd2);
+}
+
 void	open_infile(char **argv, int fd[2])
 {
-	int infile_fd;
+	int	infile_fd;
 
 	infile_fd = open(argv[1], O_RDONLY);
 	if (infile_fd == -1)
@@ -25,12 +31,6 @@ void	open_infile(char **argv, int fd[2])
 		print_error("dup2 error (fd[1])");
 	close(infile_fd);
 	close_pipe(fd[0], fd[1]);
-}
-
-void	close_pipe(int fd1, int fd2)
-{
-	close(fd1);
-	close(fd2);
 }
 
 void	created_second_process(int argc, char **argv, char **envp)
@@ -50,6 +50,12 @@ void	created_second_process(int argc, char **argv, char **envp)
 			print_error("dup2 error");
 		execute(argv[3], envp);
 	}
+}
+
+//created_first_process에서 끝낼 수 없나? 직관적이게 하나 새로 짤까?heredoc은?
+void	created_middle_process(int argc, char **argv, char **envp)
+{
+
 }
 
 void	created_first_process(int argc, char **argv, char **envp)

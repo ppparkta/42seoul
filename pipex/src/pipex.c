@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:10:52 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/19 22:21:57 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/20 16:02:17 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	created_second_process(int argc, char **argv, char **envp)
 			print_error("dup2 error");
 		execute(argv[3], envp);
 	}
+	close_pipe(0, 1);
 }
 
 void	created_first_process(int argc, char **argv, char **envp)
