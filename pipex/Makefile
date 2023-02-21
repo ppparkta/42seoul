@@ -5,7 +5,15 @@ CFLAG = -Wall -Wextra -Werror -fsanitize=address
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-SRC = $(addprefix ./bonus/,\
+SRC = $(addprefix ./src/,\
+main.c \
+pipex.c \
+ft_split.c \
+parsing.c \
+util.c \
+execute.c) 
+
+SRC_BONUS = $(addprefix ./bonus/,\
 main_bonus.c \
 pipex_bonus.c \
 ft_split_bonus.c \
@@ -18,17 +26,28 @@ heredoc_bonus.c) \
 
 OBJ = $(SRC:.c=.o)
 
-$(NAME) : $(OBJ)
-	$(CC) -g $(CFLAG) -o $@ $^
+BONUS_OBJS = $(SRC_BONUS:.c=.o)
+
+ifdef WITH_BONUS
+	OBJECTS = $(BONUS_OBJS)
+else
+	OBJECTS = $(OBJ)
+endif
 
 all : $(NAME)
 
+$(NAME) : $(OBJECTS)
+	$(CC) $(CFLAG) -o $@ $^
+
 clean :
-	$(RM) $(OBJ)
+	$(RM) $(OBJECTS)
 
 fclean : clean
 	$(RM) $(NAME)
 
+bonus : fclean
+	make WITH_BONUS=1 all
+
 re : fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus
