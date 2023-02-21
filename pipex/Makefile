@@ -39,14 +39,14 @@ all : $(NAME)
 $(NAME) : $(OBJECTS)
 	$(CC) $(CFLAG) -o $@ $^
 
+bonus : 
+	make WITH_BONUS=1 all
+
 clean :
 	$(RM) $(OBJECTS)
 
 fclean : clean
 	$(RM) $(NAME)
-
-bonus : fclean
-	make WITH_BONUS=1 all
 
 re : fclean all
 
