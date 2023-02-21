@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:22:22 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/21 15:31:40 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/21 20:42:12 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include   "../get_next_line/get_next_line.h"
 
 //here_doc
+void	heredoc_pipe_connected(int tmp_fd, int fd[2]);
 void	created_here_doc(int argc, char **argv, char **envp);
 
 //execute

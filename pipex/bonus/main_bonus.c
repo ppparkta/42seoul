@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 23:56:14 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/21 19:21:24 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/21 21:14:01 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,24 @@ int	main(int argc, char **argv, char **envp)
 	int	i;
 	int	heredoc_switch;
 
-	i = 2;
+	i = 3;
 	heredoc_switch = 0;
 	if (argc < 5)
 		print_error("format error");
-	if (ft_strncmp("here_doc", argv[1], 8) == 0)
+	if (ft_strncmp("here_doc", argv[1], 9) == 0)
 	{
 		if (argc < 6)
 			print_error("format error");
-		i = 3;
+		i = 4;
 		heredoc_switch = 1;
 		created_here_doc(argc, argv, envp);
 	}
 	else
 		created_first_process(argc, argv, envp);
-	i++;
 	while (++i < argc - 1)
 		created_middle_process(argc, argv, envp, i);
 	created_last_process(argc, argv, envp, heredoc_switch);
 	wait_buff(argc - 3, heredoc_switch);
+	unlink("tmp");
 	return (0);
 }
