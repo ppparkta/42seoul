@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 23:56:14 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/20 20:10:02 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/21 19:21:24 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else
 		created_first_process(argc, argv, envp);
+	i++;
 	while (++i < argc - 1)
 		created_middle_process(argc, argv, envp, i);
 	created_last_process(argc, argv, envp, heredoc_switch);

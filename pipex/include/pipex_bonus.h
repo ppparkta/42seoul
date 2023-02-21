@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:22:22 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/20 19:47:23 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/21 15:31:40 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include	<stdlib.h>
 # include	<stdio.h>
 # include	<fcntl.h>
+# include   "../get_next_line/get_next_line.h"
 
 //here_doc
 void	created_here_doc(int argc, char **argv, char **envp);

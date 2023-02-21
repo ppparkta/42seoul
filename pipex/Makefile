@@ -13,11 +13,13 @@ parsing_bonus.c \
 util_bonus.c \
 execute_bonus.c \
 heredoc_bonus.c) \
+./get_next_line/get_next_line.c \
+./get_next_line/get_next_line_utils.c \
 
 OBJ = $(SRC:.c=.o)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAG) -o $@ $^
+	$(CC) -g $(CFLAG) -o $@ $^
 
 all : $(NAME)
 
