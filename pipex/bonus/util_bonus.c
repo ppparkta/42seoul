@@ -6,11 +6,17 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:45:00 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/20 18:46:37 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/20 19:09:00 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
+
+void	close_pipe(int fd1, int fd2)
+{
+	close(fd1);
+	close(fd2);
+}
 
 void print_error(char *errmsg)
 {
@@ -74,19 +80,4 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	}
 	return (0);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	int	i;
-
-	i = 0;
-	if (!s || fd < 0)
-		return ;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-	write(fd, "\n", 1);
 }

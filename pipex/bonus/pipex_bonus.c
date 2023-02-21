@@ -6,17 +6,11 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:10:52 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/20 19:03:30 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/20 19:48:18 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
-
-void	close_pipe(int fd1, int fd2)
-{
-	close(fd1);
-	close(fd2);
-}
 
 void	open_infile(char **argv, int fd[2])
 {
@@ -40,7 +34,7 @@ void	pipe_connected(int fd[2])
 	close_pipe(fd[1], fd[0]);
 }
 
-void	created_last_process(int argc, char **argv, char **envp)
+void	created_last_process(int argc, char **argv, char **envp, int heredoc)
 {
 	int		outfile_fd;
 	pid_t	pid;
@@ -50,7 +44,10 @@ void	created_last_process(int argc, char **argv, char **envp)
 		print_error("fork error");
 	else if (pid == 0)
 	{
-		outfile_fd = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
+		if (heredoc == 0)
+			outfile_fd = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
+		else
+			outfile_fd = open(argv[argc - 1], O_RDWR | O_CREAT | O_APPEND, 0644);
 		if (outfile_fd == -1)
 			print_error("open error");
 		if (dup2(outfile_fd, 1) == -1)
@@ -77,7 +74,7 @@ void	created_middle_process(int argc, char **argv, char **envp, int i)
 	}
 	else if (pid > 0)
 	{
-		if (dup2(fd[0], 0) == -1)
+		if (dup2(fd[0], STDIN_FILENO) == -1)
 			print_error("dup2 error (fd[0])");
 		close_pipe(fd[0], fd[1]);
 	}
@@ -85,8 +82,6 @@ void	created_middle_process(int argc, char **argv, char **envp, int i)
 
 void	created_first_process(int argc, char **argv, char **envp)
 {
-	int		wait;
-	int		status;
 	int		fd[2];
 	pid_t	pid;
 
@@ -102,7 +97,7 @@ void	created_first_process(int argc, char **argv, char **envp)
 	}
 	if (pid > 0)
 	{
-		if (dup2(fd[0], 0) == -1)
+		if (dup2(fd[0], STDIN_FILENO) == -1)
 			print_error("dup2 error (fd[0])");
 		close_pipe(fd[0], fd[1]);
 	}

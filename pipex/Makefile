@@ -11,7 +11,8 @@ pipex_bonus.c \
 ft_split_bonus.c \
 parsing_bonus.c \
 util_bonus.c \
-execute_bonus.c) \
+execute_bonus.c \
+heredoc_bonus.c) \
 
 OBJ = $(SRC:.c=.o)
 
