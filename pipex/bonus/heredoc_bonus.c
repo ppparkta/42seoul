@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:18:32 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/22 16:00:33 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/22 17:17:36 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	created_here_doc(int argc, char **argv, char **envp)
 	{
 		if (dup2(fd[0], STDIN_FILENO) == -1)
 			print_error("dup2 error (fd[STDIN])");
+		close(infile_fd);
 		close_pipe(fd[0], fd[1]);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:10:52 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/21 21:03:22 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/22 17:16:20 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,22 @@ void	created_last_process(int argc, char **argv, char **envp, int heredoc)
 	int		outfile_fd;
 	pid_t	pid;
 
+	if (heredoc == 0)
+		outfile_fd = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
+	else
+		outfile_fd = open(argv[argc - 1], O_RDWR | O_CREAT | O_APPEND, 0644);
+	if (outfile_fd == -1)
+		print_error("open error");
 	pid = fork();
 	if (pid == -1)
 		print_error("fork error");
 	else if (pid == 0)
 	{
-		if (heredoc == 0)
-			outfile_fd = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
-		else
-			outfile_fd = open(argv[argc - 1], O_RDWR | O_CREAT | O_APPEND, 0644);
-		if (outfile_fd == -1)
-			print_error("open error");
 		if (dup2(outfile_fd, 1) == -1)
 			print_error("dup2 error");
 		execute(argv[argc - 2], envp);
 	}
+	close(outfile_fd);
 	close_pipe(0, 1);
 }
 
