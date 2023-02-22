@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:18:32 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/21 21:02:33 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/22 16:00:33 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	get_heredoc(char **argv, int fd[2])
 {
 	int		swc;
 	int		tmp_fd;
-	int		infile_fd;
 	char	*buff;
 
 	swc = 1;
@@ -51,17 +50,18 @@ void	get_heredoc(char **argv, int fd[2])
 		}
 	}
 	close(tmp_fd);
-	infile_fd = open("tmp", O_RDONLY);
-	if (infile_fd == -1)
-		print_error("open error");
-	heredoc_pipe_connected(infile_fd, fd);
 }
 
 void	created_here_doc(int argc, char **argv, char **envp)
 {
     int		fd[2];
+	int		infile_fd;
 	pid_t	pid;
 
+	get_heredoc(argv, fd);
+	infile_fd = open("tmp", O_RDONLY);
+	if (infile_fd == -1)
+		print_error("open error");
 	if (pipe(fd) == -1)
 		print_error("pipe error");
 	pid = fork();
@@ -69,7 +69,7 @@ void	created_here_doc(int argc, char **argv, char **envp)
 		print_error("fork error");
 	if (pid == 0)
 	{
-		get_heredoc(argv, fd);
+		heredoc_pipe_connected(infile_fd, fd);
 		execute(argv[3], envp);
 	}
 	if (pid > 0)
@@ -77,6 +77,5 @@ void	created_here_doc(int argc, char **argv, char **envp)
 		if (dup2(fd[0], STDIN_FILENO) == -1)
 			print_error("dup2 error (fd[STDIN])");
 		close_pipe(fd[0], fd[1]);
-		unlink("tmp.tmp");
 	}
 }
