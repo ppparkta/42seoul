@@ -44,6 +44,7 @@ bonus :
 
 clean :
 	$(RM) $(OBJECTS)
+	$(RM) $(BONUS_OBJS)
 
 fclean : clean
 	$(RM) $(NAME)
