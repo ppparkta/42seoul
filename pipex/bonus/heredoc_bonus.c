@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:18:32 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/24 19:27:34 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/25 11:03:04 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	get_heredoc(char **argv, int fd[2])
 	char	*buff;
 
 	swc = 1;
-	if (access(".tmp", F_OK) == 0)
+	if (access("/tmp/.tmp", F_OK) == 0)
 		print_error("open error");
-	tmp_fd = open(".tmp", O_CREAT | O_RDWR | O_TRUNC, 0644);
+	tmp_fd = open("/tmp/.tmp", O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (tmp_fd == -1)
 		print_error("open error");
 	while (swc)
@@ -61,7 +61,7 @@ void	created_here_doc(int argc, char **argv, char **envp)
 	pid_t	pid;
 
 	get_heredoc(argv, fd);
-	infile_fd = open(".tmp", O_RDONLY);
+	infile_fd = open("/tmp/.tmp", O_RDONLY);
 	if (infile_fd == -1)
 		print_error("open error");
 	if (pipe(fd) == -1)
