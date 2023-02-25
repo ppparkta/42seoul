@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 23:56:14 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/22 17:12:28 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/25 12:45:01 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ int	main(int argc, char **argv, char **envp)
 		created_middle_process(argc, argv, envp, i++);
 	created_last_process(argc, argv, envp, heredoc_switch);
 	wait_buff(argc - 2, heredoc_switch);
-	unlink("tmp");
+	unlink("/tmp/.tmp");
 	return (0);
 }
