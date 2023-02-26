@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 20:08:16 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/26 20:25:20 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/02/26 21:36:35 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	if (argc != 2)
-		return (0);
-	
+	execute(argc, argv, envp);
 	return (0);
 }

@@ -2,19 +2,27 @@ NAME = minishell
 
 CFLAG = -Wall -Wextra -Werror
 
-SRC = $(./main.c \
-)
+%.o : %.c
+	$(CC) $(CFLAG) -c $< -o $@
+
+SRC = \
+	./main.c \
+	./execute.c \
+	./pipeline.c \
 
 OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
+all : $(NAME)
 
-clean:
+$(NAME) : $(OBJ)
+	$(CC) $(CFLAG) -o $@ $^
+
+clean :
 	$(RM) $(OBJ)
 
-fclean: clean
+fclean : clean
 	$(RM) $(NAME)
 
-re: fclean all
+re : fclean all
 
-.PHONY: all clean fclean re
+.PHONY : all clean fclean re
