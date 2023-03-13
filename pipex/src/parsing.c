@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:24 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/20 14:58:40 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/03/13 15:50:09 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**parsing_path(char **envp)
 			break ;
 	}
 	if (envp[i] == NULL)
-		return NULL;
+		return (NULL);
 	path = ft_split(envp[i] + 5, ':');
 	return (path);
 }

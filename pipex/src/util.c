@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:45:00 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/20 16:46:47 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/03/13 15:50:22 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void print_error(char *errmsg)
+void	print_error(char *errmsg)
 {
 	write(2, errmsg, ft_strlen(errmsg));
 	write(2, "\n", 1);
