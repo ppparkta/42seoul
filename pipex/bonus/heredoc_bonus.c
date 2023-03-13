@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:18:32 by sooyang           #+#    #+#             */
-/*   Updated: 2023/03/13 15:56:58 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/03/13 16:17:11 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,21 @@ void	heredoc_pipe_connected(int infile_fd, int fd[2])
 	close_pipe(fd[0], fd[1]);
 }
 
-void	check_temp(void)
+int	gnl_heredoc(char **argv, int tmp_fd, char *buff)
 {
-	if (access("/tmp/.tmp", F_OK) == 0)
-		print_error("open error");
-	tmp_fd = open("/tmp/.tmp", O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (tmp_fd == -1)
-		print_error("open error");
+	if (buff == NULL)
+		print_error("gnl error");
+	if (ft_strncmp(argv[2], buff, ft_strlen(argv[2])) == 0)
+	{	
+		free(buff);
+		return (0);
+	}
+	else
+	{
+		write(tmp_fd, buff, ft_strlen2(buff));
+		free(buff);
+		return (1);
+	}
 }
 
 void	get_heredoc(char **argv, int fd[2])
@@ -38,23 +46,16 @@ void	get_heredoc(char **argv, int fd[2])
 	char	*buff;
 
 	swc = 1;
-	check_temp();
+	if (access("/tmp/.tmp", F_OK) == 0)
+		print_error("open error");
+	tmp_fd = open("/tmp/.tmp", O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (tmp_fd == -1)
+		print_error("open error");
 	while (swc)
 	{
 		write(1, "heredoc> ", 9);
 		buff = get_next_line(STDIN_FILENO);
-		if (buff == NULL)
-			print_error("gnl error");
-		if (ft_strncmp(argv[2], buff, ft_strlen(argv[2])) == 0)
-		{	
-			free(buff);
-			swc = 0;
-		}
-		else
-		{
-			write(tmp_fd, buff, ft_strlen2(buff));
-			free(buff);
-		}
+		swc = gnl_heredoc(argv, tmp_fd, buff);
 	}
 	close(tmp_fd);
 }
