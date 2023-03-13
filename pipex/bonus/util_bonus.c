@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:45:00 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/20 19:09:00 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/03/13 15:53:34 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	close_pipe(int fd1, int fd2)
 	close(fd2);
 }
 
-void print_error(char *errmsg)
+void	print_error(char *errmsg)
 {
 	write(2, errmsg, ft_strlen(errmsg));
 	write(2, "\n", 1);

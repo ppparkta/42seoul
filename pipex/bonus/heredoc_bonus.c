@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:18:32 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/25 12:45:03 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/03/13 15:56:58 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ void	heredoc_pipe_connected(int infile_fd, int fd[2])
 	close_pipe(fd[0], fd[1]);
 }
 
+void	check_temp(void)
+{
+	if (access("/tmp/.tmp", F_OK) == 0)
+		print_error("open error");
+	tmp_fd = open("/tmp/.tmp", O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (tmp_fd == -1)
+		print_error("open error");
+}
+
 void	get_heredoc(char **argv, int fd[2])
 {
 	int		swc;
@@ -29,11 +38,7 @@ void	get_heredoc(char **argv, int fd[2])
 	char	*buff;
 
 	swc = 1;
-	if (access("/tmp/.tmp", F_OK) == 0)
-		print_error("open error");
-	tmp_fd = open("/tmp/.tmp", O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (tmp_fd == -1)
-		print_error("open error");
+	check_temp();
 	while (swc)
 	{
 		write(1, "heredoc> ", 9);
