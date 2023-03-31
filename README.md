@@ -39,11 +39,16 @@
 - <a href="https://velog.io/@ppparkta/42Seoul-pushswap-kxte20mp">Push_swap 정리자료</a>
 
 ### pipex
-2023.02.10~2023.02.xx
+2023.02.10~2023.02.28
 - pipex는 pipe와 fork를 사용해서 표준스트림과 다중 커맨드를 처리하는 프로젝트입니다.
 - 아래의 링크에서 정리된 내용을 확인할 수 있습니다.
 - <a href="https://velog.io/@ppparkta/42seoul-pipex">Pipex 정리자료</a>
 
-
+### minishell
+2023.03.02~2023.03.31
+- minishell은 작은 shell을 구현하는 팀프로젝트입니다.
+- built-in과 커맨드 처리, 리다이렉션, 시그널을 담당했습니다.
+- 아래의 링크에서 정리된 내용을 확인할 수 있습니다.
+- <a href="https://velog.io/@ppparkta/42seoul-minishell-1">minishell 정리자료</a>
 
 ![image](https://user-images.githubusercontent.com/86940801/181801594-02c5138d-554f-49da-bd97-ca419839abdd.png)
