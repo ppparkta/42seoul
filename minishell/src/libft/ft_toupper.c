@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hunpark <hunpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 20:09:22 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/26 20:44:29 by sooyang          ###   ########.fr       */
+/*   Created: 2022/07/08 18:59:45 by hunpark           #+#    #+#             */
+/*   Updated: 2022/07/11 14:26:48 by hunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include	<unistd.h>
-# include	<stdlib.h>
-# include	<fcntl.h>
-# include	<stdio.h>
-
-typedef struct s_fd
+int	ft_toupper(int c)
 {
-	int	fd[2];
-	int	prev_fd[2];
-}	t_fd;
-
-#endif
+	if (c >= 97 && c <= 122)
+		c -= 32;
+	return (c);
+}

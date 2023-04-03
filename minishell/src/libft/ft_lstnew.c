@@ -1,12 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipeline.c                                         :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hunpark <hunpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 20:25:28 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/26 21:08:13 by sooyang          ###   ########.fr       */
+/*   Created: 2022/07/22 19:21:14 by hunpark           #+#    #+#             */
+/*   Updated: 2022/07/24 19:59:09 by hunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*t;
+
+	t = (t_list *)malloc(sizeof(t_list));
+	if (!t)
+		return (NULL);
+	t->content = content;
+	t->next = NULL;
+	return (t);
+}

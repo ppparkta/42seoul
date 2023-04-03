@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hunpark <hunpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 20:08:16 by sooyang           #+#    #+#             */
-/*   Updated: 2023/02/26 21:36:35 by sooyang          ###   ########.fr       */
+/*   Created: 2022/07/07 10:15:12 by hunpark           #+#    #+#             */
+/*   Updated: 2022/07/19 17:22:15 by hunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+int	ft_isalnum(int a)
 {
-	execute(argc, argv, envp);
-	return (0);
+	if (a >= 48 && a <= 57)
+		return (1);
+	else if (a >= 65 && a <= 90)
+		return (1);
+	else if (a >= 97 && a <= 122)
+		return (1);
+	else
+		return (0);
 }

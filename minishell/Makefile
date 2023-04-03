@@ -1,27 +1,45 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/02/23 21:41:07 by hunpark           #+#    #+#              #
+#    Updated: 2023/03/31 08:05:35 by sooyang          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = minishell
+CC = cc
+FLAG = -Wall -Werror -Wextra -fsanitize=address
+INC = -I ./inc
+COMFILE_FLAGS = -lreadline -L$(shell brew --prefix readline)/lib
+INCLUDE_FLAGS = -I$(shell brew --prefix readline)/include
 
-CFLAG = -Wall -Wextra -Werror
+PARSER = $(addprefix parser/, parser tokenizer_utils tokenizer lexer isspecial lexer_utils make_argv make_argv_utils rm_quote change_env_utils change_env)
+UTILS = $(addprefix utils/, utils ft_exit_error arr_converter ft_strjoin2 signals env  ft_free init)
+BUILT_IN = ${addprefix built-in/, builtin_utils ft_cd ft_echo ft_env ft_exit ft_export ft_pwd ft_unset}
+EXECUTE = ${addprefix execute/, builtin execute ft_error ft_fork ft_redirect ft_execute ft_doc util_doc}
+FILES = $(addprefix src/, minishell  ${UTILS} ${PARSER} ${BUILT_IN} ${EXECUTE})
 
-%.o : %.c
-	$(CC) $(CFLAG) -c $< -o $@
+SRCS = ${FILES:=.c}
 
-SRC = \
-	./main.c \
-	./execute.c \
-	./pipeline.c \
+LIBFT = ./src/libft
 
-OBJ = $(SRC:.c=.o)
+all : ${NAME}
 
-all : $(NAME)
-
-$(NAME) : $(OBJ)
-	$(CC) $(CFLAG) -o $@ $^
+${NAME} :
+	@make -C ${LIBFT}
+	@${CC} ${FLAG} ${SRCS} ${COMFILE_FLAGS} ${INCLUDE_FLAGS} ${INC} -lreadline ${LIBFT}/libft.a -o ${NAME}
 
 clean :
-	$(RM) $(OBJ)
+	@make clean -C ${LIBFT}
+	@rm -f bonus
 
-fclean : clean
-	$(RM) $(NAME)
+fclean :
+	@make fclean -C ${LIBFT}
+	@rm -f ${NAME}
 
 re : fclean all
 
