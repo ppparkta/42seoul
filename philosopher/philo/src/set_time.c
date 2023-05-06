@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:21:49 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/07 00:40:18 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/07 02:49:06 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,28 @@ void set_time(t_table *table, t_philo *philo)
 }
 
 //테이블시간가져오기
-int	get_time_table(int check_time)
+long long	get_time_table(long long check_time)
 {
-	int	now;
+	long long	now;
 
 	now = get_time();
 	return (now - check_time);
 }
 
 // 현재시간가져오기
-int get_time(void)
+long long get_time(void)
 {
 	struct timeval time;
 
 	gettimeofday(&time, NULL);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+void	pass_time(long long time)
+{
+	long long	end_time;
+
+	end_time = get_time() + time;
+	while (get_time() < end_time)
+		usleep(10);
 }

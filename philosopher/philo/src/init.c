@@ -6,17 +6,17 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 01:53:38 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/07 00:44:45 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/07 01:39:39 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	check_argv(int argc, char **argv)
+int check_argv(int argc, char **argv)
 {
 	int i;
 
-	i = -1;
+	i = 0;
 	while (++i < argc)
 	{
 		if (ft_atoi(argv[i]) == 0)
@@ -25,12 +25,12 @@ int	check_argv(int argc, char **argv)
 	return (0);
 }
 
-int	create_fork(t_table *table)
+int create_fork(t_table *table)
 {
-	int	i;
+	int i;
 
-	table->all_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) \
-	* table->philo_head);
+	table->all_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)\
+		* table->philo_head);
 	if (table->all_fork == 0)
 		return (1);
 	i = -1;
@@ -42,7 +42,7 @@ int	create_fork(t_table *table)
 	return (0);
 }
 
-int	init_table(t_table *table, int argc, char **argv)
+int init_table(t_table *table, int argc, char **argv)
 {
 	if (check_argv(argc, argv))
 		return (1);
@@ -50,11 +50,13 @@ int	init_table(t_table *table, int argc, char **argv)
 	table->time_to_die = ft_atoi(argv[2]);
 	table->time_to_eat = ft_atoi(argv[3]);
 	table->time_to_sleep = ft_atoi(argv[4]);
-	if (argc == 6)
+	if (argv[5])
 		table->eat_count = ft_atoi(argv[5]);
 	else
 		table->eat_count = 0;
 	table->is_dead = 0;
+	pthread_mutex_init(&table->m_is_dead, NULL);
+	pthread_mutex_init(&table->print, NULL);
 	if (create_fork(table))
 		return (1);
 	return (0);

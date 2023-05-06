@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 02:55:28 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/07 00:51:46 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/07 02:56:25 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void philo_only_one(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left_fork);
-	printf("%d %d has taken a fork\n", get_time_table(philo->table->start_time), \
+	printf("%d %d has taken a fork\n", 0, \
 		philo->philo_num);
 }
 
@@ -34,14 +34,24 @@ int	check_dead(t_philo *philo)
 // 철학자 생명주기
 void *philo_life_cycle(void *data)
 {
+	printf("new thread generate\n");
 	t_philo	*philo;
 
-	philo = data;
+	philo = (t_philo *)data;
+	//한명일때 예외처리
+	printf("hi %d\n", philo->table->philo_head);
+	printf("hi %d\n", philo->is_full);
+	printf("my number is %d\n", philo->philo_num);
+	if (philo->table->philo_head == 1)
+	{
+		philo_only_one(philo);
+		return (0);
+	}
 	// 짝수예외처리
 	if (philo->philo_num % 2 == 0)
-		usleep((philo->table->time_to_eat % 2) * 1000);
-	// 죽은 사람 없으면 평생 돌아감
-	while (philo->p_is_dead == 0 && check_dead(philo) == 0)
+		usleep(philo->table->time_to_eat * 500);
+	// 죽거나 배부른 사람 없으면 평생 돌아감
+	while (philo->is_full == 0 && check_dead(philo) == 0)
 	{
 		pick_up_fork(philo);
 		go_to_eat(philo);
@@ -56,18 +66,14 @@ void *philo_life_cycle(void *data)
 table mutex_lock*/
 int philo_enter(t_table *table, t_philo *philo)
 {
+	printf("philo start\n");
 	int i;
 
 	i = -1;
-	if (table->philo_head == 1)
-	{
-		philo_only_one(philo);
-		return (0);
-	}
 	pthread_mutex_lock(&table->m_is_dead);
 	while (++i < table->philo_head)
 		pthread_create(&philo[i].thread, NULL, philo_life_cycle, &philo[i]);
 	set_time(table, philo);
 	pthread_mutex_unlock(&table->m_is_dead);
-	return (0);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 01:40:27 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/07 00:40:19 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/07 02:12:59 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ pthread_mutex_t mtx;
 int item = 0;
 
 // 함수 만들 때 꼭 함수포인터로 만들 수 있게 포인터로 명시하기
-void *repeat()
+void *repeat(void *data)
 {
 	int i = -1;
 	while (++i < 100000000)

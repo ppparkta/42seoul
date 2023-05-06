@@ -7,8 +7,7 @@ CFLAG = -Wall -Wextra -Werror -fsanitize=address
 
 SRC = $(addprefix ./src/, \
 main.c \
-init_philo.c \
-init_table.c \
+init.c \
 philo_behavior.c \
 philo_enter.c \
 set_time.c \
