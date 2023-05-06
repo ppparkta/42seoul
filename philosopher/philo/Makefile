@@ -1,46 +1,44 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/04/28 17:57:19 by sooyang           #+#    #+#              #
-#    Updated: 2023/04/28 17:57:20 by sooyang          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = philo
 
-NAME=philo
-CFLAG=-Wall -Wextra -Werror -fsanitize=address
+CFLAG = -Wall -Wextra -Werror -fsanitize=address
+
 %.o : %.c
-	&(CC) $(CFLAG) -c $< -o <@
-SRC=$(addprefix ./src/,\
-main.c)
+	$(CC) $(CFLAG) -c $< -o $@
 
-OBJ=$(SRC:.c=.o)
+SRC = $(addprefix ./src/, \
+main.c \
+init_philo.c \
+init_table.c \
+philo_behavior.c \
+philo_enter.c \
+set_time.c \
+take_fork.c \
+utils.c)
 
-BONUS_OBJ=$(BONUS_SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
 
-ifdef WITH_BONUS
+#BONUS_OBJ=$(BONUS_SRC:.c=.o)
+
+#ifdef WITH_BONUS
 	OBJS=$(OBJ:.c=.o)
-else
-	OBJS=$(BONUS_OBJ:.c=.o)
-endif
+#else
+#	OBJS=$(BONUS_OBJ:.c=.o)
+#endif
 
-all:$(NAME)
+all : $(NAME)
 
-$(NAME): $(OBJS)
-		$(CC) $(CFLAG) -o -$@ $^
+$(NAME) : $(OBJS)
+		$(CC) $(CFLAG) -o $@ $^
 
-bonus:
-	@make WITH_BONUS=1 all
+#bonus :
+#	@make WITH_BONUS=1 all
 
-clean:
+clean :
 	$(RM) $(OBJS)
 
-fclean: clean
+fclean : clean
 	$(RM) $(NAME)
 
-re: fclean all
+re : fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY : all clean fclean re #bonus

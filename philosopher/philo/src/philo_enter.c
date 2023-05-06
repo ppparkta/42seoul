@@ -6,50 +6,68 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 02:55:28 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/06 04:14:37 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/07 00:51:46 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void *philo_life_cycle(t_philo *philo)
+// 철학자가 단 한명일 때 예외처리
+void philo_only_one(t_philo *philo)
 {
-	//짝수예외처리
-	//먹기
-	//자기
-	//생각하기
+	pthread_mutex_lock(philo->left_fork);
+	printf("%d %d has taken a fork\n", get_time_table(philo->table->start_time), \
+		philo->philo_num);
 }
 
-void set_time(t_table *table, t_philo *philo)
+//죽은 사람 있는지 확인
+int	check_dead(t_philo *philo)
 {
-	int i;
+	int	swc;
 
-	i = -1;
-	table->start_time = get_time();
-	while (++i < table->philo_head)
-		philo[i].time_to_last_eaten = table->start_time;
+	pthread_mutex_lock(&philo->table->m_is_dead);
+	swc = philo->table->is_dead;
+	pthread_mutex_unlock(&philo->table->m_is_dead);
+	return (swc);
 }
 
-int get_time()
+// 철학자 생명주기
+void *philo_life_cycle(void *data)
 {
-	struct timeval time;
+	t_philo	*philo;
 
-	gettimeofday(&time, NULL);
+	philo = data;
+	// 짝수예외처리
+	if (philo->philo_num % 2 == 0)
+		usleep((philo->table->time_to_eat % 2) * 1000);
+	// 죽은 사람 없으면 평생 돌아감
+	while (philo->p_is_dead == 0 && check_dead(philo) == 0)
+	{
+		pick_up_fork(philo);
+		go_to_eat(philo);
+		put_down_fork(philo);
+		go_to_sleep(philo);
+		go_to_think(philo);
+	}
+	return (0);
 }
 
+/*시간설정할 때 항상 같은 시간에서 시작해야 시간순서가 꼬이지 않기 때문에 뮤텍스로 테이블 전체를 보호해줌
+table mutex_lock*/
 int philo_enter(t_table *table, t_philo *philo)
 {
 	int i;
 
 	i = -1;
-	while (++i < table->philo_head)
+	if (table->philo_head == 1)
 	{
-		// 쓰레드 생성
-		pthread_create(&philo[i].thread, NULL, philo_life_cycle, &philo[i]);
+		philo_only_one(philo);
+		return (0);
 	}
-	// 시간 설정
-	// mutex_lock
+	pthread_mutex_lock(&table->m_is_dead);
+	while (++i < table->philo_head)
+		pthread_create(&philo[i].thread, NULL, philo_life_cycle, &philo[i]);
 	set_time(table, philo);
-	// mutex_unlock
+	pthread_mutex_unlock(&table->m_is_dead);
 	return (0);
 }
