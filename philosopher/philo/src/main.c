@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:57:06 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/07 02:57:40 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/08 15:22:49 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ int	main(int argc, char **argv){
 		return (1);
 	if (init_table(&table, argc, argv) == 0 && init_philo(&table, &philo) == 0)
 	{
-		//개쩌는 작업(미래의 나 파이팅)
-		//필로가 살아 숨쉬는 함수
+		//필로 루틴
 		philo_enter(&table, philo);
+		//필로 사망 후?
+		while(1);
 	}
 	return (0);
 }

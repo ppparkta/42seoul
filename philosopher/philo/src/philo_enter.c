@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 02:55:28 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/07 02:56:25 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/08 15:18:51 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,34 @@ int	check_dead(t_philo *philo)
 // 철학자 생명주기
 void *philo_life_cycle(void *data)
 {
-	printf("new thread generate\n");
 	t_philo	*philo;
 
 	philo = (t_philo *)data;
-	//한명일때 예외처리
-	printf("hi %d\n", philo->table->philo_head);
-	printf("hi %d\n", philo->is_full);
 	printf("my number is %d\n", philo->philo_num);
 	if (philo->table->philo_head == 1)
 	{
 		philo_only_one(philo);
 		return (0);
 	}
-	// 짝수예외처리
 	if (philo->philo_num % 2 == 0)
 		usleep(philo->table->time_to_eat * 500);
-	// 죽거나 배부른 사람 없으면 평생 돌아감
 	while (philo->is_full == 0 && check_dead(philo) == 0)
 	{
+		if (check_dead(philo) == 1)
+			break ;
 		pick_up_fork(philo);
+		if (check_dead(philo) == 1)	
+		{
+			put_down_fork(philo);
+			break ;
+		}
 		go_to_eat(philo);
 		put_down_fork(philo);
+		if (check_dead(philo) == 1)
+			break ;
 		go_to_sleep(philo);
+		if (check_dead(philo) == 1)
+			break ;
 		go_to_think(philo);
 	}
 	return (0);
@@ -67,7 +72,7 @@ table mutex_lock*/
 int philo_enter(t_table *table, t_philo *philo)
 {
 	printf("philo start\n");
-	int i;
+	int	i;
 
 	i = -1;
 	pthread_mutex_lock(&table->m_is_dead);

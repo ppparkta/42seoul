@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:21:49 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/07 02:49:06 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/08 14:19:51 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ void	pass_time(long long time)
 
 	end_time = get_time() + time;
 	while (get_time() < end_time)
-		usleep(10);
+		usleep(100);
 }

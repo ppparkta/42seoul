@@ -1,9 +1,9 @@
 NAME = philo
 
-CFLAG = -Wall -Wextra -Werror -fsanitize=address
+CFLAG = -Wall -Wextra -Werror -fsanitize=thread
 
 %.o : %.c
-	$(CC) $(CFLAG) -c $< -o $@
+	@$(CC) $(CFLAG) -c $< -o $@
 
 SRC = $(addprefix ./src/, \
 main.c \
@@ -27,16 +27,16 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-		$(CC) $(CFLAG) -o $@ $^
+		@$(CC) $(CFLAG) -o $@ $^
 
 #bonus :
 #	@make WITH_BONUS=1 all
 
 clean :
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
 
 fclean : clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re : fclean all
 
