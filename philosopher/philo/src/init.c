@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 01:53:38 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/09 21:44:46 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/10 00:18:13 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	create_fork(t_table *table)
 {
 	int	i;
 
-	table->all_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)\
+	table->all_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) \
 		* table->philo_head);
 	if (table->all_fork == NULL)
 		return (1);
