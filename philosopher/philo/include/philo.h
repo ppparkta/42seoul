@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:57:14 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/07 02:59:50 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/09 15:05:45 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,21 @@ typedef struct s_philo{
 }	t_philo;
 
 //init
-int	init_table(t_table *table, int argc, char **argv);
-int	init_philo(t_table *table, t_philo **philo);
+int			init_table(t_table *table, int argc, char **argv);
+int			init_philo(t_table *table, t_philo **philo);
+//monitoring
+void		monitoring(t_table *table, t_philo *philo);
 //philo_enter
-int		philo_enter(t_table *table, t_philo *philo);
+int			philo_enter(t_table *table, t_philo *philo);
+int			check_dead(t_table *table);
 //philo_behavior
-void	go_to_eat(t_philo *philo);
-void	go_to_sleep(t_philo *philo);
-void	go_to_think(t_philo *philo);
+void		go_to_eat(t_philo *philo);
+void		go_to_sleep(t_philo *philo);
+void		go_to_think(t_philo *philo);
+void		go_to_die(t_philo *philo);
 //take_fork
-void pick_up_fork(t_philo *philo);
-void put_down_fork(t_philo *philo);
+void		pick_up_fork(t_philo *philo);
+void		put_down_fork(t_philo *philo);
 //set_time
 void		set_time(t_table *table, t_philo *philo);
 long long	get_time_table(long long check_time);

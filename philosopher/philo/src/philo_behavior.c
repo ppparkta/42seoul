@@ -6,25 +6,12 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 16:44:19 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/08 15:21:17 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:58:32 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-//void	philo_behavior(t_philo *philo, int swc)
-//{
-//	pthread_mutex_lock(&philo->table->print);
-//	pthread_mutex_lock(&philo->table->m_is_dead);
-//	if (philo->table->is_dead == 0)
-//	{
-		
-//	}
-//	pthread_mutex_unlock(&philo->table->m_is_dead);
-//	pthread_mutex_unlock(&philo->table->print);
-//}
-
-//밥먹기
 void	go_to_eat(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->print);
@@ -49,29 +36,37 @@ void	go_to_eat(t_philo *philo)
 	}
 }
 
-//잠자기
 void	go_to_sleep(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->print);
 	pthread_mutex_lock(&philo->table->m_is_dead);
 	if (philo->table->is_dead == 0)
 	{
-		printf("%lld %d is sleeping\n", get_time_table(philo->table->start_time), \
-		philo->philo_num);
+		printf("%lld %d is sleeping\n", \
+		get_time_table(philo->table->start_time), philo->philo_num);
 	}
 	pthread_mutex_unlock(&philo->table->m_is_dead);
 	pthread_mutex_unlock(&philo->table->print);
 	pass_time(philo->table->time_to_sleep);
 }
 
-//생각하기
 void	go_to_think(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->print);
 	pthread_mutex_lock(&philo->table->m_is_dead);
 	if (philo->table->is_dead == 0)
-		printf("%lld %d is thinking\n", get_time_table(philo->table->start_time), \
-		philo->philo_num);
+		printf("%lld %d is thinking\n", \
+		get_time_table(philo->table->start_time), philo->philo_num);
+	pthread_mutex_unlock(&philo->table->m_is_dead);
+	pthread_mutex_unlock(&philo->table->print);
+}
+
+void	go_to_die(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->table->print);
+	pthread_mutex_lock(&philo->table->m_is_dead);
+	printf("%lld %d died\n", \
+	get_time_table(philo->table->start_time), philo->philo_num);
 	pthread_mutex_unlock(&philo->table->m_is_dead);
 	pthread_mutex_unlock(&philo->table->print);
 }

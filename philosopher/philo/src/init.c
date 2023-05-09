@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 01:53:38 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/08 14:22:36 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/08 16:28:26 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int init_philo(t_table *table, t_philo **philo)
 	while (++i < table->philo_head)
 	{
 		(*philo)[i].philo_num = i + 1;
-		(*philo)[i].left_fork = &table->all_fork[i]; 
+		(*philo)[i].left_fork = &table->all_fork[i];
 		(*philo)[i].right_fork = &table->all_fork[(i + 1) % table->philo_head];
 		(*philo)[i].eat_count = 0;
 		(*philo)[i].is_full = 0;

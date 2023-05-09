@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:21:49 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/08 14:19:51 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:29:11 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ long long	get_time_table(long long check_time)
 }
 
 // 현재시간가져오기
-long long get_time(void)
+long long	get_time(void)
 {
-	struct timeval time;
+	struct timeval	time;
 
 	gettimeofday(&time, NULL);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);

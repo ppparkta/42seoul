@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 02:55:28 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/08 15:18:51 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/09 15:05:07 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void philo_only_one(t_philo *philo)
 }
 
 //죽은 사람 있는지 확인
-int	check_dead(t_philo *philo)
+int	check_dead(t_table *table)
 {
 	int	swc;
 
-	pthread_mutex_lock(&philo->table->m_is_dead);
-	swc = philo->table->is_dead;
-	pthread_mutex_unlock(&philo->table->m_is_dead);
+	pthread_mutex_lock(&table->m_is_dead);
+	swc = table->is_dead;
+	pthread_mutex_unlock(&table->m_is_dead);
 	return (swc);
 }
 
@@ -45,22 +45,22 @@ void *philo_life_cycle(void *data)
 	}
 	if (philo->philo_num % 2 == 0)
 		usleep(philo->table->time_to_eat * 500);
-	while (philo->is_full == 0 && check_dead(philo) == 0)
+	while (philo->is_full == 0 && check_dead(philo->table) == 0)
 	{
-		if (check_dead(philo) == 1)
+		if (check_dead(philo->table) == 1)
 			break ;
 		pick_up_fork(philo);
-		if (check_dead(philo) == 1)	
+		if (check_dead(philo->table) == 1)	
 		{
 			put_down_fork(philo);
 			break ;
 		}
 		go_to_eat(philo);
 		put_down_fork(philo);
-		if (check_dead(philo) == 1)
+		if (check_dead(philo->table) == 1)
 			break ;
 		go_to_sleep(philo);
-		if (check_dead(philo) == 1)
+		if (check_dead(philo->table) == 1)
 			break ;
 		go_to_think(philo);
 	}
