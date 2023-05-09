@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:57:14 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/09 15:05:45 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/09 16:10:08 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_philo{
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	m_is_full;
+	pthread_mutex_t	m_time_to_last_eaten;
 	int				philo_num;
 	int				eat_count;
 	long long		time_to_last_eaten;

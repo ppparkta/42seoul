@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:28:05 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/09 15:05:34 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/09 16:14:02 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int	check_starvation(t_philo *philo)
 {
 	long long	hungry_time;
 
+	pthread_mutex_lock(&philo->m_time_to_last_eaten);
 	hungry_time = get_time_table(philo->time_to_last_eaten);
+	pthread_mutex_unlock(&philo->m_time_to_last_eaten);
 	if (hungry_time > philo->table->time_to_die)
 	{
 		pthread_mutex_lock(&philo->table->m_is_dead);

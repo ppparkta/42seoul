@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 02:14:33 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/07 01:52:02 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/09 15:25:56 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int ft_atoi(const char *str)
 {
-	size_t i;
-	long long ans;
+	size_t		i;
+	long long	ans;
 
 	i = 0;
 	ans = 0;

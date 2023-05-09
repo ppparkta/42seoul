@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 01:53:38 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/08 16:28:26 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/09 16:10:50 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int init_philo(t_table *table, t_philo **philo)
 		(*philo)[i].is_full = 0;
 		(*philo)[i].table = table;
 		pthread_mutex_init(&(*philo)[i].m_is_full, NULL);
+		pthread_mutex_init(&(*philo)[i].m_time_to_last_eaten, NULL);
 	}
 	return (0);
 }

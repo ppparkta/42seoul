@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 16:44:19 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/09 14:58:32 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/09 16:11:32 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	go_to_eat(t_philo *philo)
 	}
 	pthread_mutex_unlock(&philo->table->m_is_dead);
 	pthread_mutex_unlock(&philo->table->print);
-	pthread_mutex_lock(&philo->table->m_is_dead);
+	pthread_mutex_lock(&philo->m_time_to_last_eaten);
 	philo->time_to_last_eaten = get_time();
-	pthread_mutex_unlock(&philo->table->m_is_dead);
+	pthread_mutex_unlock(&philo->m_time_to_last_eaten);
 	pass_time(philo->table->time_to_eat);
 	philo->eat_count++;
 	if (philo->eat_count == philo->table->eat_count)
