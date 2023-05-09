@@ -17,28 +17,17 @@ monitoring.c)
 
 OBJ = $(SRC:.c=.o)
 
-#BONUS_OBJ=$(BONUS_SRC:.c=.o)
-
-#ifdef WITH_BONUS
-	OBJS=$(OBJ:.c=.o)
-#else
-#	OBJS=$(BONUS_OBJ:.c=.o)
-#endif
-
 all : $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJ)
 		@$(CC) $(CFLAG) -o $@ $^
 
-#bonus :
-#	@make WITH_BONUS=1 all
-
 clean :
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJ)
 
 fclean : clean
 	@$(RM) $(NAME)
 
 re : fclean all
 
-.PHONY : all clean fclean re #bonus
+.PHONY : all clean fclean re

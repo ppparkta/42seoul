@@ -6,15 +6,15 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 02:55:28 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/09 15:29:38 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/09 21:43:38 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void philo_only_one(t_philo *philo)
+void	philo_only_one(t_philo *philo)
 {
-	pthread_mutex_lock(philo->left_fork);
+	pthread_mutex_lock(&philo->table->all_fork[philo->left_fork]);
 	printf("%d %d has taken a fork\n", 0, \
 		philo->philo_num);
 }
@@ -43,11 +43,9 @@ void	*philo_life_cycle(void *data)
 		usleep(philo->table->time_to_eat * 500);
 	while (philo->is_full == 0 && check_dead(philo->table) == 0)
 	{
-		pick_up_fork(philo);
 		go_to_eat(philo);
-		put_down_fork(philo);
 		go_to_sleep(philo);
-		go_to_think(philo);
+		print_msg(philo, " is thinking\n");
 	}
 	return (0);
 }

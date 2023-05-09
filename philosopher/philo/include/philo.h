@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:57:14 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/09 16:10:08 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/09 20:38:58 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct s_table{
 
 typedef struct s_philo{
 	pthread_t		thread;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
+	int				left_fork;
+	int				right_fork;
 	pthread_mutex_t	m_is_full;
 	pthread_mutex_t	m_time_to_last_eaten;
 	int				philo_num;
@@ -55,9 +55,9 @@ void		monitoring(t_table *table, t_philo *philo);
 int			philo_enter(t_table *table, t_philo *philo);
 int			check_dead(t_table *table);
 //philo_behavior
+void		print_msg(t_philo *philo, char *msg);
 void		go_to_eat(t_philo *philo);
 void		go_to_sleep(t_philo *philo);
-void		go_to_think(t_philo *philo);
 void		go_to_die(t_philo *philo);
 //take_fork
 void		pick_up_fork(t_philo *philo);
@@ -68,5 +68,5 @@ long long	get_time_table(long long check_time);
 long long	get_time(void);
 void		pass_time(long long time);
 //utils
-int ft_atoi(const char *str);
+int			ft_atoi(const char *str);
 #endif
