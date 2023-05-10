@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_behavior.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 16:44:19 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/09 22:10:43 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/10 16:13:56 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	print_msg(t_philo *philo, char *msg)
 {
-	pthread_mutex_lock(&philo->table->print);
 	pthread_mutex_lock(&philo->table->m_is_dead);
 	if (philo->table->is_dead == 0)
 	{
+		pthread_mutex_lock(&philo->table->print);
 		printf("%lld %d%s", get_time_table(philo->table->start_time), \
 		philo->philo_num, msg);
+		pthread_mutex_unlock(&philo->table->print);
 	}
 	pthread_mutex_unlock(&philo->table->m_is_dead);
-	pthread_mutex_unlock(&philo->table->print);
 }
 
 void	go_to_eat(t_philo *philo)
