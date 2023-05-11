@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:57:14 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/09 20:38:58 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/11 16:07:09 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int			check_dead(t_table *table);
 void		print_msg(t_philo *philo, char *msg);
 void		go_to_eat(t_philo *philo);
 void		go_to_sleep(t_philo *philo);
-void		go_to_die(t_philo *philo);
 //take_fork
 void		pick_up_fork(t_philo *philo);
 void		put_down_fork(t_philo *philo);

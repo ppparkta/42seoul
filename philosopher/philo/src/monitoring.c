@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:28:05 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/09 23:26:15 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/11 16:16:52 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,16 @@ void	end_simulation(t_table *table, t_philo *philo)
 
 	i = -1;
 	while (++i < table->philo_head)
-	{
 		pthread_join(philo[i].thread, NULL);
+	i = -1;
+	while (++i < table->philo_head)
+	{
+		pthread_mutex_destroy(&table->all_fork[i]);
+		pthread_mutex_destroy(&philo[i].m_is_full);
+		pthread_mutex_destroy(&philo[i].m_time_to_last_eaten);
 	}
+	pthread_mutex_destroy(&table->m_is_dead);
+	pthread_mutex_destroy(&table->print);
 }
 
 void	monitoring(t_table *table, t_philo *philo)
@@ -71,7 +78,7 @@ void	monitoring(t_table *table, t_philo *philo)
 			if (check_starvation(&philo[i]))
 				break ;
 		}
-		usleep(100);
+		usleep(50);
 	}
 	end_simulation(table, philo);
 	free(table->all_fork);
