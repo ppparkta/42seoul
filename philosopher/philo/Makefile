@@ -1,9 +1,9 @@
 NAME = philo
 
-CFLAG = -Wall -Wextra -Werror -fsanitize=thread
+CFLAG = -Wall -Wextra -Werror -fsanitize=address -g3
 
 %.o : %.c
-	@$(CC) $(CFLAG) -c $< -o $@
+	@arch -x86_64 $(CC) $(CFLAG) -c $< -o $@
 
 SRC = $(addprefix ./src/, \
 main.c \

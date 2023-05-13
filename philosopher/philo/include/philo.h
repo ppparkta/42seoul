@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:57:14 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/13 12:38:32 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/13 19:28:39 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void		pass_time(t_philo *philo, long long time);
 //error
 int			print_error_message(char *message);
 void		destroy_mutex(t_table *table);
-int			mutex_error(t_table *table, char *message);
+int			mutex_error(t_philo *philo, char *message);
 int			error_all(t_philo *philo, char *message);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mutex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 08:44:58 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/13 13:27:03 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/13 18:49:59 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	init_fork(t_table *table)
 	i = -1;
 	while (++i < table->philo_head)
 	{
-		if (pthread_mutex_init(&(table->all_fork[i]), NULL))
+		if (pthread_mutex_init(&(table->all_fork[i]), NULL) == -1)
 		{
 			pthread_mutex_destroy(&(table->print));
 			pthread_mutex_destroy(&(table->m_is_dead));
@@ -50,7 +50,7 @@ int	init_last_eaten(t_table *table)
 	i = 0;
 	while (i < table->philo_head)
 	{
-		if (pthread_mutex_init(&(table->m_time_to_last_eaten[i]), NULL))
+		if (pthread_mutex_init(&(table->m_time_to_last_eaten[i]), NULL) == -1)
 		{
 			pthread_mutex_destroy(&(table->print));
 			pthread_mutex_destroy(&(table->m_is_full));
@@ -69,14 +69,14 @@ int	init_last_eaten(t_table *table)
 
 int	init_mutex(t_table *table)
 {
-	if (pthread_mutex_init(&(table->print), NULL))
+	if (pthread_mutex_init(&(table->print), NULL) == -1)
 		return (print_error_message("mutex init error"));
-	if (pthread_mutex_init(&(table->m_is_full), NULL))
+	if (pthread_mutex_init(&(table->m_is_full), NULL) == -1)
 	{
 		pthread_mutex_destroy(&(table->print));
 		return (print_error_message("mutex init error"));
 	}
-	if (pthread_mutex_init(&(table->m_is_dead), NULL))
+	if (pthread_mutex_init(&(table->m_is_dead), NULL) == -1)
 	{
 		pthread_mutex_destroy(&(table->print));
 		pthread_mutex_destroy(&(table->m_is_full));

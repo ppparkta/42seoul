@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 02:14:33 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/13 13:11:13 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/13 19:19:11 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,17 @@ int	print_act(t_philo *philo, char *msg)
 	pthread_mutex_lock(&philo->table->m_is_dead);
 	if (philo->table->is_dead)
 	{
-		pthread_mutex_unlock(&philo->table->m_is_dead);
+		if (strcmp(msg, "eating") == 0 || strcmp(msg, "has taken a fork") == 0)
+		{
+			pthread_mutex_unlock(&philo->table->all_fork[philo->left_fork]);
+			pthread_mutex_unlock(&philo->table->all_fork[philo->right_fork]);
+		}
 		pthread_mutex_unlock(&philo->table->print);
+		pthread_mutex_unlock(&philo->table->m_is_dead);
 		return (1);
 	}
 	pthread_mutex_unlock(&philo->table->m_is_dead);
-	printf("%lld %d %s\n", time - philo->table->start_time, \
+	printf("%lld %d %s\n", (time - philo->table->start_time), \
 	philo->philo_num, msg);
 	pthread_mutex_unlock(&philo->table->print);
 	return (0);

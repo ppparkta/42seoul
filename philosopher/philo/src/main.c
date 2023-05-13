@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:57:06 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/13 13:07:31 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/13 19:28:51 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,23 @@ int	join_philo(t_philo *philo)
 	int	i;
 
 	i = 0;
-	if (philo->table->philo_head == 1)
-		pthread_detach(philo[i].thread);
-	else
+	while (i < philo->table->philo_head)
 	{
-		while (i < philo->table->philo_head)
-		{
-			if (pthread_join(philo[i].thread, NULL) != 0)
-				return (error_all(philo, "join error"));
-			i++;
-		}
+		if (pthread_join((philo[i]).thread, NULL) != 0)
+			return (error_all(philo, "join error"));
+		i++;
 	}	
 	return (0);
 }
 
 int	create_monitor(t_philo *philo)
 {
-	pthread_t	thread;
+	pthread_t	monitor_thread;
 
-	if (pthread_create(&thread, NULL, monitoring, philo))
+	if (pthread_create(&monitor_thread, NULL, monitoring, philo))
 		return (error_all(philo, "thread create error"));
-	pthread_join(thread, NULL);
+	if (pthread_join(monitor_thread, NULL))
+		return (error_all(philo, "join error"));
 	return (0);
 }
 

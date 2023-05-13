@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 01:53:38 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/13 13:08:58 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/13 19:24:13 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	init(t_philo **philo, t_table *table, int argc, char **argv)
 		return (1);
 	*philo = malloc(sizeof(t_philo) * table->philo_head);
 	if (!*philo)
-		return (mutex_error(table, "malloc error"));
+		return (mutex_error(*philo, "malloc error"));
 	init_philo(table, *philo);
 	return (0);
 }
