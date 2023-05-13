@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_life_cycle.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 02:55:28 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/14 00:33:14 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/14 01:06:02 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ void	*philo_life_cycle(void *data)
 			break ;
 		if (eat_philo(philo))
 			break ;
-		if (check_death(philo->info) || \
-		philo->eat_count == philo->info->eat_count)
+		if (check_death(philo->info) || philo->eat_count == philo->info->eat_count)
 			break ;
 		print_philo(philo->info, philo->id, SLEEP);
 		pass_time(philo, philo->info->time_to_sleep);
