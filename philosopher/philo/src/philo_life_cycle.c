@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 02:55:28 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/13 13:22:03 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/13 13:27:46 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,8 @@ int	go_to_sleep(t_philo *philo)
 
 int	philo_life(t_philo *philo)
 {
-	t_table	*table;
-
-	table = philo->table;
-	pthread_mutex_lock(&table->all_fork[philo->left_fork]);
-	if (print_act(philo, "has taken a fork"))
+	if (go_to_eat(philo))
 		return (1);
-	pthread_mutex_lock(&table->all_fork[philo->right_fork]);
-	if (print_act(philo, "has taken a fork"))
-		return (1);
-	if (print_act(philo, "is eating"))
-		return (1);
-	pass_time(philo, table->time_to_eat);
-	pthread_mutex_lock(&table->m_time_to_last_eaten[philo->philo_num - 1]);
-	philo->time_to_last_eaten = get_time();
-	pthread_mutex_unlock(&table->m_time_to_last_eaten[philo->philo_num - 1]);
-	philo->eat_count++;
-	pthread_mutex_unlock(&(table->all_fork[philo->right_fork]));
-	pthread_mutex_unlock(&(table->all_fork[philo->left_fork]));
 	if (go_to_sleep(philo))
 		return (1);
 	if (print_act(philo, "is thinking"))

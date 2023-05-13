@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:28:05 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/13 12:58:38 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/13 13:29:12 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,25 @@
 int	check_starvation(t_philo *philo)
 {
 	int			i;
-	t_table		*table;
 	long long	now;
 	long long	last_eaten;
 
 	i = -1;
-	table = philo->table;
-	while (++i < table->philo_head)
+	while (++i < philo->table->philo_head)
 	{
-		pthread_mutex_lock(&table->m_time_to_last_eaten[i]);
+		pthread_mutex_lock(&philo->table->m_time_to_last_eaten[i]);
 		last_eaten = philo[i].time_to_last_eaten;
-		pthread_mutex_unlock(&table->m_time_to_last_eaten[i]);
+		pthread_mutex_unlock(&philo->table->m_time_to_last_eaten[i]);
 		now = get_time();
-		if (now - last_eaten > table->time_to_die)
+		if (now - last_eaten > philo->table->time_to_die)
 		{
-			pthread_mutex_lock(&table->m_is_dead);
-			table->is_dead = 1;
-			pthread_mutex_unlock(&table->m_is_dead);
-			pthread_mutex_lock(&table->print);
-			printf("%llu %d %s\n", now - table->start_time, \
+			pthread_mutex_lock(&philo->table->m_is_dead);
+			philo->table->is_dead = 1;
+			pthread_mutex_unlock(&philo->table->m_is_dead);
+			pthread_mutex_lock(&philo->table->print);
+			printf("%llu %d %s\n", now - philo->table->start_time, \
 			philo[i].philo_num, "died");
-			pthread_mutex_unlock(&table->print);
+			pthread_mutex_unlock(&philo->table->print);
 			return (1);
 		}
 	}
