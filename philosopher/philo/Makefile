@@ -1,9 +1,9 @@
 NAME = philo
 
-CFLAG = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAG = -Wall -Wextra -Werror #-fsanitize=thread
 
 %.o : %.c
-	@arch -x86_64 $(CC) $(CFLAG) -c $< -o $@
+	@$(CC) $(CFLAG) -c $< -o $@
 
 SRC = $(addprefix ./src/, \
 main.c \
@@ -11,7 +11,6 @@ init.c \
 init_mutex.c \
 philo_life_cycle.c \
 error.c \
-set_time.c \
 utils.c \
 monitoring.c)
 

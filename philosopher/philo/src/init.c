@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 01:53:38 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/13 19:24:13 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/13 21:32:22 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-
-int	init_philo(t_table *table, t_philo *philo)
-{
-	int	i;
-
-	memset(philo, 0, sizeof(t_philo));
-	i = -1;
-	while (++i < table->philo_head)
-	{
-		memset(&philo[i], 0, sizeof(t_philo));
-		philo[i].philo_num = i + 1;
-		philo[i].left_fork = i;
-		philo[i].right_fork = (i + 1) % table->philo_head;
-		philo[i].table = table;
-	}
-	return (0);
-}
 
 int	init_args(t_table *table, int argc, char **argv)
 {
@@ -38,8 +21,8 @@ int	init_args(t_table *table, int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		num = ft_atoi(argv[i]);
-		if (!num)
+		num = ft_atoi(argv[i], table);
+		if (num < 1 || table->error == 1)
 			return (1);
 		if (i == 1)
 			table->philo_head = num;
@@ -56,23 +39,40 @@ int	init_args(t_table *table, int argc, char **argv)
 	return (0);
 }
 
-int	init_table(t_table *table, int argc, char **argv)
+int	init_info(t_table *table, int argc, char **argv)
 {
 	if (init_args(table, argc, argv))
-		return (print_error_message("arg error"));
+		return (print_error_message("argument error"));
 	table->start_time = get_time();
 	if (init_mutex(table))
 		return (1);
 	return (0);
 }
 
+void	init_philo(t_philo *philo, t_table *table)
+{
+	int	i;
+
+	memset(philo, 0, sizeof(t_philo));
+	i = 0;
+	while (i < table->philo_head)
+	{
+		memset(&(philo[i]), 0, sizeof(t_philo));
+		philo[i].philo_num = i + 1;
+		philo[i].left_fork = i;
+		philo[i].right_fork = (i + 1) % table->philo_head ;
+		philo[i].table = table;
+		i++;
+	}
+}
+
 int	init(t_philo **philo, t_table *table, int argc, char **argv)
 {
-	if (init_table(table, argc, argv))
+	if (init_info(table, argc, argv))
 		return (1);
 	*philo = malloc(sizeof(t_philo) * table->philo_head);
 	if (!*philo)
-		return (mutex_error(*philo, "malloc error"));
-	init_philo(table, *philo);
+		return (mutex_error(table, "malloc error"));
+	init_philo(*philo, table);
 	return (0);
 }
