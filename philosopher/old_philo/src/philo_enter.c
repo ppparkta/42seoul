@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 02:55:28 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/09 23:22:16 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/13 06:32:13 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,33 @@ int	check_dead(t_table *table)
 	return (swc);
 }
 
+int	cycle(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->table->all_fork[philo->left_fork]);
+	if (print_msg(philo, " has taken a fork\n"))
+		return (1);
+	pthread_mutex_lock(&philo->table->all_fork[philo->right_fork]);
+	if (print_msg(philo, " has taken a fork\n"))
+		return (1);
+	if (print_msg(philo, " is eating\n"))
+		return (1);
+	pass_time(philo->table->time_to_eat, philo);
+	pthread_mutex_lock(&philo->table->m_time_to_last_eaten[philo->philo_num - 1]);
+	philo->time_to_last_eaten = get_time();
+	pthread_mutex_unlock(&philo->table->m_time_to_last_eaten[philo->philo_num - 1]);
+	philo->eat_count++;
+	pthread_mutex_unlock(&philo->table->all_fork[philo->left_fork]);
+	pthread_mutex_unlock(&philo->table->all_fork[philo->right_fork]);
+	if (print_msg(philo, " is sleeping\n"))
+		return (1);
+	pass_time(philo->table->time_to_sleep, philo);
+	if (print_msg(philo, " is thinking\n"))
+		return (1);
+	if (check_dead(philo->table))
+		return (1);
+	return (0);
+}
+
 void	*philo_life_cycle(void *data)
 {
 	t_philo	*philo;
@@ -41,12 +68,26 @@ void	*philo_life_cycle(void *data)
 	}
 	if (philo->philo_num % 2 == 0)
 		usleep(philo->table->time_to_eat * 500);
-	while (philo->is_full == 0 && check_dead(philo->table) == 0)
+	while (1)
 	{
-		go_to_eat(philo);
-		go_to_sleep(philo);
-		print_msg(philo, " is thinking\n");
+		if (cycle(philo))
+			break ;
+		if (philo->table->eat_count && \
+		(philo->eat_count == philo->table->eat_count))
+			break ;
 	}
+	//while (philo->is_full == 0 && check_dead(philo->table) == 0)
+	//{
+	//	if (check_dead(philo->table))
+	//		break ;
+	//	go_to_eat(philo);
+	//	if (check_dead(philo->table))
+	//		break ;
+	//	go_to_sleep(philo);
+	//	if (check_dead(philo->table))
+	//		break ;
+	//	print_msg(philo, " is thinking\n");
+	//}
 	return (0);
 }
 

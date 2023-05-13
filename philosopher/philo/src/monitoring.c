@@ -6,81 +6,64 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:28:05 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/11 16:16:52 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/13 12:58:38 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	is_full(t_table *table, t_philo *philo)
-{
-	int	i;
-	int	cnt;
-
-	i = -1;
-	cnt = 0;
-	while (++i < table->philo_head)
-	{
-		pthread_mutex_lock(&philo[i].m_is_full);
-			cnt += philo[i].is_full;
-		pthread_mutex_unlock(&philo[i].m_is_full);
-	}
-	if (cnt == table->philo_head)
-		return (1);
-	return (0);
-}
-
 int	check_starvation(t_philo *philo)
 {
-	long long	hungry_time;
+	int			i;
+	t_table		*table;
+	long long	now;
+	long long	last_eaten;
 
-	pthread_mutex_lock(&philo->m_time_to_last_eaten);
-	hungry_time = get_time_table(philo->time_to_last_eaten);
-	pthread_mutex_unlock(&philo->m_time_to_last_eaten);
-	if (hungry_time > philo->table->time_to_die)
+	i = -1;
+	table = philo->table;
+	while (++i < table->philo_head)
 	{
-		print_msg(philo, " died\n");
-		pthread_mutex_lock(&philo->table->m_is_dead);
-		philo->table->is_dead = 1;
-		pthread_mutex_unlock(&philo->table->m_is_dead);
-		return (1);
+		pthread_mutex_lock(&table->m_time_to_last_eaten[i]);
+		last_eaten = philo[i].time_to_last_eaten;
+		pthread_mutex_unlock(&table->m_time_to_last_eaten[i]);
+		now = get_time();
+		if (now - last_eaten > table->time_to_die)
+		{
+			pthread_mutex_lock(&table->m_is_dead);
+			table->is_dead = 1;
+			pthread_mutex_unlock(&table->m_is_dead);
+			pthread_mutex_lock(&table->print);
+			printf("%llu %d %s\n", now - table->start_time, \
+			philo[i].philo_num, "died");
+			pthread_mutex_unlock(&table->print);
+			return (1);
+		}
 	}
 	return (0);
 }
 
-void	end_simulation(t_table *table, t_philo *philo)
+void	*monitoring(void *data)
 {
-	int	i;
+	t_table	*table;
+	t_philo	*philo;
 
-	i = -1;
-	while (++i < table->philo_head)
-		pthread_join(philo[i].thread, NULL);
-	i = -1;
-	while (++i < table->philo_head)
+	philo = (t_philo *)data;
+	table = philo->table;
+	while (1)
 	{
-		pthread_mutex_destroy(&table->all_fork[i]);
-		pthread_mutex_destroy(&philo[i].m_is_full);
-		pthread_mutex_destroy(&philo[i].m_time_to_last_eaten);
-	}
-	pthread_mutex_destroy(&table->m_is_dead);
-	pthread_mutex_destroy(&table->print);
-}
-
-void	monitoring(t_table *table, t_philo *philo)
-{
-	int	i;
-
-	while (check_dead(table) == 0 && is_full(table, philo) == 0)
-	{
-		i = -1;
-		while ((++i < table->philo_head) && (check_dead(table) == 0))
+		if (check_starvation(philo))
+			break ;
+		pthread_mutex_lock(&table->m_is_full);
+		if (table->eat_count != 0 && table->is_full == table->philo_head)
 		{
-			if (check_starvation(&philo[i]))
-				break ;
+			pthread_mutex_unlock(&table->m_is_full);
+			pthread_mutex_lock(&table->m_is_dead);
+			table->is_dead = 1;
+			pthread_mutex_unlock(&table->m_is_dead);
+			break ;
 		}
-		usleep(50);
+		pthread_mutex_unlock(&table->m_is_full);
+		usleep(100);
 	}
-	end_simulation(table, philo);
-	free(table->all_fork);
-	free(philo);
+	return (0);
 }

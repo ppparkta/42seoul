@@ -9,9 +9,10 @@ SRC = $(addprefix ./src/, \
 main.c \
 init.c \
 init_mutex.c \
-philo_life_cycle.c \
-error.c \
+philo_behavior.c \
+philo_enter.c \
 set_time.c \
+take_fork.c \
 utils.c \
 monitoring.c)
 
