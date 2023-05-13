@@ -1,6 +1,6 @@
 NAME = philo
 
-CFLAG = -Wall -Wextra -Werror -fsanitize=thread
+CFLAG = -Wall -Wextra -Werror #-fsanitize=thread
 
 %.o : %.c
 	@$(CC) $(CFLAG) -c $< -o $@
@@ -8,7 +8,6 @@ CFLAG = -Wall -Wextra -Werror -fsanitize=thread
 SRC = $(addprefix ./src/, \
 main.c \
 init.c \
-init_mutex.c \
 philo_behavior.c \
 philo_enter.c \
 set_time.c \

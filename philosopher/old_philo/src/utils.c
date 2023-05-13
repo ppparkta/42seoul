@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 02:14:33 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/13 05:48:41 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/13 20:25:41 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_atoi(const char *str)
 
 	i = 0;
 	ans = 0;
-	if (ft_strlen(str) >= 14)
+	if (ft_strlen(str) >= 11)
 		return (0);
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
@@ -46,8 +46,6 @@ int	ft_atoi(const char *str)
 			ans = (ans * 10) + (str[i] - '0');
 			i++;
 		}
-		if (ans > 2147483647)
-			return (0);
 		return ((int)ans);
 	}
 	return (0);
