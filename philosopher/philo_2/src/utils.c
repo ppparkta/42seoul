@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 02:14:33 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/14 00:21:47 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/14 00:34:07 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,18 @@ void	destroy_mutex(t_info *info)
 	pthread_mutex_destroy(&(info->print));
 }
 
-int	ft_usleep(long long sleep_utime)
+int	ft_usleep(int sleep_utime)
 {
-	long long	start;
-	long long	now;
+	struct timeval	start_time;
+	struct timeval	now_time;
 
-	start = init_time();
+	if (gettimeofday(&start_time, NULL) < 0)
+		return (printf("get time error.\n"));
 	while (1)
 	{
-		now = init_time();
-		if ((now - start) > sleep_utime)
+		if (gettimeofday(&now_time, NULL) < 0)
+			return (printf("get time error.\n"));
+		if ((now_time.tv_usec - start_time.tv_usec) > sleep_utime)
 			break ;
 	}
 	return (0);

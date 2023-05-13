@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:57:14 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/14 00:23:12 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/14 00:34:29 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void		*monitoring(void *philos);
 
 //utils
 int			ft_atoi(const char *s);
-int			ft_usleep(long long sleep_utime);
+int			ft_usleep(int sleep_utime);
 long long	init_time(void);
 void		pass_time(t_philo *philo, int time);
 void		print_philo(t_info *info, int id, int status);
