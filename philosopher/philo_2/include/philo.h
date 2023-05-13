@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:57:14 by sooyang           #+#    #+#             */
-/*   Updated: 2023/05/14 00:34:29 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/05/14 00:51:13 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_info
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				eat_count;
-
 	long long		start_time;
 	int				is_died;
 	int				is_full;

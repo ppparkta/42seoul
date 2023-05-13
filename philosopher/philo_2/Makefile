@@ -1,6 +1,6 @@
 NAME = philo
 
-CFLAG = -Wall -Wextra -Werror -fsanitize=thread -g3
+CFLAG = -Wall -Wextra -Werror #-fsanitize=thread -g3
 
 %.o : %.c
 	@$(CC) $(CFLAG) -c $< -o $@
