@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 17:39:32 by sooyang           #+#    #+#             */
-/*   Updated: 2023/06/19 22:32:22 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/06/19 23:34:35 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,15 @@ void PhoneBook::input(const std::string msg, std::string *input){
 void PhoneBook::ADD(void){
 	std::string str;
 
-	input("input \"first name\": ", &str);
+	input("input 'first name': ", &str);
 	this->contact[this->index].setFirstName(str);
-	input("input [last name]: ", &str);
+	input("input 'last name': ", &str);
 	this->contact[this->index].setLastName(str);
-	input("input [nickname]: ", &str);
+	input("input 'nickname': ", &str);
 	this->contact[this->index].setNickname(str);
-	input("input [phone number]: ", &str);
+	input("input 'phone number': ", &str);
 	this->contact[this->index].setPhoneNumber(str);
-	input("input [darkest number]: ", &str);
+	input("input 'darkest number': ", &str);
 	this->contact[this->index].setDarkestSecret(str);
 	this->index = (this->index + 1) % 8;
 }
@@ -93,8 +93,15 @@ void PhoneBook::SEARCH(void){
 	for (int i=0; i<8; i++)
 		print(i);
 	input("select index: ", &str);
-	if (isValid(str))
+	if (isValid(str) && atoi(str.data()) < 8)
+	{
 		printDtl(atoi(str.data()));
+	}
 	else
 		std::cout << "invalid index!!!" << std::endl;
+}
+
+void PhoneBook::EXIT(void){
+	std::cout<< "exit" << std::endl;
+	exit(0);
 }

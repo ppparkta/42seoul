@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:16:30 by sooyang           #+#    #+#             */
-/*   Updated: 2023/06/19 21:50:46 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/06/19 23:27:26 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #ifndef __PHONEBOOK_H__
 #define __PHONEBOOK_H__
 #include <iostream>
+#include <string>
 #include <iomanip>
 #include "Contact.hpp"
 
@@ -30,6 +31,7 @@ class PhoneBook {
 		~PhoneBook(void);
 		void ADD(void);
 		void SEARCH(void);
+		void EXIT(void);
 };
 
 #endif

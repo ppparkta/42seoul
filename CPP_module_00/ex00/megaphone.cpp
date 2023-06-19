@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:02:00 by sooyang           #+#    #+#             */
-/*   Updated: 2023/06/19 22:52:37 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/06/19 23:36:58 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(int ac, char **av)
 {
-	std::string	s;
+	std::string	str;
 
 	if (ac < 2)
 		std::cout<<"* LOUD AND UNBEARABLE FEEDBACK NOISE *"<<std::endl;
@@ -22,8 +22,8 @@ int main(int ac, char **av)
 	{
 		for(int i = 1; i < ac; i++)
 		{
-			s = av[i];
-			for(int j = 0; j < s.size(); j++)
+			str = av[i];
+			for(int j = 0; j < str.size(); j++)
 				std::cout<<(char)toupper(av[i][j]);
 		}
 		std::cout<<std::endl;

@@ -13,7 +13,7 @@ int main(int ac, char **av)
 		else if (input == "SEARCH")
 			phonebook.SEARCH();
 		else if (input == "EXIT")
-			exit(0);
+			phonebook.EXIT();
 		else
 			std::cout<<"invalid command" << std::endl;
 	}
