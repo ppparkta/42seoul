@@ -94,9 +94,7 @@ void PhoneBook::SEARCH(void){
 		print(i);
 	input("select index: ", &str);
 	if (isValid(str) && atoi(str.data()) < 8)
-	{
 		printDtl(atoi(str.data()));
-	}
 	else
 		std::cout << "invalid index!!!" << std::endl;
 }
