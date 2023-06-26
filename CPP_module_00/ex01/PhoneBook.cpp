@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 17:39:32 by sooyang           #+#    #+#             */
-/*   Updated: 2023/06/19 23:34:35 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/06/21 15:42:08 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void PhoneBook::input(const std::string msg, std::string *input){
 		else 
 			break;
 	}
-	
 }
 
 void PhoneBook::ADD(void){
@@ -94,7 +93,7 @@ void PhoneBook::SEARCH(void){
 		print(i);
 	input("select index: ", &str);
 	if (isValid(str) && atoi(str.data()) < 8)
-		printDtl(atoi(str.data()));
+		printDtl(atoi(str.data())); 
 	else
 		std::cout << "invalid index!!!" << std::endl;
 }
