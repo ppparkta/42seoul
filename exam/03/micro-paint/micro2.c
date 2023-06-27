@@ -39,8 +39,8 @@ int in_shape(t_shape shape, int x, int y)
 
 int in_border(t_shape shape, int x, int y)
 {
-	return (x < shape.x + 1 || x > shape.x + shape.w -1
-	|| y < shape.y + 1 || y > shape.y+ shape.h - 1);
+	return (x < shape.x + 1 || x > shape.x + shape.w - 1
+	|| y < shape.y + 1 || y > shape.y + shape.h - 1);
 }
 
 void	draw(char *canvas, t_data data, t_shape shape){
@@ -64,21 +64,25 @@ int	micro_paint(FILE *file){
 	t_shape	shape;
 	char	*canvas;
 
-	if ((fscanf(file, "%d, %d, %c\n", &data.w, &data.h, &data.bg)) != 3)
+//printf("살아남음?\n");
+	if (fscanf(file, "%d %d %c\n", &data.w, &data.h, &data.bg) != 3)
 		return 1;
+	//printf("살아남음\n");
 	if (data.h <= 0 || data.w <= 0 || data.h > 300 || data.w > 300)
 		return 1;
-	
+	//printf("살아남음2\n");
 	canvas = malloc(sizeof(char) * data.w * data.h);
 	if (!canvas)
 		return 1;
+	//printf("살아남음3\n");
 	memset(canvas, data.bg, data.h * data.w);
-	while (fscanf(file, "%c %f %f %f %f %c\n", &shape.c, &shape.x, &shape.y, &shape.w, &shape.h, &shape.bg) == 6){
+	while ((fscanf(file, "%c %f %f %f %f %c\n", &shape.c, &shape.x, &shape.y, &shape.w, &shape.h, &shape.bg) == 6)){
 		if (shape.w <= 0 || shape.h <= 0 || (shape.c != 'r' && shape.c != 'R'))
 		{
 			free(canvas);
 			return 1;
 		}
+		//printf("살아남음~~\n");
 		draw(canvas, data, shape);
 	}
 	display_canvas(canvas, data);
@@ -91,10 +95,13 @@ int main(int argc, char **argv){
 
 	if (argc == 2)
 	{
-		if (!(file = fopen(argv[1], "r")) || micro_paint(file))
+		if (!(file = fopen(argv[1], "r")) || micro_paint(file) == 1)
+			write(1, "Error: Operation file corrupted\n", 32);
 			return 1;
 	}
-	else
+	else{
+		write(1, "Error: argument\n", 16);
 		return 1;
+	}
 	return 0;
 }
