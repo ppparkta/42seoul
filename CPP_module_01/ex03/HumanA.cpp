@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 22:29:33 by sooyang           #+#    #+#             */
-/*   Updated: 2023/06/26 23:13:31 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/06/28 00:49:28 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 HumanA::HumanA(std::string name, Weapon &weapon){
 	this->name = name;
 	this->weapon = &weapon;
-	std::cout<<this->name<<"(HumanA) is here."<<std::endl;
+	std::cout<<this->name<<"(HumanA) is here"<<std::endl;
 }
 
-HumanA::~HumanA(){
-	std::cout<<this->name<<" humanA is gone"<<std::endl;
+HumanA::~HumanA(void){
+	std::cout<<this->name<<"(HumanA) is gone"<<std::endl;
 }
 
 void HumanA::attack(void){

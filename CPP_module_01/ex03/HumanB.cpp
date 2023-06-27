@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 22:29:31 by sooyang           #+#    #+#             */
-/*   Updated: 2023/06/26 23:15:33 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/06/28 00:49:26 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 HumanB::HumanB(std::string name){
 	this->name = name;
-	std::cout<<this->name<<"(HumanB) is here."<<std::endl;
+	std::cout<<this->name<<"(HumanB) is here"<<std::endl;
 }
 
-HumanB::~HumanB(){
+HumanB::~HumanB(void){
 	std::cout<<this->name<<"(HumanB) is gone"<<std::endl;
 }
 
