@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 22:29:31 by sooyang           #+#    #+#             */
-/*   Updated: 2023/06/28 00:49:26 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/06/28 19:53:49 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ void HumanB::attack(void){
 }
 
 void HumanB::setWeapon(Weapon &weapon){
+	std::cout<<this->name<<"'s weapon is setted ";
 	this->weapon = &weapon;
+	std::cout<<this->weapon->getType()<<std::endl;
 }

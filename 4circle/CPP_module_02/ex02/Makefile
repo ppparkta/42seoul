@@ -1,7 +1,6 @@
 NAME = My_First_Class_in_Orthodox_Canonical_Form
 
 SRC = main.cpp\
-	Fixed.cpp\
 
 CXX = c++
 CFALGS = -Wall -Wextra -Werror -std=c++98
