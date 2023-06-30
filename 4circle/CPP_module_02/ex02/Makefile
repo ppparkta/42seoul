@@ -1,4 +1,4 @@
-NAME = My_First_Class_in_Orthodox_Canonical_Form
+NAME = Now_we’re_talking
 
 SRC = main.cpp\
 
