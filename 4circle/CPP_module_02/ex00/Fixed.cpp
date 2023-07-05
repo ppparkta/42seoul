@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 18:45:29 by sooyang           #+#    #+#             */
-/*   Updated: 2023/06/30 19:10:39 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/07/05 15:08:18 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Fixed& Fixed::operator=(const Fixed& fixed){
 	if (this != &fixed) {
             this->fixedPointNumber = fixed.getRawBits();
     }
-	return (*this);
+	return *this;
 }
 
 Fixed::~Fixed(){

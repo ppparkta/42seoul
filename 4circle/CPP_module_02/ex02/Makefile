@@ -1,6 +1,7 @@
 NAME = Now_we’re_talking
 
 SRC = main.cpp\
+	Fixed.cpp\
 
 CXX = c++
 CFALGS = -Wall -Wextra -Werror -std=c++98
