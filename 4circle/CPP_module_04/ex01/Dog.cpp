@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 01:15:16 by sooyang           #+#    #+#             */
-/*   Updated: 2023/07/10 03:05:18 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/07/11 19:12:27 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ Dog::Dog(const Dog& dog){
 
 Dog&Dog::operator=(const Dog& dog){
 	std::cout<<"Dog Copy assignment operator called"<<std::endl;
-	if (this != &dog)
+	if (this != &dog){
+		if (this->brain != NULL)
+			delete brain;
 		this->type = dog.type;
-	if (this->brain != NULL)
-		delete brain;
+	}
 	this->brain = new Brain(*dog.brain);
 	return *this;
 }
