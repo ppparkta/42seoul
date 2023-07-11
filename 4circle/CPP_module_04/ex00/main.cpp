@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 01:21:33 by sooyang           #+#    #+#             */
-/*   Updated: 2023/07/10 03:01:11 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/07/11 19:02:49 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int main()
 		const Cat cat;
 		Animal meta;
 		meta = cat;
+		//cat = meta;
 
 		std::cout << std::endl << meta.getType() << " " <<std::endl;	
 		meta.makeSound();

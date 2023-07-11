@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 01:15:16 by sooyang           #+#    #+#             */
-/*   Updated: 2023/07/10 03:17:13 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/07/11 19:03:52 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ Cat::Cat(const Cat& cat){
 	std::cout<<"Cat Copy constructor called"<<std::endl;
 	this->type = cat.type;
 	this->brain = new Brain();
+	// this->brain = cat.brain;
 }
 
 Cat&Cat::operator=(const Cat& cat){
