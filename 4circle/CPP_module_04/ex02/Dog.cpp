@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 01:15:16 by sooyang           #+#    #+#             */
-/*   Updated: 2023/07/13 02:52:11 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/07/13 02:54:30 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ Dog&Dog::operator=(const Dog& dog){
 	if (this != &dog){
 		if (this->brain != NULL)
 			delete brain;
-		this->brain = dog.brain;
 		this->type = dog.type;
 	}
 	this->brain = new Brain(*dog.brain);

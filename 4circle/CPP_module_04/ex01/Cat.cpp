@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 01:15:16 by sooyang           #+#    #+#             */
-/*   Updated: 2023/07/13 02:47:23 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/07/13 02:54:41 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ Cat&Cat::operator=(const Cat& cat){
 	if (this != &cat){
 		if (this->brain != NULL)
 			delete brain;
-		this->brain = cat.brain;
 		this->type = cat.type;
 	}
 	this->brain = new Brain(*cat.brain);
