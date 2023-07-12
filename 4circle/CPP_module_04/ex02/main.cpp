@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 02:49:50 by sooyang           #+#    #+#             */
-/*   Updated: 2023/07/13 02:33:47 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/07/13 02:51:57 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void leak()
 int main()
 {
 	atexit(leak);
-	//const Animal meta;
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 
@@ -46,18 +45,32 @@ int main()
 		delete zoo[i];
 
 	std::cout<<std::endl<<"------------"<<std::endl<<std::endl;
+	{
+		Cat cat;
+		Cat* testCat = new Cat(cat);
 
-	Cat cat;
-	Cat* testCat = new Cat(cat);
+		std::cout<<std::endl;
 
+		cat.printIdeas();
+		testCat->printIdeas();
+
+		std::cout<<std::endl;
+
+		delete testCat;
+	}
+	std::cout<<std::endl<<"------------"<<std::endl<<std::endl;
+	{
+		Cat a;
+		a.printIdeas();
+		std::cout<<std::endl;
+		Cat b;
+		b.printIdeas();
+		std::cout<<std::endl;
+
+		a = b;
+		a.printIdeas();
+		std::cout<<std::endl;
+	}
 	std::cout<<std::endl;
-
-	cat.printIdeas();
-	testCat->printIdeas();
-
-	std::cout<<std::endl;
-
-	delete testCat;
-
 	return (0);
 }

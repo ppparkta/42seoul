@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 01:15:16 by sooyang           #+#    #+#             */
-/*   Updated: 2023/07/13 02:30:08 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/07/13 02:52:09 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ Cat::Cat(const Cat& cat){
 Cat&Cat::operator=(const Cat& cat){
 	std::cout<<"Cat Copy assignment operator called"<<std::endl;
 	if (this != &cat){
+		if (this->brain != NULL)
+			delete brain;
 		this->brain = cat.brain;
 		this->type = cat.type;
 	}

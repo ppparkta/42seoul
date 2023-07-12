@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 02:49:50 by sooyang           #+#    #+#             */
-/*   Updated: 2023/07/13 02:41:58 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/07/13 02:48:57 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,19 @@ int main()
 		delete zoo[i];
 
 	std::cout<<std::endl<<"------------"<<std::endl<<std::endl;
+	{
+		Cat cat;
+		Cat* testCat = new Cat(cat);
 
-	Cat cat;
-	Cat* testCat = new Cat(cat);
+		std::cout<<std::endl;
 
-	std::cout<<std::endl;
+		cat.printIdeas();
+		testCat->printIdeas();
 
-	cat.printIdeas();
-	testCat->printIdeas();
+		std::cout<<std::endl;
 
-	std::cout<<std::endl;
-
-	delete testCat;
-
+		delete testCat;
+	}
 	std::cout<<std::endl<<"------------"<<std::endl<<std::endl;
 	{
 		Cat a;
@@ -71,7 +71,6 @@ int main()
 		a.printIdeas();
 		std::cout<<std::endl;
 	}
-	
-
+	std::cout<<std::endl;
 	return (0);
 }
