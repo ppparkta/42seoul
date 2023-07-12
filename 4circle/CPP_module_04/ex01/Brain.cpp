@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 02:30:08 by sooyang           #+#    #+#             */
-/*   Updated: 2023/07/10 02:56:50 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/07/13 02:31:42 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ Brain::Brain(){
 
 Brain::Brain(const Brain &brain){
 	std::cout<<"Brain copy constructor"<<std::endl;
-	*this = brain;
+	for (int i=0;i<100;i++)
+		this->ideas[i] = brain.ideas[i];
 }
 
 Brain& Brain::operator =(const Brain &brain){
 	std::cout<<"Brain copy assignment operator"<<std::endl;
 	if (this != &brain){
 		for (int i=0;i<100;i++)
-		this->ideas[i] = brain.ideas[i];
+			this->ideas[i] = brain.ideas[i];
 	}
 	return *this;
 }

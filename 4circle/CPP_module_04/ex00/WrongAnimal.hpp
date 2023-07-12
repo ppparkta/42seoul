@@ -6,7 +6,7 @@
 /*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 01:25:22 by sooyang           #+#    #+#             */
-/*   Updated: 2023/07/10 01:58:00 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/07/13 02:32:31 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class WrongAnimal {
 		WrongAnimal();
 		WrongAnimal(const WrongAnimal& wrong_animal);
 		WrongAnimal& operator=(const WrongAnimal& wrong_animal);
-		virtual ~WrongAnimal();
+		~WrongAnimal();
 
 		const std::string getType() const; 
 		void makeSound() const;
