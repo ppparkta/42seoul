@@ -22,7 +22,7 @@ class WrongAnimal {
 		WrongAnimal();
 		WrongAnimal(const WrongAnimal& wrong_animal);
 		WrongAnimal& operator=(const WrongAnimal& wrong_animal);
-		virtual ~WrongAnimal();
+		~WrongAnimal();
 
 		const std::string getType() const; 
 		void makeSound() const;
