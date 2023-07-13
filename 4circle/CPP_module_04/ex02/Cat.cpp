@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyang <sooyang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooyang <sooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 01:15:16 by sooyang           #+#    #+#             */
-/*   Updated: 2023/07/13 02:54:15 by sooyang          ###   ########.fr       */
+/*   Updated: 2023/07/13 15:33:11 by sooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@ Cat::Cat(const Cat& cat){
 }
 
 Cat&Cat::operator=(const Cat& cat){
-	std::cout<<"Cat Copy assignment operator called"<<std::endl;
+	std::cout<<"Cat Copy assignment operator called!"<<std::endl;
 	if (this != &cat){
-		if (this->brain != NULL)
-			delete brain;
+		*this->brain = *cat.brain;
 		this->type = cat.type;
 	}
-	this->brain = new Brain(*cat.brain);
 	return *this;
 }
 
