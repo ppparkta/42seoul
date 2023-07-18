@@ -6,9 +6,8 @@ SRCS = $(addprefix ./src/, ${SRCS_FILES})
 
 SRCS_FILES = main.c \
 
-
 OBJS = $(SRCS:.c=.o)
-NAME = a.out
+NAME = cub3d
 
 all : $(NAME)
 
