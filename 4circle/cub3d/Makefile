@@ -1,30 +1,54 @@
-CC = arch -x86_64 cc
-CFLAGS = -Wall -Wextra -Werror
-OPTION = -L./mlx -lmlx -framework Metal -framework Metalkit
-INCLUDES = -I./include
-SRCS = $(addprefix ./src/, ${SRCS_FILES})
+CC = cc
+CFLAGS = -Wall -Werror -Wextra -g
+OPTION = -L./mlx -lmlx -framework OpenGL -framework AppKit
+NAME = cub3D
+RM = rm -rf
 
-SRCS_FILES = main.c \
+MANDATORY = $(addprefix srcs/, $(SRCS))
+MANDATORY_PAR = $(addprefix srcs/parsing/, $(SRCS_PAR))
+MANDATORY_EXE = $(addprefix srcs/execute/, $(SRCS_EXE))
 
-OBJS = $(SRCS:.c=.o)
-NAME = cub3d
+SRCS_PAR = \
+	ft_error.c \
+	parsing.c \
+	init_data.c \
+	check_identifier.c \
+	validate_map.c \
+	set_map.c\
+
+SRCS_EXE =  \
+	open_window.c \
+	key_press.c \
+	calc.c \
+	wall.c
+	
+SRCS =  \
+	main.c 
+
+
+OBJS = $(MANDATORY:c=o) $(MANDATORY_EXE:c=o) $(MANDATORY_PAR:c=o) $(MANDATORY:c=o)
+
+%.o : %c
+	$(CC) $(OPTION) $(CFLAGS) -c -o $@ $^
+
+$(NAME) : $(OBJS)
+	$(MAKE) -C ./libft/
+	cd mlx && $(MAKE)
+	$(CC) $(OPTION) $(CFLAGS) -o $@ $^ ./libft/libft.a
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
-	$(CC) $(OPTION) $(CFLAGS) $(INCLUDES) -o $@ $^
-
-%.o : %.c
-	$(CC) $(CFLAGS) -c -o $@ $^ $(INCLUDES)
-
 clean :
-	rm -rf $(OBJS)
+	$(MAKE) -C ./libft/ clean
+	$(MAKE) -C ./mlx/ clean
+	$(RM) $(OBJS)
 
 fclean : clean
-	rm -rf $(NAME)
+	$(MAKE) -C ./libft/ fclean
+	$(RM) $(NAME)
 
 re :
 	make fclean
 	make all
 
-.PHONY : all bonus clean fclean re
+.PHONY: all clean fclean re
