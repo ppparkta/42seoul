@@ -4,11 +4,16 @@
 ### macOS ###
 # General
 .DS_Store
+.idea
+.vscode
 .AppleDouble
 .LSOverride
+*/.idea
+*/.vscode
+*/.DS_Store
 
 # Icon must end with two \r
-Icon
+
 
 
 # Thumbnails
