@@ -3,10 +3,12 @@
 #define __BUREAUCRAT_HPP_
 
 #include <iostream>
-#include <exception>
+#include <stdexcept>
 
 class Exeption {
 	public:
+		void GradeTooHighException();
+		void GradeTooLowException();
 }
 
 class Bureaucrat {
@@ -19,6 +21,7 @@ class Bureaucrat {
 		~Bureaucrat();
 		Bureaucrat(const Bureaucrat &bur);
 		Bureaucrat& operator =(const Bureaucrat &bur);
+		ostream& operator <<(std::ostream &os, Bureaucrat &bur);
 		const std::string getName(void) const;
 		const int getGrade(void) const;
 }
