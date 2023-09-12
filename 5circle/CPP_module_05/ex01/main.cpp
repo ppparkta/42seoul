@@ -74,7 +74,7 @@ int main(void){
 		std::cout << std::endl;
 	}
 
-	//
+	//별개의 예외처리
 	{
 		std::cout << "Test 3" << std::endl;
 		try
