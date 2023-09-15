@@ -3,6 +3,9 @@ NAME = ex02
 SRC = main.cpp\
 	Bureaucrat.cpp\
 	AForm.cpp\
+	PresidentialPardonForm.cpp\
+	RobotomyRequestForm.cpp\
+	ShrubberyCreationForm.cpp\
 
 CXX = c++
 CFALGS = -Wall -Wextra -Werror -std=c++98

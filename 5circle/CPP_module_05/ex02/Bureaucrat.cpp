@@ -63,3 +63,14 @@ const char *Bureaucrat::GradeTooHighException::what() const throw(){
 const char *Bureaucrat::GradeTooLowException::what() const throw(){
     return "grade is out of range. Grade is too low!";
 }
+
+void Bureaucrat::executeForm(AForm const & form){
+    try{
+        std::cout<<"A bureaucrat is about to perform a form."<<std::endl;
+        form.execute(*this);
+        std::cout<<this->name<<" executed "<<form.getName()<<std::endl;
+    }
+    catch(const std::exception &e){
+        std::cerr<<"A bureaucrat failed to execute the form. because: "<<e.what()<<std::endl;
+    }
+}

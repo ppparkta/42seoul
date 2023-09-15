@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __PRESIDENTIALPARDONFORM_HPP__
-#define __PRESIDENTIALPARDONFORM_HPP__
+#ifndef __ROBOTOMYREQUESTFORM_HPP__
+#define __ROBOTOMYREQUESTFORM_HPP__
 
 #include "AForm.hpp"
 #include <iostream>
@@ -12,13 +12,14 @@ class RobotomyRequestForm : public AForm{
     public:
         RobotomyRequestForm();
         RobotomyRequestForm(const std::string target);
-        RobotomyRequestForm(RobotomyRequestForm &form);
+        RobotomyRequestForm(const RobotomyRequestForm &form);
         ~RobotomyRequestForm();
         RobotomyRequestForm &operator=(const RobotomyRequestForm &form);
 
         std::string getTarget() const;
-}
+        void exec() const;
+};
 
-std::ostream &operator <<(std::ostream &os, RobotomyRequestForm &form);
+std::ostream &operator<<(std::ostream &os, RobotomyRequestForm &form);
 
 #endif

@@ -13,9 +13,8 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &form){
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &form){
-    if (this!=&form){
+    if (this!=&form)
         this->target=form.target;
-    }
     return *this;
 }
 
@@ -25,8 +24,8 @@ std::string ShrubberyCreationForm::getTarget() const{
     return this->target;
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const &executor) const{
-    std::ofstream outfile(this->getTarget().append("_shrubbery".c_str()));
+void ShrubberyCreationForm::exec() const{
+    std::ofstream outfile(this->getTarget().append("_shrubbery").c_str());
     outfile<<
     "    .-"<<std::endl<<
     "   -::;"<<std::endl<<
@@ -46,6 +45,6 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const{
     outfile.close();
 }
 
-std::ostream &operator <<(std::ostream &os, ShrubberyCreationForm &form){
-    
+std::ostream &operator<<(std::ostream &os, ShrubberyCreationForm &form){
+    return os<<"form: "<<form.getName()<<", execute grade: "<<form.getExecuteGrade()<<", signed grade: "<<form.getSignGrade()<<", signed? "<<form.getIsSigned()<<", target: "<<form.getTarget()<<std::endl;
 }

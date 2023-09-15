@@ -5,6 +5,7 @@
 #include "AForm.hpp"
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 class PresidentialPardonForm : public AForm{
     private:
@@ -17,8 +18,8 @@ class PresidentialPardonForm : public AForm{
         ~PresidentialPardonForm();
 
         std::string getTarget() const;
-        void execute(Bureaucrat const & executor) const;
-}
+        void exec() const;
+};
 
 std::ostream& operator <<(std::ostream &os, PresidentialPardonForm &form); 
 
