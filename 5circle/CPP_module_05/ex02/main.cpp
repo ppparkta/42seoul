@@ -22,6 +22,8 @@ int main(void)
 	std::cout << robo;
 	std::cout << tree;
 	std::cout << std::endl;
+
+
 	std::cout << "Test 1" << std::endl;
 	{
 		a.signForm(pardon);
@@ -34,6 +36,8 @@ int main(void)
 		c.executeForm(pardon);
 		std::cout << std::endl;
 	}
+
+
 	std::cout << "Test 2" << std::endl;
 	{
 		c.executeForm(robo);
@@ -47,6 +51,8 @@ int main(void)
 		c.executeForm(robo);
 		std::cout << std::endl;
 	}
+
+
 	std::cout << "Test 3" << std::endl;
 	{
 		d.executeForm(tree);
@@ -60,5 +66,6 @@ int main(void)
 		c.executeForm(tree);
 		std::cout << std::endl;
 	}
+	
 	return (0);
 }
