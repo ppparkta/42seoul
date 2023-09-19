@@ -30,7 +30,7 @@ static AForm *makeShrubbery(const std::string target){
 
 AForm* Intern::makeForm(std::string name, std::string target){
 	AForm *makeForms[3] = {makePresident(target), makeRobot(target), makeShrubbery(target)};
-	const std::string forms[] = {"PresidentialPardonForm", "RobotomyRequestForm", "ShrubberyCreationForm"};
+	const std::string forms[] = {"presidential pardon", "robotomy request", "shrubbery creation"};
 	AForm *cur = NULL;
 	for (int i=0;i<3;i++){
 		if (name == forms[i])

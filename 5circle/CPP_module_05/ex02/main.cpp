@@ -6,18 +6,17 @@
 
 int main(void)
 {
-	std::cout << "Test 1" << std::endl;
-	Bureaucrat	a("Newhire", 150);
-	Bureaucrat	b("Project Lead", 40);
-	Bureaucrat	c("Director", 3);
-	Bureaucrat	d("Employee", 100);
-	PresidentialPardonForm pardon("Jibby");
-	RobotomyRequestForm	robo("Cop");
-	ShrubberyCreationForm tree("Park");
+	Bureaucrat	a("a", 150);
+	Bureaucrat	b("b", 40);
+	Bureaucrat	c("c", 3);
+	Bureaucrat	d("d", 100);
+	PresidentialPardonForm pardon("pardon");
+	RobotomyRequestForm	robo("robo");
+	ShrubberyCreationForm tree("tree");
 	std::cout << a;
-	std::cout << d;
 	std::cout << b;
 	std::cout << c;
+	std::cout << d;
 	std::cout << pardon;
 	std::cout << robo;
 	std::cout << tree;
@@ -27,13 +26,15 @@ int main(void)
 	std::cout << "Test 1" << std::endl;
 	{
 		a.signForm(pardon);
-		d.signForm(pardon);
 		b.signForm(pardon);
 		c.signForm(pardon);
+		d.signForm(pardon);
+		std::cout<<std::endl;
+
 		a.executeForm(pardon);
-		d.executeForm(pardon);
 		b.executeForm(pardon);
 		c.executeForm(pardon);
+		d.executeForm(pardon);
 		std::cout << std::endl;
 	}
 
@@ -45,6 +46,8 @@ int main(void)
 		d.signForm(robo);
 		b.signForm(robo);
 		c.signForm(robo);
+		std::cout<<std::endl;
+		
 		a.executeForm(robo);
 		d.executeForm(robo);
 		b.executeForm(robo);
@@ -60,6 +63,8 @@ int main(void)
 		d.signForm(tree);
 		b.signForm(tree);
 		c.signForm(tree);
+		std::cout<<std::endl;
+		
 		a.executeForm(tree);
 		d.executeForm(tree);
 		b.executeForm(tree);
