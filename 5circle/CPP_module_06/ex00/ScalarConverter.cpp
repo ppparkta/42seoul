@@ -18,7 +18,7 @@ static bool checkString(std::string target)
 		if (target == check[i])
 			return (true);
 	}
-	if (target[target.size() - 1] == 'f' || target[target.size() - 1] == 'F')
+	if (target[target.size() - 1] == 'f')
 		target.erase(target.size() - 1, 1);
 	bool dot = false;
 	for (std::string::iterator cur = target.begin(); cur != target.end(); cur++)

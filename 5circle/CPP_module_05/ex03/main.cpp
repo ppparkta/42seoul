@@ -84,12 +84,12 @@ int main(void)
 			b = intern.makeForm("go to home", "b");
 			a.signForm(*b);
 			a.executeForm(*b);
+			delete b;
 		}
 		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << std::endl;
 		}
-		delete b;
 		std::cout << std::endl;
 	}
 	return (0);
