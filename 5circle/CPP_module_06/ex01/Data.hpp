@@ -10,5 +10,4 @@ struct Data
 	int number;
 };
 
-
 #endif

@@ -10,18 +10,19 @@
 #include <cctype>
 #include <sstream>
 
-class ScalarConverter {
-	private:
-		static std::string _str;
-		static int _type;
+class ScalarConverter
+{
+private:
+	static std::string _str;
+	static int _type;
 
-		ScalarConverter();
-		ScalarConverter(const ScalarConverter &scalar);
-		ScalarConverter &operator=(const ScalarConverter &scalar);
-		~ScalarConverter();
+	ScalarConverter();
+	~ScalarConverter();
+	ScalarConverter(const ScalarConverter &scalar);
+	ScalarConverter &operator=(const ScalarConverter &scalar);
 
-	public:
-		static void convert(std::string target);
+public:
+	static void convert(std::string target);
 };
 
 #endif
