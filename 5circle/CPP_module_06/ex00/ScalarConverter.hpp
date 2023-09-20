@@ -4,11 +4,11 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 #include <limits>
 #include <cstdlib>
 #include <cctype>
 #include <sstream>
-#include <iomanip>
 
 class ScalarConverter {
 	private:
