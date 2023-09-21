@@ -39,7 +39,7 @@ bool ScalarConverter::checkFloat()
 		return (false);
 	if (_str[i] == '-' || _str[i] == '+')
 		i++;
-	for (int j = i; j < _str.size() - 1; j++)
+	for (int j = i; j < _str.size(); j++)
 	{
 		if (_str[j] == '.' && dot_flag)
 			return (false);
@@ -55,11 +55,11 @@ bool ScalarConverter::checkDouble()
 {
 	int i = 0;
 	int dot_flag = 0;
-	if (_str.find('.') == 0 || _str.find('.') == _str.size() - 1 || _str.find('.') == std::string::npos || (_str[_str.size() - 1] == 'f' && _str[_str.size() - 2] == '.'))
+	if (_str.find('.') == 0 || _str.find('.') == _str.size() - 1 || _str.find('.') == std::string::npos || )
 		return (false);
 	if (_str[i] == '-' || _str[i] == '+')
 		i++;
-	for (int j = i; j < _str.size() - 1; j++)
+	for (int j = i; j < _str.size(); j++)
 	{
 		if (_str[j] == '.' && dot_flag)
 			return (false);
