@@ -55,7 +55,7 @@ bool ScalarConverter::checkDouble()
 {
 	int i = 0;
 	int dot_flag = 0;
-	if (_str.find('.') == 0 || _str.find('.') == _str.size() - 1 || _str.find('.') == std::string::npos || )
+	if (_str.find('.') == 0 || _str.find('.') == _str.size() - 1 || _str.find('.') == std::string::npos)
 		return (false);
 	if (_str[i] == '-' || _str[i] == '+')
 		i++;
@@ -136,7 +136,7 @@ void ScalarConverter::printFloat(double value)
 		std::cout << "nanf";
 	else if (_str == "-inff" || _str == "-inf" || (std::isinf(value) && value < 0))
 		std::cout << "-inff";
-	else if (_str == "+inff" || _str == "+inf" || ((std::isinf(value) && value > 0) || value > std::numeric_limits<float>::max()))
+	else if (_str == "+inff" || _str == "+inf" || (std::isinf(value) && value > 0))
 		std::cout << "+inff";
 	else
 		std::cout << std::setprecision(1) << std::fixed << static_cast<float>(value) << "f";
@@ -148,12 +148,12 @@ void ScalarConverter::printDouble(double value)
 	std::cout << "double: ";
 	if (_str == "nan" || _str == "nanf" || std::isnan(value))
 		std::cout << "nan";
-	else if (_str == "-inff" || _str == "-inf")
+	else if (_str == "-inff" || _str == "-inf" || (std::isinf(value) && value < 0))
 		std::cout << "-inf";
-	else if (_str == "+inff" || _str == "+inf" || value > std::numeric_limits<float>::max())
+	else if (_str == "+inff" || _str == "+inf" || (std::isinf(value) && value > 0))
 		std::cout << "+inf";
 	else
-		std::cout << std::setprecision(1) << std::fixed << static_cast<double>(value) << "f";
+		std::cout << std::setprecision(1) << std::fixed << static_cast<double>(value);
 	std::cout << std::endl;
 }
 
