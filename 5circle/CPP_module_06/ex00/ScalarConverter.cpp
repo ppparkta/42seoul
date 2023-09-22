@@ -73,7 +73,7 @@ bool ScalarConverter::checkDouble()
 
 bool ScalarConverter::checkEx()
 {
-	if (_str == "nan" || _str == "nanf" || _str == "+inf" || _str == "-inf" || _str == "+inff" || _str == "-inff")
+	if (_str == "nan" || _str == "nanf" || _str == "inf" || _str == "+inf" || _str == "-inf" || _str == "+inff" || _str == "-inff")
 		return (true);
 	return (false);
 }
