@@ -13,7 +13,7 @@ class Array
 		unsigned int _size;
 
 	public:
-		Array() : _arr(NULL), _size(0) {}
+		Array() : _arr(new T(0)), _size(0) {}
 		Array(unsigned int n) : _arr(new T[n]), _size(n) {}
 		Array(const Array &array)
 		{
