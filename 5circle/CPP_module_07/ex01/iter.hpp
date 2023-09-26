@@ -14,7 +14,7 @@ void iter(T *arr, size_t size, void (*function)(T &target))
 }
 
 template <typename T>
-void iter(const T *arr, const size_t size, void (*function)(T const &target))
+void iter(const T *arr, size_t size, void (*function)(T const &target))
 {
 	if (arr == NULL || size == 0 || function == NULL)
 		return;
