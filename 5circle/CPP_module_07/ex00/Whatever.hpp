@@ -12,7 +12,7 @@ void swap(T &n1, T &n2)
 }
 
 template <typename T>
-const T &min(T &n1, T &n2)
+const T &min(const T &n1, const T &n2)
 {
 	if (n1 < n2)
 		return n1;
@@ -21,7 +21,7 @@ const T &min(T &n1, T &n2)
 }
 
 template <typename T>
-const T &max(T &n1, T &n2)
+const T &max(const T &n1, const T &n2)
 {
 	if (n1 > n2)
 		return n1;
