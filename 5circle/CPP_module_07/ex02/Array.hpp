@@ -38,30 +38,36 @@ class Array
 		}
 		T &operator[](unsigned int index)
 		{
+			if (index >= this->_size)
+				throw Array::OutOfBoundsException();
+			return (this->_arr[index]);
 		}
-		T &operator[](unsigned int index) const
+		const T &operator[](unsigned int index) const
 		{
+			if (index >= this->_size)
+				throw Array::OutOfBoundsException();
+			return (this->_arr[index]);
 		}
 		unsigned int size() const
 		{
 			return this->_size;
 		}
-		class OutOfBoundsException : public exception
+		class OutOfBoundsException : public std::exception
 		{
-		public:
-			virtual const char *what() const throw()
-			{
-				return "Index is out of bounds!";
-			}
+			public:
+				virtual const char *what() const throw()
+				{
+					return "Index is out of bounds!";
+				}
 		};
 };
 
 template <typename T>
 std::ostream &operator<<(std::ostream &os, Array<T> const &arr)
 {
-	for (unsigned int i = 0; arr.size(); i++)
+	for (unsigned int i = 0; i < arr.size(); i++)
 	{
-		os << "index " << i << ": " arr[i] << std::endl;
+		os << "index " << i << ": " << arr[i] << std::endl;
 	}
 	return os;
 }

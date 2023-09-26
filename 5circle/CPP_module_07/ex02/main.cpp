@@ -1,4 +1,5 @@
 #include "Array.hpp"
+#define MAX_VAL 750
 
 int main()
 {
@@ -23,7 +24,7 @@ int main()
 		}
 		catch (const std::exception &e)
 		{
-			std::cerr << e.what() << std::endl;
+			std::cerr << e.what() << std::endl << std::endl;
 		}
 	}
 
@@ -51,7 +52,7 @@ int main()
 		}
 		catch (const std::exception &e)
 		{
-			std::cerr << e.what() << std::endl;
+			std::cerr << e.what() << std::endl << std::endl;
 		}
 	}
 
@@ -63,7 +64,7 @@ int main()
 		str_arr[1] = "number 2";
 		str_arr[2] = "number 3";
 		std::cout << str_arr << std::endl;
-		
+
 		// string 예외처리
 		try
 		{
@@ -71,7 +72,72 @@ int main()
 		}
 		catch (const std::exception &e)
 		{
-			std::cerr << e.what() << std::endl;
+			std::cerr << e.what() << std::endl << std::endl;
+		}
+		// -인덱스 예외처리
+		try
+		{
+			std::cout << str_arr[-1] << std::endl;
+		}
+		catch (const std::exception &e)
+		{
+			std::cerr << e.what() << std::endl << std::endl;
 		}
 	}
 }
+
+//int main(void)
+//{
+//	Array<int> numbers(MAX_VAL);
+//	int* mirror = new int[MAX_VAL];
+//	srand(time(NULL));
+//	for (int i = 0; i < MAX_VAL; i++)
+//	{
+//		const int value = rand();
+//		numbers[i] = value;
+//		mirror[i] = value;
+//		std::cout << "numbers: " << numbers[i] << std::endl;
+//		std::cout << "mirror: " << mirror[i] << std::endl;
+//	}
+//	//SCOPE
+//	{
+//		Array<int> tmp = numbers;
+//		Array<int> test(tmp);
+//		std::cout << "tmp: " << tmp;
+//		std::cout << "test: " << test;
+//	}
+
+//	for (int i = 0; i < MAX_VAL; i++)
+//	{
+//		if (mirror[i] != numbers[i])
+//		{
+//			std::cerr << "didn't save the same value!!" << std::endl;
+//			return 1;
+//		}
+//		std::cout << "numbers: " << numbers[i] << std::endl;
+//		std::cout << "mirror: " << mirror[i] << std::endl;
+//	}
+//	try
+//	{
+//		numbers[-2] = 0;
+//	}
+//	catch(const std::exception& e)
+//	{
+//		std::cerr << e.what() << '\n';
+//	}
+//	try
+//	{
+//		numbers[MAX_VAL] = 0;
+//	}
+//	catch(const std::exception& e)
+//	{
+//		std::cerr << e.what() << '\n';
+//	}
+
+//	for (int i = 0; i < MAX_VAL; i++)
+//	{
+//		numbers[i] = rand();
+//	}
+//	delete [] mirror;//
+//	return 0;
+//}
