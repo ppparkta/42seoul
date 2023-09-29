@@ -22,9 +22,9 @@ class Span{
 		~Span();
 
 		void addNumber(int n);
-		void addNumbers(std::vector<long>::iterator begin, std::vector<long>::iterator end);
-		long shortestSpan();
-		long longestSpan();
+		void addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+		int shortestSpan();
+		int longestSpan();
 
 		class FullSpanException : public std::exception{
 			public:

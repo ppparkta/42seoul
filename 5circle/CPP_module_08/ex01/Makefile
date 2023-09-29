@@ -1,6 +1,7 @@
 NAME = ex01
 
 SRC = main.cpp\
+	Span.cpp\
 
 CXX = c++
 CFALGS = -Wall -Wextra -Werror -std=c++98
