@@ -12,29 +12,28 @@
 
 class Span{
 	private:
-		int *_arr;
-		unsigned int n;
+		std::vector<int> _v;
+		unsigned int _n;
 	public:
 		Span();
 		Span(unsigned int n);
 		Span(const Span &span);
 		Span& operator=(const Span &span);
 		~Span();
-		void addNumber(unsigned int n);
-		unsigned int shortestSpan();
-		unsigned int longestSpan();
-		void addManyNumber();
+
+		void addNumber(int n);
+		void addNumbers(std::vector<long>::iterator begin, std::vector<long>::iterator end);
+		long shortestSpan();
+		long longestSpan();
+
 		class FullSpanException : public std::exception{
 			public:
-				virtual const char *what() const throw(){
-					return "Span is full!";
-				}
+				virtual const char *what() const throw();
 		};
-		class NoMatchinException : public std::exception{
+
+		class NoMatchingException : public std::exception{
 			public:
-				virtual const char *what() const throw(){
-					return "No matching elements!";
-				}
+				virtual const char *what() const throw();
 		};
 };
 

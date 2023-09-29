@@ -1,16 +1,22 @@
 #include "Span.hpp"
 
-Span::Span(){
+const char* Span::FullSpanException::what() const throw(){
+	return "Span is full!";
+}
+
+const char* Span::NoMatchingException::what() const throw(){
+	return "No matching elements!";
+}
+
+Span::Span():_n(0){
 
 }
 
-Span::Span(unsigned int n){
+Span::Span(unsigned int n):_n(n){
 
 }
 
-Span::addManyNumber(const Span &span){
 
-}
 
 Span& Span::operator=(const Span &span){
 
