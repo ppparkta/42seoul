@@ -14,8 +14,21 @@ Span::Span() : _n(0) {}
 
 Span::Span(unsigned int n) : _n(n) {}
 
+Span::Span(const Span &span)
+{
+	this->_n = span._n;
+	this->_v = span._v;
+	*this = span;
+}
+
 Span &Span::operator=(const Span &span)
 {
+	if (&span != this)
+	{
+		this->_n = span._n;
+		this->_v = span._v;
+	}
+	return *this;
 }
 
 Span::~Span() {}
