@@ -21,6 +21,8 @@ class Span{
 		Span& operator=(const Span &span);
 		~Span();
 
+		std::vector<int>::iterator begin();
+		std::vector<int>::iterator end();
 		void addNumber(int n);
 		void addManyNumbers(unsigned int n);
 		void addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);

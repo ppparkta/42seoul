@@ -33,6 +33,16 @@ Span &Span::operator=(const Span &span)
 
 Span::~Span() {}
 
+std::vector<int>::iterator Span::begin()
+{
+	return this->_v.begin();
+}
+
+std::vector<int>::iterator Span::end()
+{
+	return this->_v.end();
+}
+
 void Span::addNumber(int n)
 {
 	if (this->_v.size() >= this->_n)
@@ -46,7 +56,7 @@ void Span::addManyNumbers(unsigned int n)
 	int tmp;
 	for (unsigned int i = 0; i < n; i++)
 	{
-		tmp = rand() % 999;
+		tmp = rand() % 9999;
 		this->addNumber(tmp);
 	}
 }
@@ -81,6 +91,8 @@ int Span::longestSpan()
 	if (_v.empty() || _v.size() < 2)
 		throw NoMatchingException();
 	std::vector<int>::iterator min = std::min_element(this->_v.begin(), this->_v.end());
+	// std::cout<< "min: "<<*min<<", ";
 	std::vector<int>::iterator max = std::max_element(this->_v.begin(), this->_v.end());
+	// std::cout<<"max: "<<*max<<std::endl;
 	return (*max - *min);
 }
