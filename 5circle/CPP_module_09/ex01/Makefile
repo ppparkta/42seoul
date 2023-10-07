@@ -1,6 +1,7 @@
 NAME = RPN
 
 SRC = main.cpp\
+	RPN.cpp\
 
 CXX = c++
 CFALGS = -Wall -Wextra -Werror -std=c++98
