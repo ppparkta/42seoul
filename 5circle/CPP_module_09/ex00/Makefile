@@ -1,6 +1,7 @@
-NAME = ex00
+NAME = BitcoinExchange
 
 SRC = main.cpp\
+	BitcoinExchange.cpp\
 
 CXX = c++
 CFALGS = -Wall -Wextra -Werror -std=c++98
