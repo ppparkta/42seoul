@@ -3,6 +3,7 @@
 #define __BITCOINEXCHANGE_HPP__
 
 #include <iostream>
+#include <exception>
 #include <fstream>
 #include <string>
 #include <map>
@@ -15,10 +16,21 @@ class BitcoinExchange{
 		BitcoinExchange &operator=(const BitcoinExchange &bit);
 
 	public:
-		BitcoinExchange(const std::string &bit);
+		BitcoinExchange(const std::string data);
 		~BitcoinExchange();
 
-		void exchange(const std::string &input);
+		void exchange(const std::string input);
+		void printData();
+		
+		class NoOpenFileException : public std::exception{
+			public:
+				virtual const char *what() const throw ();
+		};
+		class InvalidFileException : public std::exception{
+			public:
+				virtual const char *what() const throw ();
+		};
+		
 };
 
 #endif
