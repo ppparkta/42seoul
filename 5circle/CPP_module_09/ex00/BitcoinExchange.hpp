@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <exception>
+#include <stdexcept>
+#include <limits.h>
 #include <fstream>
 #include <string>
 #include <map>
@@ -20,17 +22,15 @@ class BitcoinExchange{
 		~BitcoinExchange();
 
 		void exchange(const std::string input);
-		void printData();
-		
+
 		class NoOpenFileException : public std::exception{
 			public:
 				virtual const char *what() const throw ();
 		};
-		class InvalidFileException : public std::exception{
+		class NotPositiveNumberException : public std::exception{
 			public:
 				virtual const char *what() const throw ();
 		};
-		
 };
 
 #endif
