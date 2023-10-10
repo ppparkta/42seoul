@@ -1,6 +1,7 @@
-NAME = ex02
+NAME = PmergeMe
 
 SRC = main.cpp\
+	PmergeMe.cpp\
 
 CXX = c++
 CFALGS = -Wall -Wextra -Werror -std=c++98

@@ -5,11 +5,6 @@ const char *BitcoinExchange::NoOpenFileException::what() const throw()
 	return "Error: could not open file.";
 }
 
-const char *BitcoinExchange::NotPositiveNumberException::what() const throw()
-{
-	return "Error: not a positive number.";
-}
-
 BitcoinExchange::~BitcoinExchange() {}
 
 BitcoinExchange::BitcoinExchange(const std::string data)
@@ -93,7 +88,7 @@ void BitcoinExchange::exchange(const std::string input)
 	std::string line;
 	std::getline(data, line);
 	if (line != "date | value")
-		throw std::invalid_argument("1Error: bad input => " + line);
+		throw std::invalid_argument("Error: bad input => " + line);
 	while (std::getline(data, line))
 	{
 		long year = 0, month = 0, day = 0;
