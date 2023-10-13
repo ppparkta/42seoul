@@ -30,6 +30,9 @@ class PmergeMe
 		void merge_list(const std::vector<int> &args);
 		void initialize_index();
 		void find_next_insertion();
+		
+		void print_vector();
+		void print_list();
 
 	public:
 		PmergeMe();

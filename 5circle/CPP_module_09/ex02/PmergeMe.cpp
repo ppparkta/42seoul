@@ -31,26 +31,40 @@ void PmergeMe::merge_vector(const std::vector<int> &args)
 }
 
 void PmergeMe::insertion_sort_vec(){
-	//첫번째 원소 삽입
-	if (this->pendingElements_vec.size()!=0) 
-		this->mainChain_vec.insert(this->mainChain_vec.begin(), this->pendingElements_vec[0]);
-
-	//탐색 인덱스 초기화
 	initialize_index();
-	for (int i=1; i < this->pendingElements_vec.size(); ) {
-		//다음에 삽입해야 하는 원소의 인덱스 탐색
-		find_next_insertion();
+	if (this->pendingElements_vec.size() != 0) 
+		this->mainChain_vec.insert(this->mainChain_vec.begin(), this->pendingElements_vec[0]);
+	//print_vector();
+	int i = 1;
+	while(i < this->pendingElements_vec.size()){
 		int num = this->index.back();
-		int j = (i + num < this->pendingElements_vec.size())?i+num:this->pendingElements_vec.size();
-		
-		for (int k = i, j; --j >= i; ++k) {
-			this->mainChain_vec.insert(std::upper_bound(this->mainChain_vec.begin(), this->mainChain_vec.begin()+j+k, this->pendingElements_vec[j]),\
+		//std::cout<<"index number = "<<num<<std::endl;
+		int j = (i + num < this->pendingElements_vec.size()) ? i + num : this->pendingElements_vec.size();
+		for (int k = i; i <= --j ; k++) {
+			//std::cout<<"i = "<<i<<", k = "<<k<<", j = "<<j<<", pendingE[j] = "<<this->pendingElements_vec[j]<<std::endl;
+			this->mainChain_vec.insert(std::upper_bound(this->mainChain_vec.begin(), this->mainChain_vec.begin() + j + k, this->pendingElements_vec[j]),\
 				this->pendingElements_vec[j]);
-			if (this->mainChain_vec[j + k] == this->pendingElements_vec[j])
-				--k;
+			//print_vector();
 		}
-		i+=num;
+		//std::cout<<std::endl;
+		i += num;
+		find_next_insertion();
 	}
+}
+
+void PmergeMe::print_vector(){
+	std::cout<<"=================================="<<std::endl;
+	std::cout<<"(vector) mainChain: ";
+	for(int i=0;i<this->mainChain_vec.size();i++){
+		std::cout<<this->mainChain_vec[i]<<" ";
+	}
+	std::cout<<std::endl;
+	std::cout<<"(vector) pending_e: ";
+	for(int i=0;i<this->pendingElements_vec.size();i++){
+		std::cout<<this->pendingElements_vec[i]<<" ";
+	}
+	std::cout<<std::endl;
+	std::cout<<"=================================="<<std::endl;
 }
 
 void PmergeMe::merge_insertion_sort_vec(const std::vector<int> &args){
@@ -88,7 +102,41 @@ void PmergeMe::merge_list(const std::vector<int> &args)
 }
 
 void PmergeMe::insertion_sort_lst(){
+	initialize_index();
+	print_list();
+	if (this->pendingElements_lst.size() != 0) 
+		this->mainChain_lst.insert(this->mainChain_lst.begin(), *this->pendingElements_lst.begin());
+	print_list();
+	int i = 1;
+	while(i < this->pendingElements_lst.size()){
+		int num = this->index.back();
+		//std::cout<<"index number = "<<num<<std::endl;
+		int j = (i + num < this->pendingElements_lst.size()) ? i + num : this->pendingElements_lst.size();
+		for (int k = i; i <= --j ; k++) {
+			//std::cout<<"i = "<<i<<", k = "<<k<<", j = "<<j<<", pendingE[j] = "<<this->pendingElements_vec[j]<<std::endl;
+			//this->mainChain_lst.insert(std::upper_bound(this->mainChain_lst.begin(), (this->mainChain_lst.begin() + j + k), *(this->pendingElements_lst.begin() + j)),\
+			//	this->pendingElements_vec[j]);
+			//print_vector();
+		}
+		//std::cout<<std::endl;
+		i += num;
+		find_next_insertion();
+	}
+}
 
+void PmergeMe::print_list(){
+	std::cout<<"=================================="<<std::endl;
+	std::cout<<"(list) mainChain: ";
+	for(std::list<int>::iterator i = this->mainChain_lst.begin(); i != this->mainChain_lst.end(); i++){
+		std::cout<<*i<<" ";
+	}
+	std::cout<<std::endl;
+	std::cout<<"(list) pending_e: ";
+	for(std::list<int>::iterator i = this->pendingElements_lst.begin(); i != this->pendingElements_lst.end(); i++){
+		std::cout<<*i<<" ";
+	}
+	std::cout<<std::endl;
+	std::cout<<"=================================="<<std::endl;
 }
 
 void PmergeMe::merge_insertion_sort_lst(const std::vector<int> &args){
