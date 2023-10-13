@@ -13,21 +13,21 @@
 class PmergeMe
 {
 	private:
-		std::vector<int> index;
-		std::vector<int> mainChain_vec;
-		std::vector<int> pendingElements_vec;
-		std::list<int> mainChain_lst;
-		std::list<int> pendingElements_lst;
+		std::vector<size_t> index;
+		std::vector<size_t> mainChain_vec;
+		std::vector<size_t> pendingElements_vec;
+		std::list<size_t> mainChain_lst;
+		std::list<size_t> pendingElements_lst;
 
 		PmergeMe(const PmergeMe &pmerge);
 		PmergeMe &operator=(const PmergeMe &pmerge);
 
-		void merge_insertion_sort_vec(const std::vector<int> &args);
-		void merge_insertion_sort_lst(const std::vector<int> &args);
+		void merge_insertion_sort_vec(const std::vector<size_t> &args);
+		void merge_insertion_sort_lst(const std::vector<size_t> &args);
 		void insertion_sort_vec();
 		void insertion_sort_lst();
-		void merge_vector(const std::vector<int> &args);
-		void merge_list(const std::vector<int> &args);
+		void merge_vector(const std::vector<size_t> &args);
+		void merge_list(const std::vector<size_t> &args);
 		void initialize_index();
 		void find_next_insertion();
 		

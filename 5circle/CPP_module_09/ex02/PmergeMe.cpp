@@ -4,18 +4,18 @@ PmergeMe::PmergeMe() {}
 
 PmergeMe::~PmergeMe() {}
 
-void PmergeMe::merge_vector(const std::vector<int> &args)
+void PmergeMe::merge_vector(const std::vector<size_t> &args)
 {
-	std::vector<std::vector<int> > pair;
+	std::vector<std::vector<size_t> > pair;
 	for (int i = 0; i + 1 < args.size(); i += 2)
 	{
-		pair.push_back(std::vector<int>());
+		pair.push_back(std::vector<size_t>());
 		pair.back().push_back(std::max(args[i], args[i + 1]));
 		pair.back().push_back(std::min(args[i], args[i + 1]));
 	}
-	for (std::vector<std::vector<int> >::iterator iter = pair.begin(); iter != pair.end(); iter++)
+	for (std::vector<std::vector<size_t> >::iterator iter = pair.begin(); iter != pair.end(); iter++)
 	{
-		for (std::vector<std::vector<int> >::iterator tmp = iter; tmp != pair.end(); tmp++)
+		for (std::vector<std::vector<size_t> >::iterator tmp = iter; tmp != pair.end(); tmp++)
 		{
 			if (*iter > *tmp)
 				std::swap(*iter, *tmp);
@@ -32,9 +32,8 @@ void PmergeMe::merge_vector(const std::vector<int> &args)
 
 void PmergeMe::insertion_sort_vec(){
 	initialize_index();
-	if (this->pendingElements_vec.size() != 0) 
+	if (!this->pendingElements_vec.empty()) 
 		this->mainChain_vec.insert(this->mainChain_vec.begin(), this->pendingElements_vec[0]);
-	//print_vector();
 	int i = 1;
 	while(i < this->pendingElements_vec.size()){
 		int num = this->index.back();
@@ -46,7 +45,6 @@ void PmergeMe::insertion_sort_vec(){
 				this->pendingElements_vec[j]);
 			//print_vector();
 		}
-		//std::cout<<std::endl;
 		i += num;
 		find_next_insertion();
 	}
@@ -67,23 +65,23 @@ void PmergeMe::print_vector(){
 	std::cout<<"=================================="<<std::endl;
 }
 
-void PmergeMe::merge_insertion_sort_vec(const std::vector<int> &args){
+void PmergeMe::merge_insertion_sort_vec(const std::vector<size_t> &args){
 	merge_vector(args);
 	insertion_sort_vec();
 }
 
-void PmergeMe::merge_list(const std::vector<int> &args)
+void PmergeMe::merge_list(const std::vector<size_t> &args)
 {
-	std::list<std::list<int> > pair;
+	std::list<std::list<size_t> > pair;
 	for (int i = 0; i + 1 < args.size(); i += 2)
 	{
-		pair.push_back(std::list<int>());
+		pair.push_back(std::list<size_t>());
 		pair.back().push_back(std::max(args[i], args[i + 1]));
 		pair.back().push_back(std::min(args[i], args[i + 1]));
 	}
-	for (std::list<std::list<int> >::iterator iter = pair.begin(); iter != pair.end(); iter++)
+	for (std::list<std::list<size_t> >::iterator iter = pair.begin(); iter != pair.end(); iter++)
 	{
-		for (std::list<std::list<int> >::iterator tmp = iter; ++tmp != pair.end();)
+		for (std::list<std::list<size_t> >::iterator tmp = iter; ++tmp != pair.end();)
 		{
 			if (*iter > *tmp)
 				std::swap(*iter, *tmp);
@@ -103,43 +101,53 @@ void PmergeMe::merge_list(const std::vector<int> &args)
 
 void PmergeMe::insertion_sort_lst(){
 	initialize_index();
-	print_list();
-	if (this->pendingElements_lst.size() != 0) 
-		this->mainChain_lst.insert(this->mainChain_lst.begin(), *this->pendingElements_lst.begin());
-	print_list();
-	int i = 1;
-	while(i < this->pendingElements_lst.size()){
-		int num = this->index.back();
-		//std::cout<<"index number = "<<num<<std::endl;
-		int j = (i + num < this->pendingElements_lst.size()) ? i + num : this->pendingElements_lst.size();
-		for (int k = i; i <= --j ; k++) {
-			//std::cout<<"i = "<<i<<", k = "<<k<<", j = "<<j<<", pendingE[j] = "<<this->pendingElements_vec[j]<<std::endl;
-			//this->mainChain_lst.insert(std::upper_bound(this->mainChain_lst.begin(), (this->mainChain_lst.begin() + j + k), *(this->pendingElements_lst.begin() + j)),\
-			//	this->pendingElements_vec[j]);
-			//print_vector();
-		}
-		//std::cout<<std::endl;
-		i += num;
+	if (!pendingElements_lst.empty()){
+		mainChain_lst.insert(mainChain_lst.begin(), pendingElements_lst.front());
+		pendingElements_lst.pop_front();
+	}
+	int now = 1;
+	while (!pendingElements_lst.empty()){
+		int bind_point = (index.back() < pendingElements_lst.size()) ? index.back() : pendingElements_lst.size();
 		find_next_insertion();
+		now += bind_point;
+
+		std::list<size_t> tmp;
+		while (bind_point--){
+			tmp.push_front(pendingElements_lst.front());
+			pendingElements_lst.pop_front();
+		}
+
+		std::list<size_t>::iterator iter = mainChain_lst.begin();
+		for(int i = 0; i < now; i++)
+			iter++;
+
+		now += tmp.size();
+		
+		while (!tmp.empty()){
+			std::list<size_t>::iterator insert_e = std::upper_bound(mainChain_lst.begin(), iter, tmp.front());
+			mainChain_lst.insert(insert_e, tmp.front());
+			tmp.pop_front();
+			if (insert_e == iter)
+				iter--;
+		}
 	}
 }
 
 void PmergeMe::print_list(){
 	std::cout<<"=================================="<<std::endl;
 	std::cout<<"(list) mainChain: ";
-	for(std::list<int>::iterator i = this->mainChain_lst.begin(); i != this->mainChain_lst.end(); i++){
+	for(std::list<size_t>::iterator i = this->mainChain_lst.begin(); i != this->mainChain_lst.end(); i++){
 		std::cout<<*i<<" ";
 	}
 	std::cout<<std::endl;
 	std::cout<<"(list) pending_e: ";
-	for(std::list<int>::iterator i = this->pendingElements_lst.begin(); i != this->pendingElements_lst.end(); i++){
+	for(std::list<size_t>::iterator i = this->pendingElements_lst.begin(); i != this->pendingElements_lst.end(); i++){
 		std::cout<<*i<<" ";
 	}
 	std::cout<<std::endl;
-	std::cout<<"=================================="<<std::endl;
 }
 
-void PmergeMe::merge_insertion_sort_lst(const std::vector<int> &args){
+void PmergeMe::merge_insertion_sort_lst(const std::vector<size_t> &args){
 	merge_list(args);
 	insertion_sort_lst();
 }
@@ -154,7 +162,7 @@ void PmergeMe::find_next_insertion(){
 	this->index.push_back(index[index.size()-1] + (2 * index[index.size() - 2]));
 }
 
-static void check_args(int argc, char **argv, std::vector<int> &args)
+static void check_args(int argc, char **argv, std::vector<size_t> &args)
 {
 	std::string str;
 	for (int i = 1; i < argc; i++)
@@ -183,9 +191,9 @@ static void check_args(int argc, char **argv, std::vector<int> &args)
 
 void PmergeMe::merge(int argc, char **argv)
 {
-	std::vector<int> args;
+	std::vector<size_t> args;
 	check_args(argc, argv, args);
-	std::vector<int> save_args(args);
+	std::vector<size_t> save_args(args);
 
 	std::cout << "Before: ";
 	for (int i = 0; i < save_args.size(); i++)
