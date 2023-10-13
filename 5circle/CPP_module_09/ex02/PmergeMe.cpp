@@ -35,20 +35,19 @@ void PmergeMe::insertion_sort_vec()
 	initialize_index();
 	if (!this->pendingElements_vec.empty())
 		this->mainChain_vec.insert(this->mainChain_vec.begin(), this->pendingElements_vec[0]);
-	int i = 1;
-	while (i < this->pendingElements_vec.size())
+	int now = 1;
+	while (now < this->pendingElements_vec.size())
 	{
-		int num = this->index.back();
-		// std::cout<<"index number = "<<num<<std::endl;
-		int j = (i + num < this->pendingElements_vec.size()) ? i + num : this->pendingElements_vec.size();
-		for (int k = i; i <= --j; k++)
+		int bind_point = this->index.back();
+		// std::cout<<"bind_point = "<<bind_point<<std::endl;
+		int j = (now + bind_point < this->pendingElements_vec.size()) ? now + bind_point : this->pendingElements_vec.size();
+		for (int k = now; now <= --j; k++)
 		{
-			// std::cout<<"i = "<<i<<", k = "<<k<<", j = "<<j<<", pendingE[j] = "<<this->pendingElements_vec[j]<<std::endl;
+			// std::cout<<"now = "<<now<<", k = "<<k<<", j = "<<j<<", pendingE[j] = "<<this->pendingElements_vec[j]<<std::endl;
 			this->mainChain_vec.insert(std::upper_bound(this->mainChain_vec.begin(), this->mainChain_vec.begin() + j + k, this->pendingElements_vec[j]),
 									   this->pendingElements_vec[j]);
-			// print_vector();
 		}
-		i += num;
+		now += bind_point;
 		find_next_insertion();
 	}
 }
@@ -120,6 +119,7 @@ void PmergeMe::insertion_sort_lst()
 		int bind_point = (index.back() < pendingElements_lst.size()) ? index.back() : pendingElements_lst.size();
 		find_next_insertion();
 		now += bind_point;
+		//std::cout<<"bind_point: "<<bind_point<<std::endl;
 
 		std::list<size_t> tmp;
 		while (bind_point--)
@@ -131,7 +131,6 @@ void PmergeMe::insertion_sort_lst()
 		std::list<size_t>::iterator iter = mainChain_lst.begin();
 		for (int i = 0; i < now; i++)
 			iter++;
-
 		now += tmp.size();
 
 		while (!tmp.empty())
