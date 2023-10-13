@@ -174,7 +174,9 @@ void BitcoinExchange::exchange(const std::string input)
 			continue;
 		}
 		std::map<long, double>::iterator cursor = --this->data.upper_bound(date);
-		std::cout << year << '-' << (month < 10 ? "0" : "") << month << '-' << (day < 10 ? "0" : "") << day << " => " << value << " = " << (cursor->second * value) << std::endl;
+		std::cout << year << '-' << (month < 10 ? "0" : "") << month << '-' << (day < 10 ? "0" : "") << day << " => " << value << " = ";
+		std::cout.precision(7);
+		std::cout << (cursor->second * value) << std::endl;
 	}
 	//for(std::map<long, double>::iterator it = this->data.begin(); it != this->data.end();it++){
 	//	std::cout<<"( "<<it->first<<" "<<it->second<<" ), ";
