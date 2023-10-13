@@ -50,6 +50,7 @@ void PmergeMe::insertion_sort_vec()
 		now += bind_point;
 		find_next_insertion();
 	}
+	//print_vector();
 }
 
 void PmergeMe::print_vector()
@@ -142,6 +143,7 @@ void PmergeMe::insertion_sort_lst()
 				iter--;
 		}
 	}
+	//print_list();
 }
 
 void PmergeMe::print_list()

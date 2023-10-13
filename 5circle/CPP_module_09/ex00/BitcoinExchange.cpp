@@ -73,8 +73,6 @@ static int check_valid_value(double value)
 {
 	if (value < 0)
 		return 1;
-	if (value > 2147483647)
-		return 3;
 	if (value > 1000)
 		return 2;
 	return 0;
@@ -162,8 +160,6 @@ void BitcoinExchange::exchange(const std::string input)
 			if (check_valid_value(value) == 1)
 				std::cerr << "Error: not a positive number." << std::endl;
 			else if (check_valid_value(value) == 2)
-				std::cerr << "Error: bad input => " << line << std::endl;
-			else
 				std::cerr << "Error: too large a number." << std::endl;
 			continue;
 		}
