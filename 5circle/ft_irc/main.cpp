@@ -11,7 +11,7 @@
  * freeaddrinfo, 
  * bind, 
  * connect, 
- * listen, 
+ * listen, 신호 읽을 때까지 기다림
  * accept, 
  * htons, 
  * htonl, 
