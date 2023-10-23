@@ -1,18 +1,18 @@
 #include <iostream>
 
 /***
- * socket, 
- * close, 
+ * socket, 소켓을 생성함
+ * close, 소켓 통신을 종료함
  * setsockopt, 
  * getsockname, 
  * getprotobyname, 
  * gethostbyname, 
  * getaddrinfo, 
  * freeaddrinfo, 
- * bind, 
+ * bind, 생성된 소켓을 연결함 (바인딩)
  * connect, 
  * listen, 신호 읽을 때까지 기다림
- * accept, 
+ * accept, 사용자가 접근할 때 허용함
  * htons, 
  * htonl, 
  * ntohs, 
