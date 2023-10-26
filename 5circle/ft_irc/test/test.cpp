@@ -64,7 +64,7 @@ int main(int argc, char **argv)
             // 클라이언트 디스크립터 상태 확인
             if (poll_fds[i].revents & POLL_IN)
             {
-                // 소켓 디스크립터 읽기 가능한 경우
+                // 소켓 디스크립터 읽기 가능한 경우, 서버에서는?
                 if (poll_fds[i].fd == sock_fd)
                 {
                     // 새로운 클라이언트가 서버에 연결 요청한 경우
@@ -85,6 +85,7 @@ int main(int argc, char **argv)
                 }
                 else
                 {
+                    // 서버가 아니라면, 클라이언트에서는?
                     // 기존 클라이언트 소켓이 데이터 보낸 경우
                     int client_sock = poll_fds[i].fd;
                     int valread = read(client_sock, buffer, sizeof(buffer));
