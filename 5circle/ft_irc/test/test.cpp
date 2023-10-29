@@ -65,6 +65,7 @@ int main(int argc, char **argv)
             if (poll_fds[i].revents & POLL_IN)
             {
                 // 소켓 디스크립터 읽기 가능한 경우, 서버에서는?;
+                // 일단 다중 클라이언트에 대해서만 구현하기
                 if (poll_fds[i].fd == sock_fd)
                 {
                     // 새로운 클라이언트가 서버에 연결 요청한 경우
