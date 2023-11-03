@@ -52,6 +52,7 @@ int main(int argc, char **argv)
     while (1)
     {
         // poll 함수 사용하여 소켓 디스크립터 상태 모니터링
+        // poll 함수에 대한 추가 공부 필요함
         int poll_count = poll(poll_fds, num_fds, -1);
         std::cout << 123 << std::endl;
         if (poll_count == -1)
