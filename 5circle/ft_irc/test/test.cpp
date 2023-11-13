@@ -78,6 +78,7 @@ int main(int argc, char **argv)
                     }
                     else
                     {
+                        // 우엥
                         client_sockets.push_back(client_sock);
                         std::cout << "client " << client_sock << " connected.\n";
                         poll_fds[num_fds].fd = client_sock;
