@@ -1,0 +1,37 @@
+#ifndef PART_HPP
+#define PART_HPP
+
+#include "Command.hpp"
+#include "../utils.hpp"
+#include "../UserInfo.hpp"
+#include "../Message.hpp"
+#include "../Channel.hpp"
+
+class Part : public Command
+{
+private:
+	UserInfo &user;
+	std::map<int, UserInfo> *users;
+	std::map<std::string, Channel> *channels;
+
+	Channel *partChannel;
+    std::vector<std::string> partChannelName;
+
+public:
+	Part(Message *msg, UserInfo &user, std::map<int, UserInfo> *users, std::map<std::string, Channel> *channels);
+	~Part();
+
+	void execute();
+	void splitParameter(std::string parameter);
+	int isChannel(std::string partChannelName);
+
+	void partUsers();
+	int checkUsers(std::string partChannelName);
+	int checkChannel(std::string parameter);
+
+	int eraseChannelInUserInfo(std::string partChannelName);
+	void eraseUserInChannel(Channel *channel);
+	void eraseUser(std::string partChannelName);
+};
+
+#endif

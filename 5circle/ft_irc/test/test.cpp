@@ -95,8 +95,8 @@ int main(int argc, char **argv)
                     std::cout << buffer << std::endl;
                     if (valread <= 0)
                     {
-                        if (buffer == "PASS")
-                        std::cerr << "client read error\n";
+                        //if (buffer == "PASS")
+                            //std::cerr << "client read error\n";
                         close(client_sock);
                         for (int j = i; j < num_fds; j++)
                         {
