@@ -5,6 +5,7 @@ mkdir -p /var/lib/mysql /var/run/mysqld
 chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
 chmod 777 /var/run/mysqld
 
+# mysqld(루트권한 설정 명령어) 포그라운드 실행
 mysqld --user=root&
 
 until mysqladmin ping -hlocalhost -uroot -p${MYSQL_ROOT_PASSWORD} > /dev/null 2>&1; do
