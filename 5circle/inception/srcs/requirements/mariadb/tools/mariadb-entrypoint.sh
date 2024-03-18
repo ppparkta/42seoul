@@ -17,6 +17,5 @@ GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%';
 FLUSH PRIVILEGES;
 EOF
 
-#백그라운드에서 실행중인 루트계정 셧다운시킴 (한번 나갔다가 재실행 시키면 완전히 적용됨)
 mysqladmin -uroot -p${MYSQL_ROOT_PASSWORD} shutdown
-exec mysqld #--user=mysql
+exec mysqld
