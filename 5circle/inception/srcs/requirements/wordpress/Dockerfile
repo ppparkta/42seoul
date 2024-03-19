@@ -8,8 +8,8 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
     chmod +x wp-cli.phar && \
     mv wp-cli.phar /usr/local/bin/wp
     
-COPY ./tools/wordpress-entrypoint.sh /wordpress-entrypoint.sh
 COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
+COPY ./tools/wordpress-entrypoint.sh /wordpress-entrypoint.sh
 
 RUN chmod +x /wordpress-entrypoint.sh
 
