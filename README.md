@@ -51,4 +51,20 @@
 - 아래의 링크에서 정리된 내용을 확인할 수 있습니다.
 - <a href="https://velog.io/@ppparkta/42seoul-minishell-1">minishell 정리자료</a>
 
+### ft_irc
+2023.
+- ft_irc는 C++과 socket을 이용하여 채팅 서버를 구현하는 팀프로젝트입니다.
+- socket의 전체적인 로직과 invite, join, quit 커맨드를 구현했습니다.
+
+### inception
+2024.01.08~2024.03.22
+- inception은 Docker를 이용하여 블로그를 만드는 과제입니다.
+- mariadb, wordpress, nginx가 하나의 도커 네트워크에서 통신하는 환경을 구축했습니다.
+
+### ft_transcendence
+2024.01.15~2024.03.
+- ft_transcendence는 javascript와 django를 이용하여 웹사이트를 구현하는 팀프로젝트입니다.
+- 팀장으로 참여하여 팀의 전반적인 기획 및 일정을 지도했습니다.
+- 프론트엔드 파트로 자바스크립트를 이용한 http 통신, spa 라우팅, 로그인 및 게임선택 컴포넌트를 구현했습니다.
+
 ![image](https://user-images.githubusercontent.com/86940801/181801594-02c5138d-554f-49da-bd97-ca419839abdd.png)
