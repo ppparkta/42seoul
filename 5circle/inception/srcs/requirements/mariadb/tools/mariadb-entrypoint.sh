@@ -4,7 +4,7 @@ chmod 777 /var/lib/mysql /var/run/mysqld
 
 mysqld&
 
-until mysqladmin ping -hlocalhost -uroot > /dev/null 2>&1; do
+until mysqladmin ping -hlocalhost -uroot -p${MYSQL_ROOT_PASSWORD} > /dev/null 2>&1; do
     sleep 1
 done
 
@@ -18,4 +18,4 @@ FLUSH PRIVILEGES;
 EOF
 
 mysqladmin -uroot -p${MYSQL_ROOT_PASSWORD} shutdown
-exec mysqld
+mysqld

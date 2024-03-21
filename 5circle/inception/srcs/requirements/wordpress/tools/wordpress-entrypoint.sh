@@ -10,4 +10,4 @@ wp core install --url="https://localhost" --admin_user="$WORDPRESS_ADMIN_NAME" -
 wp user create "$WORDPRESS_USER_NAME" "$WORDPRESS_USER_EMAIL" --user_pass="$WORDPRESS_USER_PASSWORD" --allow-root
 wp theme activate twentytwentytwo --allow-root
 
-exec php-fpm7.4 -F
+php-fpm7.4 -F
