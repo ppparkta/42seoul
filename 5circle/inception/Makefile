@@ -1,12 +1,12 @@
 NAME = inception
 
-VOLUME_PATH		:= /Users/soobin
+VOLUME_PATH		:= /home/sooyang/data
 
 all		:	$(NAME)
 
 $(NAME)	:
-	@sudo mkdir -p $(VOLUME_PATH)/mariadb_v/
-	@sudo mkdir -p $(VOLUME_PATH)/wordpress_v/
+	@sudo mkdir -p $(VOLUME_PATH)/DB/
+	@sudo mkdir -p $(VOLUME_PATH)/wordpress/
 	@docker-compose -f ./srcs/docker-compose.yml up --build -d
 
 up		:
